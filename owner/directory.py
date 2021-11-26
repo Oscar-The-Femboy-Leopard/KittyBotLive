@@ -46,8 +46,7 @@ class OwnerCog(commands.Cog):
 
         # INTRODUCTIONS/INFORMATION
         announcements = self.bot.get_guild(g).get_channel(913040579926044713).mention
-        staff_intro = self.bot.get_guild(g).get_channel(913015254827556895).mention
-        server_intro = self.bot.get_guild(g).get_channel(913015254827556895).mention
+        staff_intro = self.bot.get_guild(g).get_channel(913015228508291122).mention
         roles = self.bot.get_guild(g).get_channel(913534684678471732).mention
         changelog = self.bot.get_guild(g).get_channel(913597776183578634).mention
         suggestions = self.bot.get_guild(g).get_channel(913553966401474650).mention
@@ -115,13 +114,11 @@ class OwnerCog(commands.Cog):
 
         intro = f"{announcements} - This channel is for any announcements this server will have. Important ones will " \
                 f"be pinged by the mention role.\n\n{staff_intro} - Look here to get to know the staff! There will be " \
-                f"some basic information here for you to get to know them better.\n\n{server_intro} - This channel is " \
-                f"the introduction to this server. It is here you will find out how this server came to be and how I " \
-                f"have came here.\n\n{roles} - Go here to get yourself some reaction roles! They allow some cool " \
-                f"customisation, and if you have some suggestions, don't gorget to leave them in {suggestions}.\n\n" \
-                f"{changelog} - This channel is designed for members to see what has changed at a glance.\n\n" \
-                f"{suggestions} - This channel is self explanitory. If there's anything out there that could improve " \
-                f"this server, please suggest them here!\n\n "
+                f"some basic information here for you to get to know them better.\n\n{roles} - Go here to get " \
+                f"yourself some reaction roles! They allow some cool customisation, and if you have some suggestions, " \
+                f"don't gorget to leave them in {suggestions}.\n\n{changelog} - This channel is designed for members " \
+                f"to see what has changed at a glance.\n\n{suggestions} - This channel is self explanatory. If " \
+                f"there's anything out there that could improve this server, please suggest them here!"
 
         partner = f"{partner_requirements} - This is the information about how you go about becoming a partner of the " \
                   f"server.\n\n{current_partners} - This is the channel you visit to get the list of active " \
