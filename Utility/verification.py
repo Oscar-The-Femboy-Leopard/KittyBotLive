@@ -166,8 +166,7 @@ class Utility(commands.Cog):
         embed.add_field(name='Fursona:', value=f"{fursona}", inline=False)
         embed.add_field(name='Fursona Info', value=f"{fursonainfo}", inline=False)
         embed.add_field(name='How this user found the server', value=f"{foundus}", inline=False)
-        embed.set_footer(text=f'Author {a.id}\n\n`{PREFIX}accept <mention>` to accept. If you want to question, '
-                              f'message them.')
+        embed.set_footer(text=f'Author {a.id}\n\n`{PREFIX}accept <mention>` to accept or `{PREFIX}deny <mention>` to deny.')
 
         created = a.created_at
 
@@ -185,8 +184,6 @@ class Utility(commands.Cog):
     @commands.has_role("Gatekeeper")
     async def accept(self, ctx, *, m: discord.Member = None):
 
-        # uid = (self.client.get_user(m)).display_name
-
         guild = ctx.guild
         _channel = guild.get_channel(913007198488133635)
         channel = guild.get_channel(913540153753092117)
@@ -202,7 +199,7 @@ class Utility(commands.Cog):
         welcome = self.client.get_role(913595000363814932).mention
 
         await ctx.reply(f'{ctx.author.display_name} has just verified them')
-        await priv.send(f"{ctx.author.display_name} verified:\n> {m}")
+        await priv.send(f"{ctx.author.display_name} verified {ctx.message.content}")
 
         try:
             await m.add_roles(member)
@@ -210,9 +207,7 @@ class Utility(commands.Cog):
         except discord.Forbidden:
             await self.client.channel.send("I don't have perms to add roles.")
 
-        # await (self.client.get_user(m)).send(f"You have been verified! We, at the {ctx.guild.name} hope you have a wonderful stay!")
-
-        # await _channel.send(welcome)
+        await _channel.send(welcome)
         await _channel.send(f'{emoji}{emoji2}')
         await _channel.send(f"Please welcome {m.mention}!\n\n> Please visit {roles} to get yourself some roles!\n\n> "
                             f"If you have any questions about the server, that's not covered by {discover} please go "
