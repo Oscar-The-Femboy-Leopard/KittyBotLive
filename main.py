@@ -100,18 +100,18 @@ if __name__ == '__main__':
 
 @client.group(invoke_without_command=True)
 async def help(ctx):
-    help = discord.Embed(title="Help", description=f"Use {PREFIX}help <module> to load the module help pages")
+    mhelp = discord.Embed(title="Help", description=f"Use {PREFIX}help <module> to load the module help pages")
 
-    help.add_field(name="Fun", value="Some fun commands for everyone!", inline=False)
-    help.add_field(name="Memes", value="Memes! Memes! And More memes!", inline=False)
-    help.add_field(name='Utility', value="Some utility commands to play with", inline=False)
-    help.add_field(name='Wholesome', value="Wholesome commands!", inline=False)
+    mhelp.add_field(name="Fun", value="Have some fun commands in here for you to enjoy!", inline=False)
+    mhelp.add_field(name="Memes", value="Make use of Imgflip's API to generate your own memes!", inline=False)
+    # mhelp.add_field(name="Moderation", value="Commands for Staff", inline=False)
+    mhelp.add_field(name='Utility', value="Some utility commands to play with", inline=False)
 
     footer = "Remember! Commands and modules ARE case sensitive."
 
-    help.set_footer(text=footer)
+    mhelp.set_footer(text=footer)
 
-    await ctx.send(embed=help)
+    await ctx.send(embed=mhelp)
 
 
 @help.command()
@@ -133,9 +133,13 @@ async def Memes(ctx):
     mhelp = discord.Embed(title="Memes Help Page",
                           description=f"Use {PREFIX}help <command> to load the command help page.")
 
-    meme = "brace\nCMM\nFWP\nbutton\noption\nskeleton\nimagination\nim_out\nthink\nthisisfine\ntoo_high\ntrump\nuno\n"
+    meme = "brace\nchangemymind\nfirst_world_problem\nbutton\noption\nskeleton\nspongemock\nimagination\nim_out" \
+           "\nthink\nthisisfine\ntoo_high\ntrump\nuno"
 
     mhelp.add_field(name=_blnk_value, value=meme, inline=False)
+    mhelp.add_field(name="What if I want to see a meme added? What can I do to suggest?",
+                    value=f"Well... You can suggest with many ways, including the `{PREFIX}alert` command or messaging the "
+                          "dev directly!", inline=False)
     footer = "Remember! Commands and modules ARE case sensitive."
 
     mhelp.set_footer(text=footer)
@@ -262,6 +266,17 @@ async def brace(ctx):
 
 
 @help.command()
+async def cardboard_sign(ctx):
+    from imgflip_meme_creation.cardboard_sign import aliases, description
+    option = discord.Embed(title='cardboard_sign', description=description)
+    option.add_field(name="**Command Syntax**", value=f"{PREFIX}cardboard_sign <message>.<message2>", inline=False)
+    option.add_field(name="This command **REQUIRES** a `.` to split the texts for the sides of the memes!",
+                     value=_blnk_value, inline=False)
+    option.set_footer(text=f"Aliases for this command are: {aliases}")
+    await ctx.send(embed=option)
+
+
+@help.command()
 async def changemymind(ctx):
     from imgflip_meme_creation.change_my_mind import aliases, description
     CMM = discord.Embed(title='Change My Mind', description=description)
@@ -280,10 +295,23 @@ async def first_world_problem(ctx):
 
 
 @help.command()
+async def lie_detector(ctx):
+    from imgflip_meme_creation.lie_detector import aliases, description
+    option = discord.Embed(title='Maury Lie Detector', description=description)
+    option.add_field(name="**Command Syntax**", value=f"{PREFIX}lie_detector <message>.<message2>", inline=False)
+    option.add_field(name="This command **REQUIRES** a `.` to split the texts for the sides of the memes!",
+                     value=_blnk_value, inline=False)
+    option.set_footer(text=f"Aliases for this command are: {aliases}")
+    await ctx.send(embed=option)
+
+
+@help.command()
 async def button(ctx):
     from imgflip_meme_creation.nut_button import aliases, description
     imagination = discord.Embed(title='Blank Nut Button', description=description)
     imagination.add_field(name="**Command Syntax**", value=f"{PREFIX}nut <message>.<message2>")
+    imagination.add_field(name="This command **REQUIRES** a `.` to split the texts for the sides of the memes!",
+                          value=_blnk_value, inline=True)
     imagination.set_footer(text=f"Aliases for this command are: {aliases}")
     await ctx.send(embed=imagination)
 
@@ -292,7 +320,31 @@ async def button(ctx):
 async def option(ctx):
     from imgflip_meme_creation.option import aliases, description
     option = discord.Embed(title='options', description=description)
-    option.add_field(name="**Command Syntax**", value=f"{PREFIX}options <message>.<message2>")
+    option.add_field(name="**Command Syntax**", value=f"{PREFIX}options <message>.<message2>", inline=False)
+    option.add_field(name="This command **REQUIRES** a `.` to split the texts for the sides of the memes!",
+                     value=_blnk_value, inline=False)
+    option.set_footer(text=f"Aliases for this command are: {aliases}")
+    await ctx.send(embed=option)
+
+
+@help.command()
+async def putitsomwhereelse(ctx):
+    from imgflip_meme_creation.put_it_somewhere_else import aliases, description
+    option = discord.Embed(title='put it somewhere else', description=description)
+    option.add_field(name="**Command Syntax**", value=f"{PREFIX}putitsomwhereelse <message>.<message2>", inline=False)
+    option.add_field(name="This command **REQUIRES** a `.` to split the texts for the sides of the memes!",
+                     value=_blnk_value, inline=False)
+    option.set_footer(text=f"Aliases for this command are: {aliases}")
+    await ctx.send(embed=option)
+
+
+@help.command()
+async def say_that_again(ctx):
+    from imgflip_meme_creation.say_that_again import aliases, description
+    option = discord.Embed(title='Say That Again I Dare You', description=description)
+    option.add_field(name="**Command Syntax**", value=f"{PREFIX}say_that_again <message>.<message2>", inline=False)
+    option.add_field(name="This command **REQUIRES** a `.` to split the texts for the sides of the memes!",
+                     value=_blnk_value, inline=False)
     option.set_footer(text=f"Aliases for this command are: {aliases}")
     await ctx.send(embed=option)
 
@@ -301,9 +353,20 @@ async def option(ctx):
 async def skeleton(ctx):
     from imgflip_meme_creation.skeleton import aliases, description
     imagination = discord.Embed(title='Waiting Skeleton', description=description)
-    imagination.add_field(name="**Command Syntax**", value=f"{PREFIX}skeleton <message>")
+    imagination.add_field(name="**Command Syntax**", value=f"{PREFIX}skeleton <message>", inline=False)
     imagination.set_footer(text=f"Aliases for this command are: {aliases}")
     await ctx.send(embed=imagination)
+
+
+@help.command()
+async def spongemock(ctx):
+    from imgflip_meme_creation.spongebob_mock import aliases, description
+    mock = discord.Embed(title="Mocking Spongebob meme!", description=description)
+    mock.add_field(name="**Command Syntax**", value=f"{PREFIX}spongemock <message>.<message2>", inline=False)
+    mock.add_field(name="This command **REQUIRES** a `.` to split the thexts for the sides of the memes!",
+                   value=_blnk_value, inline=False)
+    mock.set_footer(text=f"Aliases for this command are: {aliases}")
+    await ctx.send(embed=mock)
 
 
 @help.command()
@@ -328,7 +391,9 @@ async def im_out(ctx):
 async def think(ctx):
     from imgflip_meme_creation.think import aliases, description
     think = discord.Embed(title='Think', description=description)
-    think.add_field(name="**Command Syntax**", value=f"{PREFIX}think <message>")
+    think.add_field(name="**Command Syntax**", value=f"{PREFIX}think <message1>.<message2>")
+    think.add_field(name="This command **REQUIRES** a `.` to split the texts for the sides of the memes!",
+                    value=_blnk_value, inline=True)
     think.set_footer(text=f"Aliases for this command are: {aliases}")
     await ctx.send(embed=think)
 
@@ -355,7 +420,7 @@ async def trump(ctx):
 async def uno(ctx):
     from imgflip_meme_creation.uno import aliases, description
     uno = discord.Embed(title='Uno', description=description)
-    uno.add_field(name="**Command Syntax**", value=f"{PREFIX}uno <message>")
+    uno.add_field(name="**Command Syntax**", value=f"{PREFIX}uno <message>", inline=False)
     uno.set_footer(text=f"Aliases for this command are: {aliases}")
     await ctx.send(embed=uno)
 
