@@ -206,7 +206,7 @@ class OwnerCog(commands.Cog):
         revised = discord.Embed(color=________color, timestamp=datetime.datetime.utcnow())
         revised.add_field(name=f"The discovery was updated on:", value=f"{datetime.date.today()}")
 
-        await guild.get_channel(913015273538355201).purge(limit=10)
+        await guild.get_channel(913015273538355201).purge(limit=15)
         await guild.get_channel(913015273538355201).send(embed=image)
         await guild.get_channel(913015273538355201).send(embed=imp)
         await guild.get_channel(913015273538355201).send(embed=info)
