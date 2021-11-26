@@ -185,6 +185,8 @@ class Utility(commands.Cog):
     @commands.has_role("Gatekeeper")
     async def accept(self, ctx, *, m: discord.Member = None):
 
+        uid = (self.client.get_user(m)).display_name
+
         guild = ctx.guild
         _channel = guild.get_channel(913007198488133635)
         channel = guild.get_channel(913540153753092117)
@@ -197,16 +199,19 @@ class Utility(commands.Cog):
         # deny = discord.utils.get(a.guild.roles, id=841500124383281172)
         emoji = self.client.get_emoji(id=880532960145719307)
         emoji2 = self.client.get_emoji(id=880532998313885817)
-        # welcome = self.client.get_role(913595000363814932).mention
+        welcome = self.client.get_role(913595000363814932).mention
 
         await ctx.reply(f'{ctx.author.display_name} has just verified them')
-        await priv.send(f"{ctx.author.display_name} verified {ctx.message.content}")
+        await priv.send(f"{ctx.author.display_name} verified:\n> {m}\n> {uid}")
 
         try:
             await m.add_roles(member)
             # await m.remove_roles(deny)
         except discord.Forbidden:
             await self.client.channel.send("I don't have perms to add roles.")
+
+        await (self.client.get_user(m)).send(f"You have been verified! We, at the {ctx.guild.name} hope you have a "
+                                             f"wonderful stay!")
 
         # await _channel.send(welcome)
         await _channel.send(f'{emoji}{emoji2}')

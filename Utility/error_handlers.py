@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from config import PREFIX
 
 
 class error_handling(commands.Cog):
@@ -24,10 +25,10 @@ class error_handling(commands.Cog):
             await ctx.reply("Bad argument! {}".format(error))
 
         if isinstance(error, commands.CommandNotFound):
-            await ctx.reply("Command not found! Please refer to `-help` to avoid this error in the future.")
+            await ctx.reply(f"Command not found! Please refer to `{PREFIX}help` to avoid this error in the future.")
 
         if isinstance(error, commands.TooManyArguments):
-            await ctx.reply("Too many arguments! Please refer to `-help <command>` for more information ")
+            await ctx.reply(f"Too many arguments! Please refer to `{PREFIX}help <command>` for more information ")
 
         if isinstance(error, commands.CommandOnCooldown):
             await ctx.reply("Command is on cooldown! Please retry after: `{}`").format(error)

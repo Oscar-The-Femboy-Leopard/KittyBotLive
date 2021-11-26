@@ -22,7 +22,7 @@ class Moderation(commands.Cog):
 
         channel = self.client.get_channel(913736166782681118)
 
-        m = self.client.get_user(member)
+        m = (self.client.get_user(member))
 
         if m == None:
             return await ctx.reply("You need to name someone to ban.")

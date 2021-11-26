@@ -76,7 +76,7 @@ async def on_ready():
         channel = client.get_channel(861989383590248459)
 
         await client.change_presence(activity=activity)
-        print(f"Changed my status to {activity.type} {activity.name}")
+        # print(f"Changed my status to {activity.type} {activity.name}")
         await channel1.send(f"Changed my status to {activity.type} {activity.name}. Changing again in 5 minutes!")
         await channel.send(f'Bot Time Check In. Time is now\n**{datetime.datetime.utcnow()}**\n_ _')
         await asyncio.sleep(300)
