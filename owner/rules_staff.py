@@ -34,17 +34,17 @@ class OwnerCog(commands.Cog):
     @commands.is_owner()
     async def staffrules(self, ctx):
         msg = ctx
-        guild = 841496169556475975
+        guild = 913007198488133632
         color = random.choice(random_color)
         vent = self.bot.get_guild(guild).get_channel(841663659133894667).mention
-        spam = self.bot.get_guild(guild).get_channel(841663688095432717).mention
-        incidents = self.bot.get_guild(guild).get_channel(880247686127812668).mention
+        spam = self.bot.get_guild(guild).get_channel(913566178033664060).mention
+        incidents = self.bot.get_guild(guild).get_channel(913736166782681118).mention
 
-        owner_role = self.bot.get_guild(guild).get_role(841497055393742868).mention
-        co_owner_role = self.bot.get_guild(guild).get_role(841496985374687252).mention
-        w1 = self.bot.get_guild(guild).get_role(841662358412591114).mention
-        w2 = self.bot.get_guild(guild).get_role(841662636688277523).mention
-        muted = self.bot.get_guild(guild).get_role(841662850858876928).mention
+        owner_role = self.bot.get_guild(guild).get_role(913015340122914816).mention
+        co_owner_role = self.bot.get_guild(guild).get_role(913023600716578826).mention
+        w1 = self.bot.get_guild(guild).get_role(913571050590203924).mention
+        w2 = self.bot.get_guild(guild).get_role(913571220606316625).mention
+        muted = self.bot.get_guild(guild).get_role(913016747664220190).mention
 
         tos = 'https://discord.com/terms'
         guidelines = 'https://discord.com/guidelines'
@@ -121,13 +121,13 @@ class OwnerCog(commands.Cog):
         revised.add_field(name=f"These rules where revised by:",
                           value=f"{owner_role} on:\n\n{datetime.date.today()}", inline=False)
 
-        await self.bot.get_guild(841496169556475975).get_channel(841661067033051218).purge(limit=10)
-        await self.bot.get_guild(841496169556475975).get_channel(841661067033051218).send(embed=rules)
-        await self.bot.get_guild(841496169556475975).get_channel(841661067033051218).send(embed=ban)
-        await self.bot.get_guild(841496169556475975).get_channel(841661067033051218).send(embed=spamm)
-        await self.bot.get_guild(841496169556475975).get_channel(841661067033051218).send(embed=warning)
-        await self.bot.get_guild(841496169556475975).get_channel(841661067033051218).send(embed=_nsfw)
-        await self.bot.get_guild(841496169556475975).get_channel(841661067033051218).send(embed=revised)
+        await self.bot.get_guild(913007198488133632).get_channel(913019586876694528).purge(limit=10)
+        await self.bot.get_guild(913007198488133632).get_channel(913019586876694528).send(embed=rules)
+        await self.bot.get_guild(913007198488133632).get_channel(913019586876694528).send(embed=ban)
+        await self.bot.get_guild(913007198488133632).get_channel(913019586876694528).send(embed=spamm)
+        await self.bot.get_guild(913007198488133632).get_channel(913019586876694528).send(embed=warning)
+        await self.bot.get_guild(913007198488133632).get_channel(913019586876694528).send(embed=_nsfw)
+        await self.bot.get_guild(913007198488133632).get_channel(913019586876694528).send(embed=revised)
         await ctx.send("Sent the staff rules.")
 
 
