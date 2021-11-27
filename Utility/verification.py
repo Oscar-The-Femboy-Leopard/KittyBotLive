@@ -196,7 +196,7 @@ class Utility(commands.Cog):
         # deny = discord.utils.get(a.guild.roles, id=841500124383281172)
         emoji = self.client.get_emoji(id=880532960145719307)
         emoji2 = self.client.get_emoji(id=880532998313885817)
-        welcome = self.client.get_role(913595000363814932).mention
+        # welcome = self.client.get_role(913595000363814932).mention
 
         await ctx.reply(f'{ctx.author.display_name} has just verified them')
         await priv.send(f"{ctx.author.display_name} verified {ctx.message.content}")
@@ -207,7 +207,7 @@ class Utility(commands.Cog):
         except discord.Forbidden:
             await self.client.channel.send("I don't have perms to add roles.")
 
-        await _channel.send(welcome)
+        # await _channel.send(welcome)
         await _channel.send(f'{emoji}{emoji2}')
         await _channel.send(f"Please welcome {m.mention}!\n\n> Please visit {roles} to get yourself some roles!\n\n> "
                             f"If you have any questions about the server, that's not covered by {discover} please go "
