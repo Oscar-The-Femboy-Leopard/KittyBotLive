@@ -8,7 +8,6 @@ from discord.ext import commands
 from owner.rules import _password
 from config import PREFIX, random_color
 
-
 aliases = ["Verify", "verification", "Verification", "verify"]
 description = "This command will allow people to send an application to verify to gain access to the server"
 
@@ -32,8 +31,11 @@ class Utility(commands.Cog):
             return
 
         guidmg = discord.Embed(color=random.choice(random_color))
-        guidmg.add_field(name="Thank you for starting the verification process!", value=f"For this verification to work, {ctx.author.mention}, I need the following requirements:", inline=False)
-        guidmg.add_field(name="REQUIREMENTS", value="> DMs to be open to me\n\n> Password found in Rules.", inline=False)
+        guidmg.add_field(name="Thank you for starting the verification process!",
+                         value=f"For this verification to work, {ctx.author.mention}, I need the following requirements:",
+                         inline=False)
+        guidmg.add_field(name="REQUIREMENTS", value="> DMs to be open to me\n\n> Password found in Rules.",
+                         inline=False)
         guidmg.set_footer(text="I will need the password as this is a way to prevent people joining who don't read "
                                "the rules. This step is vital for us all. to be safe")
 
@@ -166,7 +168,8 @@ class Utility(commands.Cog):
         embed.add_field(name='Fursona:', value=f"{fursona}", inline=False)
         embed.add_field(name='Fursona Info', value=f"{fursonainfo}", inline=False)
         embed.add_field(name='How this user found the server', value=f"{foundus}", inline=False)
-        embed.set_footer(text=f'Author {a.id}\n\n`{PREFIX}accept <mention>` to accept or `{PREFIX}deny <mention>` to deny.')
+        embed.set_footer(
+            text=f'Author {a.id}\n\n`{PREFIX}accept <mention>` to accept or `{PREFIX}deny <mention>` to deny.')
 
         created = a.created_at
 
@@ -175,7 +178,9 @@ class Utility(commands.Cog):
         if time.time() - a.created_at.timestamp() < 2592000:
             embed.add_field(name="Account created check", value=f"{created}", inline=False)
 
-        await channel.send(embed=embed)
+        gatekeeper = self.client.get_guild(913007198488133635).get_role(913552884115853363).mention
+
+        await channel.send(f"New registration, {gatekeeper}!", embed=embed)
         await a.send(
             "Thank you! Your registration has been sent to the staff for review.\n\nThey'll accept you as soon "
             "as possible!")
@@ -196,7 +201,7 @@ class Utility(commands.Cog):
         # deny = discord.utils.get(a.guild.roles, id=841500124383281172)
         emoji = self.client.get_emoji(id=880532960145719307)
         emoji2 = self.client.get_emoji(id=880532998313885817)
-        # welcome = self.client.get_role(913595000363814932).mention
+        welcome = self.client.get_guild(913007198488133635).get_role(913595000363814932).mention
 
         await ctx.reply(f'{ctx.author.display_name} has just verified them')
         await priv.send(f"{ctx.author.display_name} verified {ctx.message.content}")
@@ -207,7 +212,7 @@ class Utility(commands.Cog):
         except discord.Forbidden:
             await self.client.channel.send("I don't have perms to add roles.")
 
-        # await _channel.send(welcome)
+        await _channel.send(welcome)
         await _channel.send(f'{emoji}{emoji2}')
         await _channel.send(f"Please welcome {m.mention}!\n\n> Please visit {roles} to get yourself some roles!\n\n> "
                             f"If you have any questions about the server, that's not covered by {discover} please go "

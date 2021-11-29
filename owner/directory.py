@@ -57,6 +57,7 @@ class OwnerCog(commands.Cog):
 
         # MAIN ROOMS
         general_chat = self.bot.get_guild(g).get_channel(913007198488133635).mention
+        general_rp = self.bot.get_guild(g).get_channel(914618169052774410).mention
         irl_pics = self.bot.get_guild(g).get_channel(913030009537585172).mention
         animals_and_pets = self.bot.get_guild(g).get_channel(913030038453116940).mention
         memes = self.bot.get_guild(g).get_channel(913032300470632448).mention
