@@ -126,7 +126,8 @@ class OwnerCog(commands.Cog):
                   f"partnerships! "
 
         text_channels = f"{general_chat} - This chat is for the usual talking with other members. However, " \
-                        f"it is still a SFW channel.\n\n{irl_pics} - This channel is for posting any IRL media, just " \
+                        f"it is still a SFW channel.\n\n{general_rp} - This chat is designed for Tupperbox and all of " \
+                        f"your small RP needs!\n\n{irl_pics} - This channel is for posting any IRL media, just " \
                         f"make sure it is SFW content.\n\n{animals_and_pets} - This channel is designed for you to " \
                         f"share any cute pictures of pets or animals alike!\n\n{memes} - This is just dedicated for " \
                         f"memes. Every server needs a meme channel.\n\n{spam} - This channel is for all of your " \

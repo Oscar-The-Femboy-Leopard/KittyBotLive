@@ -77,6 +77,7 @@ cog_extentions = [
     'owner.reload_cog',
     'owner.rules',
     'owner.rules_staff',
+    'owner.staff_intro',
     'owner.sudo',
     'owner.unload_cog',
     'owner.verify_artist',
