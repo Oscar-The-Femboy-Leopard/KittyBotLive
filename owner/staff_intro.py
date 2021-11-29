@@ -85,8 +85,8 @@ class StaffIntro(commands.Cog):
                 f"Got it, your fursona is a {fursona}.")
 
             await a.send(
-                "Next, tell me about your fursona.\n\nWhat species are they? What's their favourite activites? What "
-                "gender are they? Do they like sleeping all day? Anything!\n\n**Note:** if you don't wish to share "
+                "Next, tell me about your fursona.\n\nWhat's their favourite activities? What "
+                "gender are they? Do they like sleeping all day? Anything!\n\n**Note:**\nIf you don't wish to share "
                 "your fursona, tell us some basic info of what you imagine your fursona to be or info about you!")
             await asyncio.sleep(1)
             msg = await self.client.wait_for('message', check=check)
