@@ -210,6 +210,7 @@ class Utility(commands.Cog):
         priv = self.client.get_guild(488623700539736064).get_channel(913590152583077888)
         a = ctx.message.author
         roles = guild.get_channel(913534684678471732).mention
+        suggestions = guild.get_channel(913553966401474650).mention
         faq = guild.get_channel(913595991951835166).mention
         discover = guild.get_channel(913015273538355201).mention
         member = discord.utils.get(a.guild.roles, id=913015562894979082)
@@ -232,9 +233,12 @@ class Utility(commands.Cog):
 
         # await _channel.send(welcome)
         await _channel.send(f'{emoji}{emoji2}')
-        await _channel.send(f"Please welcome {m.mention}!\n\n> Please visit {roles} to get yourself some roles!\n\n> "
-                            f"If you have any questions about the server, that's not covered by {discover} please go "
-                            f"to {faq}")
+        # await _channel.send(f"Please welcome {m.mention}!\n\n> Please visit {roles} to get yourself some roles!\n\n> "
+        #                     f"If you have any questions about the server, that's not covered by {discover} please go "
+        #                     f"to {faq}")
+
+        await _channel.send(f"Please welcome {m.mention}!\n\n> Please visit {roles} to get yourself some roles!\n> If "
+                            f"you ever have any suggestions for the server, please visit {suggestions}!")
 
     @commands.command(name="deny", pass_context=True)
     @commands.has_role(913552884115853363)

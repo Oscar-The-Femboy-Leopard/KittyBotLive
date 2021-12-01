@@ -1,9 +1,7 @@
 import ast
-import asyncio
 import datetime
 import random
 import discord
-import os
 
 from discord.ext import commands
 from config import Owner_ID, random_color
@@ -124,7 +122,7 @@ class OwnerCog(commands.Cog):
                 f"be pinged by the mention role.\n\n{staff_intro} - Look here to get to know the staff! There will be " \
                 f"some basic information here for you to get to know them better.\n\n{roles} - Go here to get " \
                 f"yourself some reaction roles! They allow some cool customisation, and if you have some suggestions, " \
-                f"don't gorget to leave them in {suggestions}.\n\n{changelog} - This channel is designed for members " \
+                f"don't forget to leave them in {suggestions}.\n\n{changelog} - This channel is designed for members " \
                 f"to see what has changed at a glance.\n\n{suggestions} - This channel is self explanatory. If " \
                 f"there's anything out there that could improve this server, please suggest them here!\n\n" \
                 f"{emojisuggestions} - Suggest emojis here! No need to if you have managed to steal one of the " \
@@ -158,8 +156,9 @@ class OwnerCog(commands.Cog):
 
         gaming = f"{self_promotion} - This channel is designed for you to promote your Youtube channel along with " \
                  f"your twitch!.\n\n{gaming_clips} - This channel is designed for people who just want to share short" \
-                 f" clips of gameplay or screenshot(s).\n\n{no_mic_chat_} - This text channel is also role locked. " \
-                 f"Like the music and VC roles, you need to join the appropriate vc to be able to access."
+                 f" clips of gameplay or screenshot(s).{gaming_chat} - Come here to chat anything about gaming!\n\n" \
+                 f"{no_mic_chat_} - This text channel is also role locked. Like the music and VC roles, you need to " \
+                 f"join the appropriate vc to be able to access. "
 
         qotd = f"{question_of_the_day} - This channel is where you will find the Question Of The Day!\n\n{answers} - " \
                f"If you wish to partake in the QOTD, please put your answer(s) in here.\n\n{dailypoll} - In here, I " \
@@ -194,11 +193,9 @@ class OwnerCog(commands.Cog):
 
         _partner = discord.Embed(color=__color)
         _partner.add_field(name="Directory: Partners", value=partner, inline=False)
-        # _partner.set_footer(text="This can change if the server ever implement NSFW channels.", icon_url=guild.icon_url)
 
         text = discord.Embed(color=___color)
         text.add_field(name="Directory: Main Rooms", value=text_channels, inline=False)
-        # warning.set_footer(text=f"These are given at the Staff's digression", icon_url=guild.icon_url)
 
         Art = discord.Embed(color=_______color)
         Art.add_field(name="Discovery: Art Rooms", value=art, inline=False)
@@ -215,7 +212,7 @@ class OwnerCog(commands.Cog):
         Ticket.set_footer(text="Please remember that these are for fun, and shouldn't cause arguments.")
 
         techcorner = discord.Embed(color=random.choice(random_color))
-        techcorner.add_field(name="Directory: Tech Corner", value=tech)
+        techcorner.add_field(name="Directory: Tech Corner", value=tech, inline=False)
 
         _botarea = discord.Embed(color=random.choice(random_color))
         _botarea.add_field(name="Discovery: Bot Area", value=botarea, inline=False)
