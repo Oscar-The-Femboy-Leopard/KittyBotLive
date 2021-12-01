@@ -122,13 +122,13 @@ class OwnerCog(commands.Cog):
                 f"be pinged by the mention role.\n\n{staff_intro} - Look here to get to know the staff! There will be " \
                 f"some basic information here for you to get to know them better.\n\n{roles} - Go here to get " \
                 f"yourself some reaction roles! They allow some cool customisation, and if you have some suggestions, " \
-                f"don't forget to leave them in {suggestions}.\n\n{changelog} - This channel is designed for members " \
-                f"to see what has changed at a glance.\n\n{suggestions} - This channel is self explanatory. If " \
-                f"there's anything out there that could improve this server, please suggest them here!\n\n" \
-                f"{emojisuggestions} - Suggest emojis here! No need to if you have managed to steal one of the " \
-                f"options from the shop!\n\n{links} - This is where you can view our links to bump/share/upvote our " \
-                f"server!\n\n{memberintro} - Introduce yourselves here! Don't feel pressured into it but it can let " \
-                f"everyone know you better."
+                f"don't forget to leave them in {suggestions}."
+        intro2 = f"{changelog} - This channel is designed for members to see what has changed at a glance.\n\n" \
+                f"{suggestions} - This channel is self explanatory. If there's anything out there that could improve " \
+                 f"this server, please suggest them here!\n\n{emojisuggestions} - Suggest emojis here! No need to if " \
+                 f"you have managed to steal one of the options from the shop!\n\n{links} - This is where you can " \
+                 f"view our links to bump/share/upvote our server!\n\n{memberintro} - Introduce yourselves here! Dont " \
+                 f"feel pressured into it but it can let everyone know you better. "
 
         partner = f"{partner_requirements} - This is the information about how you go about becoming a partner of the " \
                   f"server.\n\n{current_partners} - This is the channel you visit to get the list of active " \
@@ -189,6 +189,7 @@ class OwnerCog(commands.Cog):
 
         info = discord.Embed(color=random.choice(random_color))
         info.add_field(name="Directory: Important Formation, not too important", value=intro, inline=False)
+        info.add_field(name="_ _", value=intro2, inline=False)
         info.set_footer(text=ctx.author.display_name, icon_url=guild.icon_url)
 
         _partner = discord.Embed(color=__color)
@@ -223,7 +224,21 @@ class OwnerCog(commands.Cog):
         revised = discord.Embed(color=________color, timestamp=datetime.datetime.utcnow())
         revised.add_field(name=f"The discovery was updated on:", value=f"{datetime.date.today()}")
 
-        await guild.get_channel(913015273538355201).purge(limit=15)
+        await self.bot.get_channel(913015273538355201).purge(limit=15)
+        await self.bot.get_channel(913015273538355201).send(embed=image)
+        await self.bot.get_channel(913015273538355201).send(embed=imp)
+        await self.bot.get_channel(913015273538355201).send(embed=info)
+        await self.bot.get_channel(913015273538355201).send(embed=_partner)
+        await self.bot.get_channel(913015273538355201).send(embed=text)
+        await self.bot.get_channel(913015273538355201).send(embed=Art)
+        await self.bot.get_channel(913015273538355201).send(embed=VC)
+        await self.bot.get_channel(913015273538355201).send(embed=vents)
+        await self.bot.get_channel(913015273538355201).send(embed=Ticket)
+        await self.bot.get_channel(913015273538355201).send(embed=techcorner)
+        await self.bot.get_channel(913015273538355201).send(embed=_botarea)
+        await self.bot.get_channel(913015273538355201).send(embed=infirm)
+        await self.bot.get_channel(913015273538355201).send(embed=revised)
+        '''await guild.get_channel(913015273538355201).purge(limit=15)
         await guild.get_channel(913015273538355201).send(embed=image)
         await guild.get_channel(913015273538355201).send(embed=imp)
         await guild.get_channel(913015273538355201).send(embed=info)
@@ -236,7 +251,7 @@ class OwnerCog(commands.Cog):
         await guild.get_channel(913015273538355201).send(embed=techcorner)
         await guild.get_channel(913015273538355201).send(embed=_botarea)
         await guild.get_channel(913015273538355201).send(embed=infirm)
-        await guild.get_channel(913015273538355201).send(embed=revised)
+        await guild.get_channel(913015273538355201).send(embed=revised)'''
         await ctx.send("Sent the directory.")
 
 
