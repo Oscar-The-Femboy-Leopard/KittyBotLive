@@ -141,8 +141,6 @@ class Utility(commands.Cog):
             msg = await self.client.wait_for('message', check=check)
             hobby = msg.content
 
-            # fursonainfo = 'N/A'
-
         await a.send("Next, may I know what your favourite quote is? If you don't have one, you can just put N/A")
         await asyncio.sleep(1)
         msg = await self.client.wait_for('message', check=check)

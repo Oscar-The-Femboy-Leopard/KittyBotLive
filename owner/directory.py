@@ -50,6 +50,9 @@ class OwnerCog(commands.Cog):
         roles = self.bot.get_guild(g).get_channel(913534684678471732).mention
         changelog = self.bot.get_guild(g).get_channel(913597776183578634).mention
         suggestions = self.bot.get_guild(g).get_channel(913553966401474650).mention
+        emojisuggestions = self.bot.get_guild(g).get_channel(915369893250084894).mention
+        links = self.bot.get_guild(g).get_channel(914865411122671657).mention
+        memberintro = self.bot.get_guild(g).get_channel(915395472959623248).mention
 
         # PARTNERS
         partner_requirements = self.bot.get_guild(g).get_channel(913038686969548810).mention
@@ -79,6 +82,10 @@ class OwnerCog(commands.Cog):
         gaming_clips = self.bot.get_guild(g).get_channel(913029918772834324).mention
         gaming_chat = self.bot.get_guild(g).get_channel(913030294079156254).mention
         no_mic_chat_ = self.bot.get_guild(g).get_channel(913030404439670836).mention
+
+        # TECH CORNER
+        techsupport = self.bot.get_guild(g).get_channel(915392581439991838).mention
+        programmerchat = self.bot.get_guild(g).get_channel(915392622263169066).mention
 
         # Thinking Corner
         question_of_the_day = self.bot.get_guild(g).get_channel(913031444098592818).mention
@@ -119,7 +126,11 @@ class OwnerCog(commands.Cog):
                 f"yourself some reaction roles! They allow some cool customisation, and if you have some suggestions, " \
                 f"don't gorget to leave them in {suggestions}.\n\n{changelog} - This channel is designed for members " \
                 f"to see what has changed at a glance.\n\n{suggestions} - This channel is self explanatory. If " \
-                f"there's anything out there that could improve this server, please suggest them here!"
+                f"there's anything out there that could improve this server, please suggest them here!\n\n" \
+                f"{emojisuggestions} - Suggest emojis here! No need to if you have managed to steal one of the " \
+                f"options from the shop!\n\n{links} - This is where you can view our links to bump/share/upvote our " \
+                f"server!\n\n{memberintro} - Introduce yourselves here! Don't feel pressured into it but it can let " \
+                f"everyone know you better."
 
         partner = f"{partner_requirements} - This is the information about how you go about becoming a partner of the " \
                   f"server.\n\n{current_partners} - This is the channel you visit to get the list of active " \
@@ -154,6 +165,10 @@ class OwnerCog(commands.Cog):
                f"If you wish to partake in the QOTD, please put your answer(s) in here.\n\n{dailypoll} - In here, I " \
                f"will do a poll daily, for you guys to vote.\n\n{polldis} - This is for the discussion of the daily " \
                f"poll! "
+
+        tech = f"{techsupport} - This is where you go if you are facing issues with any tech. Maybe someone can help, " \
+               f"maybe someone can't. After all, communities are here to support each other.\n\n{programmerchat} - " \
+               f"This is a really cool channel where you can show off your tech and talk about it!"
 
         botarea = f"{general_commands} - This is where you can find where you would use the normal day to day " \
                   f"commands.\n\n{bump} - This is the channel to bump the server using disboard!\n\n{currency_log} - " \
@@ -199,6 +214,9 @@ class OwnerCog(commands.Cog):
         Ticket.add_field(name="Discovery: Thinking Corner", value=qotd, inline=False)
         Ticket.set_footer(text="Please remember that these are for fun, and shouldn't cause arguments.")
 
+        techcorner = discord.Embed(color=random.choice(random_color))
+        techcorner.add_field(name="Directory: Tech Corner", value=tech)
+
         _botarea = discord.Embed(color=random.choice(random_color))
         _botarea.add_field(name="Discovery: Bot Area", value=botarea, inline=False)
 
@@ -218,6 +236,7 @@ class OwnerCog(commands.Cog):
         await guild.get_channel(913015273538355201).send(embed=VC)
         await guild.get_channel(913015273538355201).send(embed=vents)
         await guild.get_channel(913015273538355201).send(embed=Ticket)
+        await guild.get_channel(913015273538355201).send(embed=techcorner)
         await guild.get_channel(913015273538355201).send(embed=_botarea)
         await guild.get_channel(913015273538355201).send(embed=infirm)
         await guild.get_channel(913015273538355201).send(embed=revised)
