@@ -9,9 +9,10 @@ class Utility(commands.Cog):
         self.client = client
 
     @commands.Cog.listener()
-    async def on_message(self, *, message):
+    async def on_message(self, ctx, *, message):
         sent_users = []
-        CHANNEL_ID = 913514927384301568
+        # CHANNEL_ID = 913514927384301568
+        CHANNEL_ID = 775770598844137482
 
         if message.guild:  # ensure the channel is a DM
             return
@@ -22,7 +23,8 @@ class Utility(commands.Cog):
         if message.author.id in sent_users:  # Ensure the initial message hasn't been sent before
             return
 
-        gg_fluff = self.client.get_guild(864654684085682207)
+        # gg_fluff = self.client.get_guild(864654684085682207)
+        gg_fluff = self.client.get_guild(488623700539736064)
 
         modmail_channel = self.client.get_channel(CHANNEL_ID)
 

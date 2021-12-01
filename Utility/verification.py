@@ -264,19 +264,11 @@ class Utility(commands.Cog):
 
         await priv.send(f"{ctx.author.display_name} denied {m.display_name} with following reason:\n\n{reason}")
 
-        m = ctx.mention
-
         '''guild = ctx.guild
         channel = guild.get_channel(880218549367492659)
         a = ctx.message.author
         member = discord.utils.get(a.guild.roles, id=864655959753490432)
         deny = discord.utils.get(a.guild.roles, id=904349776659755050)'''
-
-        try:
-            print(m)
-
-        except discord.Forbidden:
-            await self.client.channel.send("I don't have perms to change roles.")
 
 
 def setup(client):
