@@ -1,13 +1,12 @@
-import ast
 import datetime
 import random
 import discord
-import os
 
 from discord.ext import commands
-from config import Owner_ID, random_color
+from config import Owner_ID, random_color, password
 
-_password = 'licking leopards'
+
+_password = password
 
 
 class OwnerCog(commands.Cog):
@@ -37,30 +36,193 @@ class OwnerCog(commands.Cog):
         img = 'https://media.discordapp.net/attachments/880852778124206180/913572435515834398/Rules.gif'
         img = img
 
-        genRule = f"**NO** disrespecful behaviour towards anyone in any way. This isn't the best " \
-                  f"of ideas as we all want a community where we feel safe and secure. This also means no drama of " \
-                  f"any kind. This will lead to punishments, below.\nPlease no political or religious discussions as " \
-                  f"it can tear the community apart, ruining everything we want.\nWe do also follow Discord's TOS " \
-                  f"found [here]({tos}) and guidelines found [here]({guidelines}). "
+        rint = random.randint(1, 6)
 
-        NSFW = f"**STRICTLY NO** NSFW content. Use of this kind of content **WILL** result in you having warnings or " \
-               f"possibly a kick/ban, depending on how severe the content is. Password is: {_password}"
+        if rint == 1:
+            genRule = f"**NO** disrespectful behaviour towards anyone in any way. This isn't the best " \
+                      f"of ideas as we all want a community where we feel safe and secure. This also means no drama of " \
+                      f"any kind. This will lead to punishments, below.\nPlease no political or religious discussions as " \
+                      f"it can tear the community apart, ruining everything we want.\nWe do also follow Discord's TOS " \
+                      f"found [here]({tos}) and guidelines found [here]({guidelines}). "
 
-        warnings = f"There is a warning system in this server. This is how the warnings go: \n\n > 1st Warning: You " \
-                   f"will receive a mute and the {w1} Role. \n\n > 2nd warning: Staff will keep a strict eye on you. " \
-                   f"Same goes for warning 1; you're getting muted and given {w2} role as well. \n\n > There is no " \
-                   f"3rd warning. If you continue to break the rules, you **WILL** be banned without warning. \n\n " \
-                   f"*Please note, {w1} can be removed through good behaviour by any staff member, Mod and up, " \
-                   f"and only {w2} can be removed by {owner_role} and {co_owner_role}. If you are found to be sucking " \
-                   f"up to either staff, this can lead you to be banned.* "
+            NSFW = f"**STRICTLY NO** NSFW content. Use of this kind of content **WILL** result in you having warnings or " \
+                   f"possibly a kick/ban, depending on how severe the content is. Password is: {_password} This server is " \
+                   f"PG 13 "
 
-        venting = f"There is **NO TOLERANCE** for promoting suicide or self harm of any kind. If you need to just " \
-                  f"vent, visit {vent} as it is the appropriate channel for it. If you believe that someone is going " \
-                  f"to commit suicide, call your country's suicide hotline. "
+            warnings = f"There is a warning system in this server. This is how the warnings go: \n\n > 1st Warning: You " \
+                       f"will receive a mute and the {w1} Role. \n\n > 2nd warning: Staff will keep a strict eye on you. " \
+                       f"Same goes for warning 1; you're getting muted and given {w2} role as well. \n\n > There is no " \
+                       f"3rd warning. If you continue to break the rules, you **WILL** be banned without warning. \n\n " \
+                       f"*Please note, {w1} can be removed through good behaviour by any staff member, Mod and up, " \
+                       f"and only {w2} can be removed by {owner_role} and {co_owner_role}. If you are found to be sucking " \
+                       f"up to either staff, this can lead you to be banned.* "
 
-        spam = f"Under any circumstances, do not spam in any channels except {spam}. We all want channels that aren't " \
-               f"clogged with random messages as this is very disrupting to conversations and also can be seen as " \
-               f"disrespectful to other members and staff."
+            venting = f"There is **NO TOLERANCE** for promoting suicide or self harm of any kind. If you need to just " \
+                      f"vent, visit {vent} as it is the appropriate channel for it. If you believe that someone is going " \
+                      f"to commit suicide, call your country's suicide hotline. "
+
+            spam = f"Under any circumstances, do not spam in any channels except {spam}. We all want channels that aren't " \
+                   f"clogged with random messages as this is very disrupting to conversations and also can be seen as " \
+                   f"disrespectful to other members and staff."
+
+            unjust = f"If you feel like a strike/warning is unjustified, please contact staff and they will assist " \
+                     f"you to the best of their ability. If you have found yourself to have the {w2}, you will need " \
+                     f"to reach out to one of the owners. "
+
+        if rint == 2:
+            genRule = f"**NO** disrespectful behaviour towards anyone in any way. This isn't the best " \
+                      f"of ideas as we all want a community where we feel safe and secure. This also means no drama of " \
+                      f"any kind. This will lead to punishments, below.\nPlease no political or religious discussions as " \
+                      f"it can tear the community apart, ruining everything we want.\nWe do also follow Discord's TOS " \
+                      f"found [here]({tos}) and guidelines found [here]({guidelines}). "
+
+            NSFW = f"**STRICTLY NO** NSFW content. Use of this kind of content **WILL** result in you having warnings or " \
+                   f"possibly a kick/ban, depending on how severe the content is. This server is " \
+                   f"PG 13 "
+
+            warnings = f"There is a warning system in this server. Password is: {_password}. This is how the warnings go: \n\n > 1st Warning: You " \
+                       f"will receive a mute and the {w1} Role. \n\n > 2nd warning: Staff will keep a strict eye on you. " \
+                       f"Same goes for warning 1; you're getting muted and given {w2} role as well. \n\n > There is no " \
+                       f"3rd warning. If you continue to break the rules, you **WILL** be banned without warning. \n\n " \
+                       f"*Please note, {w1} can be removed through good behaviour by any staff member, Mod and up, " \
+                       f"and only {w2} can be removed by {owner_role} and {co_owner_role}. If you are found to be sucking " \
+                       f"up to either staff, this can lead you to be banned.* "
+
+            venting = f"There is **NO TOLERANCE** for promoting suicide or self harm of any kind. If you need to just " \
+                      f"vent, visit {vent} as it is the appropriate channel for it. If you believe that someone is going " \
+                      f"to commit suicide, call your country's suicide hotline. "
+
+            spam = f"Under any circumstances, do not spam in any channels except {spam}. We all want channels that aren't " \
+                   f"clogged with random messages as this is very disrupting to conversations and also can be seen as " \
+                   f"disrespectful to other members and staff."
+
+            unjust = f"If you feel like a strike/warning is unjustified, please contact staff and they will assist " \
+                     f"you to the best of their ability. If you have found yourself to have the {w2}, you will need " \
+                     f"to reach out to one of the owners. "
+
+        if rint == 3:
+            genRule = f"**NO** disrespecful behaviour towards anyone in any way. This isn't the best " \
+                      f"of ideas as we all want a community where we feel safe and secure. This also means no drama of " \
+                      f"any kind. This will lead to punishments, below.\nPlease no political or religious discussions as " \
+                      f"it can tear the community apart, ruining everything we want.\nWe do also follow Discord's TOS " \
+                      f"found [here]({tos}) and guidelines found [here]({guidelines}). Password is: {_password}"
+
+            NSFW = f"**STRICTLY NO** NSFW content. Use of this kind of content **WILL** result in you having warnings or " \
+                   f"possibly a kick/ban, depending on how severe the content is. This server is " \
+                   f"PG 13 "
+
+            warnings = f"There is a warning system in this server. This is how the warnings go: \n\n > 1st Warning: You " \
+                       f"will receive a mute and the {w1} Role. \n\n > 2nd warning: Staff will keep a strict eye on you. " \
+                       f"Same goes for warning 1; you're getting muted and given {w2} role as well. \n\n > There is no " \
+                       f"3rd warning. If you continue to break the rules, you **WILL** be banned without warning. \n\n " \
+                       f"*Please note, {w1} can be removed through good behaviour by any staff member, Mod and up, " \
+                       f"and only {w2} can be removed by {owner_role} and {co_owner_role}. If you are found to be sucking " \
+                       f"up to either staff, this can lead you to be banned.* "
+
+            venting = f"There is **NO TOLERANCE** for promoting suicide or self harm of any kind. If you need to just " \
+                      f"vent, visit {vent} as it is the appropriate channel for it. If you believe that someone is going " \
+                      f"to commit suicide, call your country's suicide hotline. "
+
+            spam = f"Under any circumstances, do not spam in any channels except {spam}. We all want channels that aren't " \
+                   f"clogged with random messages as this is very disrupting to conversations and also can be seen as " \
+                   f"disrespectful to other members and staff."
+
+            unjust = f"If you feel like a strike/warning is unjustified, please contact staff and they will assist " \
+                     f"you to the best of their ability. If you have found yourself to have the {w2}, you will need " \
+                     f"to reach out to one of the owners. "
+
+        if rint == 4:
+            genRule = f"**NO** disrespecful behaviour towards anyone in any way. This isn't the best " \
+                      f"of ideas as we all want a community where we feel safe and secure. This also means no drama of " \
+                      f"any kind. This will lead to punishments, below.\nPlease no political or religious discussions as " \
+                      f"it can tear the community apart, ruining everything we want.\nWe do also follow Discord's TOS " \
+                      f"found [here]({tos}) and guidelines found [here]({guidelines}). "
+
+            NSFW = f"**STRICTLY NO** NSFW content. Use of this kind of content **WILL** result in you having warnings or " \
+                   f"possibly a kick/ban, depending on how severe the content is.This server is " \
+                   f"PG 13 "
+
+            warnings = f"There is a warning system in this server. This is how the warnings go: \n\n > 1st Warning: You " \
+                       f"will receive a mute and the {w1} Role. \n\n > 2nd warning: Staff will keep a strict eye on you. " \
+                       f"Same goes for warning 1; you're getting muted and given {w2} role as well. \n\n > There is no " \
+                       f"3rd warning. If you continue to break the rules, you **WILL** be banned without warning. \n\n " \
+                       f"*Please note, {w1} can be removed through good behaviour by any staff member, Mod and up, " \
+                       f"and only {w2} can be removed by {owner_role} and {co_owner_role}. If you are found to be sucking " \
+                       f"up to either staff, this can lead you to be banned.* "
+
+            venting = f"There is **NO TOLERANCE** for promoting suicide or self harm of any kind.  Password is: {_password}. If you need to just " \
+                      f"vent, visit {vent} as it is the appropriate channel for it. If you believe that someone is going " \
+                      f"to commit suicide, call your country's suicide hotline. "
+
+            spam = f"Under any circumstances, do not spam in any channels except {spam}. We all want channels that aren't " \
+                   f"clogged with random messages as this is very disrupting to conversations and also can be seen as " \
+                   f"disrespectful to other members and staff."
+
+            unjust = f"If you feel like a strike/warning is unjustified, please contact staff and they will assist " \
+                     f"you to the best of their ability. If you have found yourself to have the {w2}, you will need " \
+                     f"to reach out to one of the owners. "
+
+        if rint == 5:
+            genRule = f"**NO** disrespecful behaviour towards anyone in any way. This isn't the best " \
+                      f"of ideas as we all want a community where we feel safe and secure. This also means no drama of " \
+                      f"any kind. This will lead to punishments, below.\nPlease no political or religious discussions as " \
+                      f"it can tear the community apart, ruining everything we want.\nWe do also follow Discord's TOS " \
+                      f"found [here]({tos}) and guidelines found [here]({guidelines}). "
+
+            NSFW = f"**STRICTLY NO** NSFW content. Use of this kind of content **WILL** result in you having warnings or " \
+                   f"possibly a kick/ban, depending on how severe the content is. Password is: {_password} This server is " \
+                   f"PG 13 "
+
+            warnings = f"There is a warning system in this server. This is how the warnings go: \n\n > 1st Warning: You " \
+                       f"will receive a mute and the {w1} Role. \n\n > 2nd warning: Staff will keep a strict eye on you. " \
+                       f"Same goes for warning 1; you're getting muted and given {w2} role as well. \n\n > There is no " \
+                       f"3rd warning. If you continue to break the rules, you **WILL** be banned without warning. \n\n " \
+                       f"*Please note, {w1} can be removed through good behaviour by any staff member, Mod and up, " \
+                       f"and only {w2} can be removed by {owner_role} and {co_owner_role}. If you are found to be sucking " \
+                       f"up to either staff, this can lead you to be banned.* "
+
+            venting = f"There is **NO TOLERANCE** for promoting suicide or self harm of any kind. If you need to just " \
+                      f"vent, visit {vent} as it is the appropriate channel for it. If you believe that someone is going " \
+                      f"to commit suicide, call your country's suicide hotline. "
+
+            spam = f"Under any circumstances, do not spam in any channels except {spam}. Password is: {_password}. We all want channels that aren't " \
+                   f"clogged with random messages as this is very disrupting to conversations and also can be seen as " \
+                   f"disrespectful to other members and staff."
+
+            unjust = f"If you feel like a strike/warning is unjustified, please contact staff and they will assist " \
+                     f"you to the best of their ability. If you have found yourself to have the {w2}, you will need " \
+                     f"to reach out to one of the owners. "
+
+        if rint == 6:
+            genRule = f"**NO** disrespecful behaviour towards anyone in any way. This isn't the best " \
+                      f"of ideas as we all want a community where we feel safe and secure. This also means no drama of " \
+                      f"any kind. This will lead to punishments, below.\nPlease no political or religious discussions as " \
+                      f"it can tear the community apart, ruining everything we want.\nWe do also follow Discord's TOS " \
+                      f"found [here]({tos}) and guidelines found [here]({guidelines}). "
+
+            NSFW = f"**STRICTLY NO** NSFW content. Use of this kind of content **WILL** result in you having warnings or " \
+                   f"possibly a kick/ban, depending on how severe the content is. This server is " \
+                   f"PG 13 "
+
+            warnings = f"There is a warning system in this server. This is how the warnings go: \n\n > 1st Warning: You " \
+                       f"will receive a mute and the {w1} Role. \n\n > 2nd warning: Staff will keep a strict eye on you. " \
+                       f"Same goes for warning 1; you're getting muted and given {w2} role as well. \n\n > There is no " \
+                       f"3rd warning. If you continue to break the rules, you **WILL** be banned without warning. \n\n " \
+                       f"*Please note, {w1} can be removed through good behaviour by any staff member, Mod and up, " \
+                       f"and only {w2} can be removed by {owner_role} and {co_owner_role}. If you are found to be sucking " \
+                       f"up to either staff, this can lead you to be banned.* "
+
+            venting = f"There is **NO TOLERANCE** for promoting suicide or self harm of any kind. If you need to just " \
+                      f"vent, visit {vent} as it is the appropriate channel for it. If you believe that someone is going " \
+                      f"to commit suicide, call your country's suicide hotline. "
+
+            spam = f"Under any circumstances, do not spam in any channels except {spam}. Password is: {_password}. We all want channels that aren't " \
+                   f"clogged with random messages as this is very disrupting to conversations and also can be seen as " \
+                   f"disrespectful to other members and staff."
+
+            unjust = f"If you feel like a strike/warning is unjustified, please contact staff and they will assist " \
+                     f"you to the best of their ability. Password is: {_password}. If you have found yourself to have the {w2}, you will need " \
+                     f"to reach out to one of the owners. "
 
         guild = self.bot.get_guild(913007198488133632)
 
@@ -92,6 +254,9 @@ class OwnerCog(commands.Cog):
         spamm.set_footer(text="These rules are guidelines for the server, and the staff can alter them to their "
                               "digression.", icon_url=guild.icon_url)
 
+        unjustified = discord.Embed(color=colors)
+        unjustified.add_field(name="Unjustified Warning?", value=unjust, inline=False)
+
         revised = discord.Embed(color=colors, timestamp=datetime.datetime.utcnow())
         revised.add_field(name=f"These rules where revised by:",
                           value=f"{guild.name}'s {staff_role} on:\n\n{datetime.date.today()}")
@@ -103,6 +268,7 @@ class OwnerCog(commands.Cog):
         await guild.get_channel(913038295255093249).send(embed=warning)
         await guild.get_channel(913038295255093249).send(embed=vents)
         await guild.get_channel(913038295255093249).send(embed=spamm)
+        await guild.get_channel(913038295255093249).send(embed=unjustified)
         await guild.get_channel(913038295255093249).send(embed=revised)
         await ctx.send("Sent the normal rules.")
 

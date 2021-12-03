@@ -84,7 +84,7 @@ class OwnerCog(commands.Cog):
             for member in _role.members:
                 # var = var + f"\n {member.mention}"
                 var = f"\n {member.mention}"
-        imp.add_field(name="Current Verified Artists are:", value=var, inline=False)
+            imp.add_field(name="Current Verified Artists are:", value=var, inline=False)
         # imp.add_field(name="Current Verified Artists are:", value=var)
         imp.set_footer(text=ctx.author.display_name, icon_url=_guild.icon_url)
 

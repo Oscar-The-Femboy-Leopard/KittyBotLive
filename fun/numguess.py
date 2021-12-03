@@ -4,9 +4,9 @@ from discord.ext import commands
 from mainconfig import Bot_ID
 
 '''class Fun(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, bot):
         self.message = None
-        self.client = client
+        self.bot = bot
 
     @commands.command(aliases=['Guess the Number', 'Guess 1-50', 'numguess'],
                       description="Take a guess of a number between 1 and 50")
@@ -61,5 +61,5 @@ class Fun(commands.Cog):
                 await message.channel.send('Oops. It is actually {}.'.format(answer))
 
 
-def setup(client):  # Sets up the client for the bot
+def setup(client):  # Sets up the bot for the bot
     client.add_cog(Fun(client))  # Adds the command to the bot for it to be able to run

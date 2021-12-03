@@ -10,28 +10,16 @@ class Owner(commands.Cog):
     async def speak(self, ctx, *, message):
         message = message
 
+        g = 913007198488133632
+
         msg = message.split('.', 1)
 
-        jastico_test = "jt"
-        bot_alrert = "ba"
-        # lovers_zone = 'lz'
-        intro_channel = 'ic'
+        general = "gen"
 
-        if msg[0] == jastico_test:
-            await self.client.get_guild(904365272184524811).get_channel(904365272184524814).send(f'{msg[1]}')
-            await ctx.reply(':thumbs_up:')
 
-        if msg[0] == bot_alrert:
-            await self.client.get_guild(864654684085682207).get_channel(905520433766486067).send(f'{msg[1]}')
+        if msg[0] == general:
+            await self.client.get_guild(g).get_channel(913007198488133635).send(f'{msg[1]}')
             await ctx.reply('Done, Mistress!')
-
-        '''if msg[0] == lovers_zone:
-            await self.client.get_guild(864654684085682207).get_channel(904021983807807499).send(f'{msg[1]}')
-            await ctx.reply('Done, Mistress!')'''
-
-        if msg[0] == intro_channel:
-            await self.client.get_guild(864654684085682207).get_channel(864655467224367164).send(f'{msg[1]}')
-            await ctx.reply('Done!')
 
 
 def setup(client):

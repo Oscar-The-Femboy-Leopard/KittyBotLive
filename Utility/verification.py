@@ -191,7 +191,7 @@ class Utility(commands.Cog):
         if time.time() - a.created_at.timestamp() < 2592000:
             embed.add_field(name="Account created check", value=f"{created}", inline=False)
 
-        # gatekeeper = self.client.get_guild(913007198488133635).get_role(913552884115853363).mention
+        # gatekeeper = self.bot.get_guild(913007198488133635).get_role(913552884115853363).mention
         gatekeeper = self.client.get_guild(913007198488133632).get_role(913552884115853363).mention
 
         # await channel.send(f"New registration, {gatekeeper}!", embed=embed)
@@ -217,7 +217,7 @@ class Utility(commands.Cog):
         # deny = discord.utils.get(a.guild.roles, id=841500124383281172)
         emoji = self.client.get_emoji(id=880532960145719307)
         emoji2 = self.client.get_emoji(id=880532998313885817)
-        # welcome = self.client.get_guild(913007198488133635).get_role(913595000363814932).mention
+        # welcome = self.bot.get_guild(913007198488133635).get_role(913595000363814932).mention
 
         await ctx.reply(f'{ctx.author.display_name} has just verified them')
         await priv.send(f"{ctx.author.display_name} verified {ctx.message.content}")

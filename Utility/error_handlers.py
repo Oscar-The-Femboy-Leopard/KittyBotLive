@@ -67,6 +67,7 @@ class error_handling(commands.Cog):
         msg.add_field(name="Content of message:", value=ctx.message.content, inline=False)
 
         await priv.send(embed=msg)
+        raise error
 
 
 def setup(client):

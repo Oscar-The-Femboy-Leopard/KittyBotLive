@@ -5,8 +5,8 @@ from config import bad_list, blist_responses, unfair_message
 
 
 class Automod(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.client = bot
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -31,5 +31,5 @@ class Automod(commands.Cog):
                     return
 
 
-def setup(client):
-    client.add_cog(Automod(client))
+def setup(bot):
+    bot.add_cog(Automod(bot))

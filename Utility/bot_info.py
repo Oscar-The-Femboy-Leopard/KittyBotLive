@@ -30,7 +30,7 @@ class Utility(commands.Cog):
             # beta_response = f"Hello there! I am a bot designed and programmed by <@{Owner_ID}>. I am currently currently working on my Dev's friend VPS, so I am able to be here now."
             # version = pip.__version__
             build = "v1.0"
-            # number_of_guilds = f"{discord.client.Guild.get_guilds}"
+            # number_of_guilds = f"{discord.bot.Guild.get_guilds}"
             info = discord.Embed(color=_color, timestamp=datetime.datetime.utcnow())
             info.set_author(name=self.client.user.name, icon_url=self.client.user.avatar_url)
             info.add_field(name="Info about me!", value=f"{response} {response_2}\n\n {response_3}", inline=False)

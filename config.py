@@ -1,11 +1,13 @@
 import discord
 import time
 
-from mainconfig import Owner_ID, Owner_Name, PREFIX, TOKEN, INVITE, imgflipuser, imgflippass, paypal1, paypal2
+from mainconfig import Owner_ID, Owner_Name, PREFIX, TOKEN, INVITE, imgflipuser, imgflippass, paypal1, paypal2, password
 
 TOKEN = TOKEN
 
 Owner_Name = Owner_Name
+
+_password = password
 
 start_time = time.time()
 
@@ -55,6 +57,7 @@ cog_extentions = [
     'imgflip_meme_creation.too_high',
     'imgflip_meme_creation.trump',
     'imgflip_meme_creation.uno',
+    'listener.noU',
     # 'moderation.antispam', # TODO Activate this before letting the bot go live
     # 'moderation.ban',
     # 'moderation.clear',
@@ -221,7 +224,7 @@ Watching_Bot_Status = [discord.Activity(name=f'the sever for my Dev|{PREFIX}help
                                         type=discord.ActivityType.watching)]
 Load_Status = [Playing_Bot_Status, Watching_Bot_Status]
 
-# Wynter_API_Connection = 'http.client.HTTPSConnection("api.furrycentr.al")'
+# Wynter_API_Connection = 'http.bot.HTTPSConnection("api.furrycentr.al")'
 
 imgflip_username = imgflipuser
 imgflip_password = imgflippass

@@ -19,7 +19,7 @@ class Wholesome(commands.Cog):
 
     @commands.command(aliases=aliases,
                       description=description)
-    async def hug(self, message, *, hugged: discord.Member = None):
+    async def hug(self, ctx):
 
         conn = http.client.HTTPSConnection("api.furrycentr.al")
         payload = ''
@@ -33,16 +33,33 @@ class Wholesome(commands.Cog):
         data = json.loads(data)
         url = data["result"]["imgUrl"]
         color = random.choice(random_color)
-        guild = message.guild
-        msg = message
+        guild = ctx.guild
+        msg = ctx
         # _ment_hug = hugged.mentions
         # _ment_hug = hugged.mention
+
+        blep = ctx.message.content.split(' ')
+        hugged = blep[1]
+        huggled = blep[2]
+        hugged = discord.Member
+        huggled = discord.Member
         _ment_hug = hugged.display_name
         auth = msg.author.display_name
-        hug = [f"***{auth}** hugged **{_ment_hug}***",
-               f"***{auth}** sneaks up on **{_ment_hug}** before giving them bear hugs*",
-               f"*When **{_ment_hug}** isn't looking, **{auth}** just hugs them tightly*",
-               f"***{auth}** hugs **{_ment_hug}** from behind*"]
+        ment_hug = huggled.display_name
+
+        if hugged and huggled:
+            hug = [
+                f"**{auth}** hugged **{_ment_hug}** and **{ment_hug}**",
+                f"When **{_ment_hug}** and **{ment_hug}** wasn't looking, **{auth}** sneak hugs them"
+            ]
+
+        else:
+            hug = [
+                f"***{auth}** hugged **{_ment_hug}***",
+                   f"***{auth}** sneaks up on **{_ment_hug}** before giving them bear hugs*",
+                   f"*When **{_ment_hug}** isn't looking, **{auth}** just hugs them tightly*",
+                   f"***{auth}** hugs **{_ment_hug}** from behind*"
+            ]
         hugmessage = random.choice(hug)
 
         e_url = discord.Embed(color=color, timestamp=datetime.datetime.utcnow())
@@ -52,7 +69,7 @@ class Wholesome(commands.Cog):
 
         if auth == _ment_hug:
             '''e_url = discord.Embed(color=color, timestamp=_timestamp)
-            # e_url.set_author(name=self.client.user.name, icon_url=self.client.user.avatar_url)
+            # e_url.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
             # e_url.add_field(name=f"***{msg.author}** hugged **{_ment_hug}***", value=_blnk_value, inline=True)
             e_url.add_field(name=hugmessage, value=f"[Link to image]({url})", inline=False)
             e_url.set_image(url=url)

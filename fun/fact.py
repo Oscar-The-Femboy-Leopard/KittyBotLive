@@ -178,5 +178,5 @@ class Fun(commands.Cog):
         # await ctx.send(f'> Question: {question}\n Response: {random.choice(_8ball_responses)}')  # Sends response
 
 
-def setup(client):  # Sets up the client for the bot
+def setup(client):  # Sets up the bot for the bot
     client.add_cog(Fun(client))  # Adds the command to the bot for it to be able to run

@@ -9,7 +9,7 @@ description = "Runs the 8ball command. Ask the 8ball any question and it'd answe
 
 class Fun(commands.Cog):
     def __init__(self, client):
-        self.client = client
+        self.bot = client
 
     @commands.command(aliases=aliases,
                       description=description)

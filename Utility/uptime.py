@@ -7,7 +7,7 @@ from config import start_time
 
 
 aliases = ["runtime", "Bot_runtime", "awaketime"]
-description = "This will give the uptime of the client since the initial run of the code. The number format is in Hours, Minutes and Seconds."
+description = "This will give the uptime of the bot since the initial run of the code. The number format is in Hours, Minutes and Seconds."
 
 
 class Utility(commands.Cog):

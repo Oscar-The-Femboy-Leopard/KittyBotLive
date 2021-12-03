@@ -15,13 +15,13 @@ class Utility(commands.Cog):
         no_ping = 'n'
         msg = message.split('.', 1)
         '''if ctx.message.guild.id == 904365272184524811:
-          announce_ping = self.client.get_role(904405829007065148).mention
+          announce_ping = self.bot.get_role(904405829007065148).mention
 
           if msg[0] == ment_ping:
-            await self.client.get_channel(904405797168103495).send(f'{announce_ping}\n\n{msg[1]}')
+            await self.bot.get_channel(904405797168103495).send(f'{announce_ping}\n\n{msg[1]}')
 
           if msg[0] != ment_ping:
-            await self.client.get_guild(904365272184524811).get_channel(904405797168103495).send(f"General Announcement!\n\n{msg[1]}")'''
+            await self.bot.get_guild(904365272184524811).get_channel(904405797168103495).send(f"General Announcement!\n\n{msg[1]}")'''
 
 
         # if ctx.guild == 864654684085682207:
