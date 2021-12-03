@@ -4,7 +4,7 @@ import discord
 import datetime
 
 from discord.ext import commands
-from config import _blnk_value
+
 
 aliases = ['cflip', 'coinf']
 description = "Flip a coin and it will land on either Heads or Tails!"

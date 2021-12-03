@@ -166,6 +166,13 @@ class Utility(commands.Cog):
         msg = await self.client.wait_for('message', check=check)
         foundus = msg.content
 
+        await a.send(
+            "Finally, can I have why you're wanting to get from joining us today?"
+        )
+        await asyncio.sleep(1)
+        msg = await self.client.wait_for('message', check=check)
+        want = msg.content
+
         embed = discord.Embed(title="New Member Registration!",
                               description=f"A registration to become a member has been submitted at {datetime.datetime.utcnow()} by {a.mention} ({a.id}).",
                               color=c)
@@ -181,8 +188,10 @@ class Utility(commands.Cog):
         if furry != y:
             embed.add_field(name="Hobbies", value=f"{hobby}", inline=False)
         embed.add_field(name='How this user found the server', value=f"{foundus}", inline=False)
+        embed.add_field(name="What is want from joining", value=f"{want}", inline=False)
         embed.set_footer(
-            text=f'Author {a.id}\n\n`{PREFIX}accept <mention>` to accept or `{PREFIX}deny <mention>` to deny.')
+            text=f'Author {a.id}\n\n`{PREFIX}accept <mention>` to accept or `{PREFIX}deny <mention>` to deny.'
+        )
 
         created = a.created_at
 
@@ -191,14 +200,13 @@ class Utility(commands.Cog):
         if time.time() - a.created_at.timestamp() < 2592000:
             embed.add_field(name="Account created check", value=f"{created}", inline=False)
 
-        # gatekeeper = self.bot.get_guild(913007198488133635).get_role(913552884115853363).mention
         gatekeeper = self.client.get_guild(913007198488133632).get_role(913552884115853363).mention
 
-        # await channel.send(f"New registration, {gatekeeper}!", embed=embed)
         await channel.send(f"New Verification! {gatekeeper}", embed=embed)
         await a.send(
             "Thank you! Your registration has been sent to the staff for review.\n\nThey'll accept you as soon "
-            "as possible!")
+            "as possible!"
+        )
 
     @commands.command(name="accept", pass_context=True)
     @commands.has_role(913552884115853363)
