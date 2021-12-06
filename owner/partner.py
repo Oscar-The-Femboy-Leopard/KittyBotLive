@@ -62,8 +62,8 @@ class OwnerCog(commands.Cog):
     @commands.is_owner()
     async def closed(self, ctx):
 
-        guild = self.bot.get_guild(841496169556475975)
-        channel = self.bot.get_channel(841665459531415562)
+        guild = self.client.get_guild(841496169556475975)
+        channel = self.client.get_channel(841665459531415562)
 
         partner = discord.Embed(color=discord.Color.dark_red(),
                                 description="We are currently closed for partnerships. Keep an eye on this channel to find out when they open back up.")
@@ -74,8 +74,8 @@ class OwnerCog(commands.Cog):
         partner.set_thumbnail(url=guild.icon_url)
         partner.set_footer(text=f"Revised on: {datetime.date.today()}")
 
-        await self.bot.get_guild(841496169556475975).get_channel(841665459531415562).purge(limit=10)
-        await self.bot.get_guild(841496169556475975).get_channel(841665459531415562).send(embed=partner)
+        await self.client.get_guild(841496169556475975).get_channel(841665459531415562).purge(limit=10)
+        await self.client.get_guild(841496169556475975).get_channel(841665459531415562).send(embed=partner)
         await ctx.send("Sent that partnerships are closed.")'''
 
 

@@ -26,7 +26,7 @@ class Fun(commands.Cog):
         quote = discord.Embed(color=color, name="FML", timestamp=datetime.datetime.utcnow())
         quote.add_field(name="FML", value=f"[Link to fml]({response})")
         quote.set_image(url=response)
-        # quote.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
+        # quote.set_author(name=self.client.user.name, icon_url=self.client.user.avatar_url)
         # quote.set_footer(text=f"{guild.name}", icon_url=guild.icon_url)
 
         await ctx.send(embed=quote)

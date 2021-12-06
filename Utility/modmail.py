@@ -23,7 +23,7 @@ class Utility(commands.Cog):
         if message.author.id in sent_users:  # Ensure the initial message hasn't been sent before
             return
 
-        # gg_fluff = self.bot.get_guild(864654684085682207)
+        # gg_fluff = self.client.get_guild(864654684085682207)
         gg_fluff = self.client.get_guild(488623700539736064)
 
         modmail_channel = self.client.get_channel(CHANNEL_ID)

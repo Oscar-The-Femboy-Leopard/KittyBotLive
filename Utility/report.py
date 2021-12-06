@@ -10,7 +10,7 @@ class Utility(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['Report'],
-                      description='This will give the uptime of the bot. The format is in Hours, Minutes and Seconds.')
+                      description='This will give the uptime of the client. The format is in Hours, Minutes and Seconds.')
     async def report(self, ctx):
         current_time = time.time()
         difference = int(round(current_time - start_time))

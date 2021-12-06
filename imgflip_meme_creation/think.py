@@ -37,7 +37,7 @@ class ImgFlip(commands.Cog):
         # msg = message
 
         rm_url = discord.Embed(color=color, title="Guy Thinking", timestamp=datetime.datetime.utcnow())
-        # rm_url.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
+        # rm_url.set_author(name=self.client.user.name, icon_url=self.client.user.avatar_url)
         rm_url.set_image(url=url)
         rm_url.set_footer(text=f"{guild.name}", icon_url=guild.icon_url)
 

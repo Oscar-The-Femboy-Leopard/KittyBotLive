@@ -1,6 +1,6 @@
 """@commands.Cog.listener()
     async def on_message(self, message):
-        if not message.author.bot:
+        if not message.author.client:
             msg = message
             guild = message.guild
             gold = discord.Color.dark_gold()
@@ -26,7 +26,7 @@ class Fun(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if not message.author.bot:
+        if not message.author.client:
             ID = Fuzzball_ID
             msg = message
             guild = message.guild

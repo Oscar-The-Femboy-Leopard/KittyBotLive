@@ -11,18 +11,18 @@ from config import PREFIX, cog_extentions, TOKEN, _blnk_value
 intents = discord.Intents.default()
 intents.members = True
 
-bot = commands.Bot(command_prefix=PREFIX, intents=intents)
-bot.remove_command('help')
+client = commands.Bot(command_prefix=PREFIX, intents=intents)
+client.remove_command('help')
 
 
-@bot.event
+@client.event
 async def on_ready():
     print('Logged in as:')
-    print(bot.user.name)
-    print(bot.user.id)
+    print(client.user.name)
+    print(client.user.id)
     print('_______')
 
-    channel = bot.get_channel(844603898203078707)
+    channel = client.get_channel(844603898203078707)
     await channel.send(f"Bot started at: {datetime.datetime.utcnow()}")
 
     while True:
@@ -72,11 +72,10 @@ async def on_ready():
                              type=discord.ActivityType.listening)]
 
         activity = random.choice(status)
-        channel1 = bot.get_channel(835656871376453673)
-        channel = bot.get_channel(861989383590248459)
+        channel1 = client.get_channel(835656871376453673)
+        channel = client.get_channel(861989383590248459)
 
-        await bot.change_presence(activity=activity)
-        # print(f"Changed my status to {activity.type} {activity.name}")
+        await client.change_presence(activity=activity)
         await channel1.send(f"Changed my status to {activity.type} {activity.name}. Changing again in 5 minutes!")
         await channel.send(f'Bot Time Check In. Time is now\n**{datetime.datetime.utcnow()}**\n_ _')
         await asyncio.sleep(300)
@@ -85,7 +84,7 @@ async def on_ready():
 if __name__ == '__main__':
     for extention in cog_extentions:
         try:
-            bot.load_extension(extention)
+            client.load_extension(extention)
         except Exception as e:
             print(f"Failed load extension {extention}", file=sys.stderr)
             traceback.print_exc()
@@ -98,7 +97,7 @@ if __name__ == '__main__':
 # TODO Investigate issues with memes holding more than just 2 options. They're not posting anymore than 2 in a meme.
 
 
-@bot.group(invoke_without_command=True)
+@client.group(invoke_without_command=True)
 async def help(ctx):
     mhelp = discord.Embed(title="Help", description=f"Use {PREFIX}help <module> to load the module help pages")
 
@@ -506,4 +505,4 @@ async def lick(ctx):
     await ctx.send(embed=lick)
 
 
-bot.run(TOKEN, reconnect=True)
+client.run(TOKEN, reconnect=True)

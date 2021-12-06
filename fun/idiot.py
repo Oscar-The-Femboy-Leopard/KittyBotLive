@@ -19,7 +19,7 @@ class Fun(commands.Cog):
         print('Idiot is ready')'''
 
     @commands.command(aliases=aliases,
-                      description="This command was originally made to call the bot an idiot. I made the command output that because the 8ball command kept cussing me out. I had fun with that in development but now I'm moving on from that pettiness. However, I have now made it to where it outputs a random comeback as well as the original message. What one will you get?")
+                      description="This command was originally made to call the client an idiot. I made the command output that because the 8ball command kept cussing me out. I had fun with that in development but now I'm moving on from that pettiness. However, I have now made it to where it outputs a random comeback as well as the original message. What one will you get?")
     async def idiot(self, ctx):
 
         await ctx.send(f'{random.choice(idiot_responses)}')

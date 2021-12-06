@@ -27,7 +27,7 @@ cog_extentions = [
     # 'fun.coinflip', # TODO Throws a List dir error saying it can't find the file
     # 'fun.diceroll', TODO Make the dice roll
     'fun.fact',
-    # 'fun.idiot',  # TODO Make this into a command that works, not with it just calling the bot an idiot
+    # 'fun.idiot',  # TODO Make this into a command that works, not with it just calling the client an idiot
     'fun.insult',
     'fun.kill',
     # 'fun.numguess', # TODO Make the game work
@@ -58,7 +58,7 @@ cog_extentions = [
     'imgflip_meme_creation.trump',
     'imgflip_meme_creation.uno',
     'listener.noU',
-    # 'moderation.antispam', # TODO Activate this before letting the bot go live
+    # 'moderation.antispam', # TODO Activate this before letting the client go live
     # 'moderation.ban',
     # 'moderation.clear',
     # 'moderation.kick',
@@ -67,6 +67,7 @@ cog_extentions = [
     # 'moderation.m_config',
     'owner.booster',
     'owner.bot_inv',
+    'owner.cmessage',
     'owner.current_verified_artist',
     # 'owner.custom_statuses',
     # 'owner.directory',
@@ -225,7 +226,7 @@ Watching_Bot_Status = [discord.Activity(name=f'the sever for my Dev|{PREFIX}help
                                         type=discord.ActivityType.watching)]
 Load_Status = [Playing_Bot_Status, Watching_Bot_Status]
 
-# Wynter_API_Connection = 'http.bot.HTTPSConnection("api.furrycentr.al")'
+# Wynter_API_Connection = 'http.client.HTTPSConnection("api.furrycentr.al")'
 
 imgflip_username = imgflipuser
 imgflip_password = imgflippass

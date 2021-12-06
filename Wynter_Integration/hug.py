@@ -38,23 +38,23 @@ class Wholesome(commands.Cog):
         # _ment_hug = hugged.mentions
         # _ment_hug = hugged.mention
 
-        blep = ctx.message.content.split(' ')
-        hugged = blep[1]
-        huggled = blep[2]
+        # blep = ctx.message.content.split(' ')
+        # hugged = blep[1]
+        # huggled = blep[2]
         hugged = discord.Member
-        huggled = discord.Member
+        # huggled = discord.Member
         _ment_hug = hugged.display_name
         auth = msg.author.display_name
-        ment_hug = huggled.display_name
+        # ment_hug = huggled.display_name
 
-        if hugged and huggled:
+        '''if hugged and huggled:
             hug = [
                 f"**{auth}** hugged **{_ment_hug}** and **{ment_hug}**",
                 f"When **{_ment_hug}** and **{ment_hug}** wasn't looking, **{auth}** sneak hugs them"
-            ]
+            ]'''
 
-        else:
-            hug = [
+        # else:
+        hug = [
                 f"***{auth}** hugged **{_ment_hug}***",
                    f"***{auth}** sneaks up on **{_ment_hug}** before giving them bear hugs*",
                    f"*When **{_ment_hug}** isn't looking, **{auth}** just hugs them tightly*",
@@ -69,7 +69,7 @@ class Wholesome(commands.Cog):
 
         if auth == _ment_hug:
             '''e_url = discord.Embed(color=color, timestamp=_timestamp)
-            # e_url.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
+            # e_url.set_author(name=self.client.user.name, icon_url=self.client.user.avatar_url)
             # e_url.add_field(name=f"***{msg.author}** hugged **{_ment_hug}***", value=_blnk_value, inline=True)
             e_url.add_field(name=hugmessage, value=f"[Link to image]({url})", inline=False)
             e_url.set_image(url=url)

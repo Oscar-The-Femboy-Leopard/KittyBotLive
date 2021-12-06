@@ -225,7 +225,7 @@ class Utility(commands.Cog):
         # deny = discord.utils.get(a.guild.roles, id=841500124383281172)
         emoji = self.client.get_emoji(id=880532960145719307)
         emoji2 = self.client.get_emoji(id=880532998313885817)
-        # welcome = self.bot.get_guild(913007198488133635).get_role(913595000363814932).mention
+        # welcome = self.client.get_guild(913007198488133635).get_role(913595000363814932).mention
 
         await ctx.reply(f'{ctx.author.display_name} has just verified them')
         await priv.send(f"{ctx.author.display_name} verified {ctx.message.content}")

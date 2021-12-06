@@ -2,7 +2,7 @@ import random
 from discord.ext import commands
 
 aliases = ['RockPaperScissors']
-description = "Play Rock Paper Scissors with the bot!"
+description = "Play Rock Paper Scissors with the client!"
 
 
 class Fun(commands.Cog):

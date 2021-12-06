@@ -32,10 +32,10 @@ class OwnerCog(commands.Cog):
         channel = bot.guild.get_channel(844351284568260608)
         error = bot.on_error(self)
 
-        # await bot.guild.get_channel(channel).send(f'{type(e).__name__} - {e}')
+        # await client.guild.get_channel(channel).send(f'{type(e).__name__} - {e}')
 
         '''try:
-            self.bot.load_extension(cog)
+            self.client.load_extension(cog)
         except Exception as e:
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
         else:

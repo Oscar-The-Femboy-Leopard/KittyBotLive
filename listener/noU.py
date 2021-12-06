@@ -9,7 +9,7 @@ class Listeners(commands.Cog):
 
     @commands.Cog.listener(name="NoU")
     async def on_message(self, message):
-        if not message.author.bot:
+        if not message.author.client:
             if message.content.startswith("no u"):
 
                 NeonnoUemoji = self.client.get_emoji(916295744665833522)

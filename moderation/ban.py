@@ -77,7 +77,7 @@ class Moderation(commands.Cog):
                            904108509463990294)
     async def hban(self, ctx, userID: int, *, reason=None):
 
-        channel = self.bot.get_channel(900520129627037707)
+        channel = self.client.get_channel(900520129627037707)
 
         if reason == None:
             reason = "No reason was given."
