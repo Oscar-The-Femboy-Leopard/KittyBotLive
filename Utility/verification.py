@@ -210,7 +210,7 @@ class Utility(commands.Cog):
 
     @commands.command(name="accept", pass_context=True)
     @commands.has_role(913552884115853363)
-    async def accept(self, ctx, *, m: discord.Member = None):
+    async def accept(self, ctx, *, m: discord.Member):
 
         guild = ctx.guild
         _channel = guild.get_channel(913007198488133635)
