@@ -1,5 +1,7 @@
 import random
 import discord
+import datetime
+
 from discord.ext import commands
 from config import _8ball_responses
 
@@ -21,7 +23,7 @@ class Fun(commands.Cog):
         guild = msg.guild
         thumb = f"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ebayimg.com%2Fimages%2Fg%2FATUAAOSw8hpdwj5V%2Fs-l300.jpg&f=1&nofb=1"
 
-        _8 = discord.Embed(color=color, timestamp=discord.Message.created_at)
+        _8 = discord.Embed(color=color, timestamp=datetime.datetime.utcnow())
         _8.add_field(name="The question asked:", value=question, inline=False)
         _8.add_field(name="My Response:", value=response, inline=False)
         _8.set_thumbnail(url=thumb)
