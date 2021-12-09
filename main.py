@@ -6,12 +6,12 @@ import traceback
 import discord
 
 from discord.ext import commands
-from config import PREFIX, cog_extentions, TOKEN, _blnk_value, _PREFIX
+from config import PREFIX, cog_extentions, TOKEN, _blnk_value, _PREFIX, _prefix
 
 intents = discord.Intents.default()
 intents.members = True
 
-client = commands.Bot(command_prefix=[PREFIX, _PREFIX], intents=intents)
+client = commands.Bot(command_prefix=[PREFIX, _PREFIX, _prefix], intents=intents)
 client.remove_command('help')
 
 

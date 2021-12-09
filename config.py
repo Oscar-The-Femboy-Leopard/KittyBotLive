@@ -3,7 +3,8 @@ import time
 
 from mainconfig import Owner_ID, Owner_Name, PREFIX, TOKEN, INVITE, imgflipuser, imgflippass, paypal1, paypal2, password
 
-_PREFIX = "beast"
+_PREFIX = "beast "
+_prefix = "beast"
 
 TOKEN = TOKEN
 
