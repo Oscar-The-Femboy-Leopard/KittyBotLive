@@ -269,7 +269,7 @@ class Utility(commands.Cog):
         welcome = discord.utils.get(a.guild.roles, id=913595000363814932).mention
 
         await ctx.reply(f'{ctx.author.display_name} has just verified {m.display_name}')
-        await priv.send(f"{ctx.author.display_name} verified {m.display_name} | UID: {m.id}")
+        await priv.send(f"{ctx.author.display_name} verified {m.display_name}#{m.discriminator} | UID: {m.id}")
 
         # TODO Make accept ping Gatekeeper role
 
@@ -290,8 +290,9 @@ class Utility(commands.Cog):
                                                         f"{suggestions}!")
         e.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 
-        await _channel.send(welcome)
+        # await _channel.send(welcome)
         await _channel.send(f'{emoji}{emoji2}')
+        await _channel.send(welcome, embed=e)
         # await _channel.send(f"Please welcome {m.mention}!\n\n> Please visit {roles} to get yourself some roles!\n\n> "
         #                     f"If you have any questions about the server, that's not covered by {discover} please go "
         #                     f"to {faq}")
