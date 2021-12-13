@@ -18,6 +18,11 @@ class Utility(commands.Cog):
         super().__init__(*args, **kwargs)
         self.client = client
 
+    '''@commands.Cog.listener()
+    async def on_member_join(self, ctx, m: discord.Member):
+        self.client.get_user()
+        if m.created_at >='''
+
     @commands.command(name='register', pass_context=True, aliases=aliases, description=description)
     async def verify(self, ctx):
 
@@ -54,12 +59,15 @@ class Utility(commands.Cog):
         if r in a.roles:
             return await ctx.reply("You already have been verified!")
 
-        await a.send(
-            f"Hi there, welcome to the {_guild} registration.\n\nDuring this process, please be respectful and answer "
-            f"honestly. Any information, like age, shared with me won't leave this DM, it is just for my end of "
-            f"verification to the server.\nYou can type `cancel` on any question and it will cancel verification "
-            f"until you run the command again.\n\nBefore we can start, can I please have the password found in the "
-            f"rules?")
+        try:
+            await a.send(
+                f"Hi there, welcome to the {_guild} registration.\n\nDuring this process, please be respectful and answer "
+                f"honestly. Any information, like age, shared with me won't leave this DM, it is just for my end of "
+                f"verification to the server.\nYou can type `cancel` on any question and it will cancel verification "
+                f"until you run the command again.\n\nBefore we can start, can I please have the password found in the "
+                f"rules?")
+        except discord.Forbidden:
+            await ctx.reply("I am sorry, but I cannot DM you. Can you open the DMs to the server to verify and try again?\nThank you.")
 
         await asyncio.sleep(1)
         msg = await self.client.wait_for('message', check=check)
@@ -115,9 +123,11 @@ class Utility(commands.Cog):
             agebracket = "Adult"
         if age < 18:
             agebracket = "Minor"
+        if age < 13:
+            agebracket = f"Minor | **WARNING: USER DECLARED THEY'RE UNDER 13** (`{age}`)"
         if age > 80:
             await a.send("Please don't be so stupid...")
-            await channel.send(f'{a.display_name} just said they where {msg.content}')
+            await channel.send(f'{a.display_name} just said they where {age}')
         await a.send(
             f"Thanks, to protect your age, you will be shown as a {agebracket} in the server.")
 
@@ -216,7 +226,7 @@ class Utility(commands.Cog):
                 f"{a.display_name}, you have canceled your verification. You can rerun this command when you're ready.")
 
         embed = discord.Embed(title="New Member Registration!",
-                              description=f"A registration to become a member has been submitted at {datetime.datetime.utcnow()} by {a.mention} ({a.id}).",
+                              description=f"A registration to become a member has been submitted at {datetime.datetime.utcnow()}{datetime.timezone.utc} by {a.mention} | {a.display_name} ({a.id}).",
                               color=c)
         embed.set_thumbnail(url=a.avatar_url)
         embed.add_field(name='Preferred Name', value=f"{name}", inline=False)
@@ -240,7 +250,7 @@ class Utility(commands.Cog):
         if time.time() - a.created_at.timestamp() > 2592000:
             embed.add_field(name="Account created check", value=f"{created}", inline=False)
         if time.time() - a.created_at.timestamp() < 2592000:
-            embed.add_field(name="Account created check", value=f"{created}", inline=False)
+            embed.add_field(name="Account created check", value=f"{created} | New Account", inline=False)
 
         gatekeeper = self.client.get_guild(913007198488133632).get_role(913552884115853363).mention
 
@@ -250,23 +260,31 @@ class Utility(commands.Cog):
             "as possible!"
         )
 
+    '''@verify.error()
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, discord.Forbidden):
+            await ctx.reply("Cannot find the required emoji.\n\n{}").format(error)'''
+
+
     @commands.command(name="accept", pass_context=True)
     @commands.has_role(913552884115853363)
     async def accept(self, ctx, *, m: discord.Member):
-
+        a = ctx.message.author
         guild = ctx.guild
+
         _channel = guild.get_channel(913007198488133635)
         channel = guild.get_channel(913540153753092117)
         priv = self.client.get_guild(488623700539736064).get_channel(913590152583077888)
-        a = ctx.message.author
         roles = guild.get_channel(913534684678471732).mention
         suggestions = guild.get_channel(913553966401474650).mention
         faq = guild.get_channel(913595991951835166).mention
         discover = guild.get_channel(913015273538355201).mention
+
+        welcome = discord.utils.get(a.guild.roles, id=913595000363814932).mention
         member = discord.utils.get(a.guild.roles, id=913015562894979082)
+
         emoji = self.client.get_emoji(id=880532960145719307)
         emoji2 = self.client.get_emoji(id=880532998313885817)
-        welcome = discord.utils.get(a.guild.roles, id=913595000363814932).mention
 
         await ctx.reply(f'{ctx.author.display_name} has just verified {m.display_name}')
         await priv.send(f"{ctx.author.display_name} verified {m.display_name}#{m.discriminator} | UID: {m.id}")
@@ -281,13 +299,12 @@ class Utility(commands.Cog):
             await self.client.channel.send("I don't have perms to add roles.")
 
         e = discord.Embed(color=random.choice(random_color))
-        e.add_field(name=f"Welcome {m.mention}!", value=f"> Please visit {roles} to get yourself some roles!\n> If "
-                                                        f"you have any question about where a channel is or for, "
-                                                        f"please visit {discover} and it will direct you.\n> If any "
-                                                        f"questions, please visit {faq} before asking staff since "
-                                                        f"what you may want to ask could be here.\n> If you ever have "
-                                                        f"any suggestions for the server, please visit "
-                                                        f"{suggestions}!")
+        e.add_field(name=f"New Join!", value=f"Welcome {m.mention}\n\n> Please visit {roles} to get yourself some "
+                                             f"roles!\n\n> If you have any question about where a channel is or for, "
+                                             f"please visit {discover} and it will direct you.\n\n> If any questions, "
+                                             f"please visit {faq} before asking staff since what you may want to ask "
+                                             f"could be here.\n\n> If you ever have any suggestions for the server, "
+                                             f"please visit {suggestions}!")
         e.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 
         # await _channel.send(welcome)
@@ -296,7 +313,6 @@ class Utility(commands.Cog):
         # await _channel.send(f"Please welcome {m.mention}!\n\n> Please visit {roles} to get yourself some roles!\n\n> "
         #                     f"If you have any questions about the server, that's not covered by {discover} please go "
         #                     f"to {faq}")
-
 
         '''await _channel.send(f"Please welcome {m.mention}!\n\n> Please visit {roles} to get yourself some roles!\n> If "
                             f"you ever have any suggestions for the server, please visit {suggestions}!")'''

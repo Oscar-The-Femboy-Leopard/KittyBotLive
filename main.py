@@ -10,9 +10,100 @@ from config import PREFIX, cog_extentions, TOKEN, _blnk_value, _PREFIX, _prefix
 
 intents = discord.Intents.default()
 intents.members = True
+intents.presences = True
 
 client = commands.Bot(command_prefix=[PREFIX, _PREFIX, _prefix], intents=intents)
 client.remove_command('help')
+
+__status = [  # playing statuses
+    discord.Activity(name=f'my fav games|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'Chinese Whispers with my dev|{PREFIX}help',
+                     type=discord.ActivityType.playing),
+    discord.Activity(name=f'crane games for cool stuff|{PREFIX}help',
+                     type=discord.ActivityType.playing),
+    discord.Activity(name=f'with my friends|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with leopards!|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with foxes!|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with bunnies!|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with wolves|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with lynxes|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with paws|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with my RAM|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'on my BIOS trying to Overclock my CPU|{PREFIX}help',
+                     type=discord.ActivityType.playing),
+    discord.Activity(name=f'on my dedicated server!|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with you cool furs|{PREFIX}help',
+                     type=discord.ActivityType.playing),
+    discord.Activity(name=f"on my Dev's nerves|{PREFIX}help",
+                     type=discord.ActivityType.playing),
+    discord.Activity(name=f'with my Dev|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with my Prefix|{PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f"with my dev's hair|{PREFIX}help", type=discord.ActivityType.playing),
+
+    # watching Statuses
+    discord.Activity(name=f'the sever for my Dev|{PREFIX}help',
+                     type=discord.ActivityType.watching),
+    discord.Activity(name=f'some cool things with my Dev|{PREFIX}help',
+                     type=discord.ActivityType.watching),
+    discord.Activity(name=f'something lame... Why is my dev boring?|{PREFIX}help',
+                     type=discord.ActivityType.watching),
+    discord.Activity(name=f'butterflies fly!❤|{PREFIX}help',
+                     type=discord.ActivityType.watching),
+
+    # listening statuses
+    discord.Activity(name=f'birds chirping|{PREFIX}help',
+                     type=discord.ActivityType.listening),
+    discord.Activity(name=f'my Dev yelling at me 💢 |{PREFIX}help',
+                     type=discord.ActivityType.listening),
+    discord.Activity(name=f'my cookies crunching |{PREFIX}help',
+                     type=discord.ActivityType.listening),
+    discord.Activity(name=f'heavy metal with my dev|{PREFIX}help',
+                     type=discord.ActivityType.listening)]
+
+_status = [  # playing statuses
+    discord.Activity(name=f'my fav games|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'Chinese Whispers with my dev|{_PREFIX}help',
+                     type=discord.ActivityType.playing),
+    discord.Activity(name=f'crane games for cool stuff|{_PREFIX}help',
+                     type=discord.ActivityType.playing),
+    discord.Activity(name=f'with my friends|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with leopards!|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with foxes!|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with bunnies!|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with wolves|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with lynxes|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with paws|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with my RAM|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'on my BIOS trying to Overclock my CPU|{_PREFIX}help',
+                     type=discord.ActivityType.playing),
+    discord.Activity(name=f'on my dedicated server!|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with you cool furs|{_PREFIX}help',
+                     type=discord.ActivityType.playing),
+    discord.Activity(name=f"on my Dev's nerves|{_PREFIX}help",
+                     type=discord.ActivityType.playing),
+    discord.Activity(name=f'with my Dev|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f'with my Prefix|{_PREFIX}help', type=discord.ActivityType.playing),
+    discord.Activity(name=f"with my dev's hair|{_PREFIX}help", type=discord.ActivityType.playing),
+
+    # watching Statuses
+    discord.Activity(name=f'the sever for my Dev|{_PREFIX}help',
+                     type=discord.ActivityType.watching),
+    discord.Activity(name=f'some cool things with my Dev|{_PREFIX}help',
+                     type=discord.ActivityType.watching),
+    discord.Activity(name=f'something lame... Why is my dev boring?|{_PREFIX}help',
+                     type=discord.ActivityType.watching),
+    discord.Activity(name=f'butterflies fly!❤|{_PREFIX}help',
+                     type=discord.ActivityType.watching),
+
+    # listening statuses
+    discord.Activity(name=f'birds chirping|{_PREFIX}help',
+                     type=discord.ActivityType.listening),
+    discord.Activity(name=f'my Dev yelling at me 💢 |{_PREFIX}help',
+                     type=discord.ActivityType.listening),
+    discord.Activity(name=f'my cookies crunching |{_PREFIX}help',
+                     type=discord.ActivityType.listening),
+    discord.Activity(name=f'heavy metal with my dev|{_PREFIX}help',
+                     type=discord.ActivityType.listening)]
 
 
 @client.event
@@ -26,7 +117,7 @@ async def on_ready():
     await channel.send(f"Bot started at: {datetime.datetime.utcnow()}")
 
     while True:
-        status = [  # playing statuses
+        '''status = [  # playing statuses
             discord.Activity(name=f'my fav games|{PREFIX}help', type=discord.ActivityType.playing),
             discord.Activity(name=f'Chinese Whispers with my dev|{PREFIX}help',
                              type=discord.ActivityType.playing),
@@ -69,7 +160,14 @@ async def on_ready():
             discord.Activity(name=f'my cookies crunching |{PREFIX}help',
                              type=discord.ActivityType.listening),
             discord.Activity(name=f'heavy metal with my dev|{PREFIX}help',
-                             type=discord.ActivityType.listening)]
+                             type=discord.ActivityType.listening)]'''
+
+        status = random.randint(1, 10)
+
+        if status == 1 or 3 or 5 or 7 or 9:
+            status = _status
+        if status == 2 or 4 or 6 or 8 or 10:
+            status = __status
 
         activity = random.choice(status)
         channel1 = client.get_channel(835656871376453673)

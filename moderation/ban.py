@@ -1,6 +1,7 @@
 import discord
 import datetime
 
+
 from discord.ext import commands
 
 baliases = ['Ban', 'Ban_member', 'Ban_Member']
@@ -17,22 +18,26 @@ class Moderation(commands.Cog):
         self.client = client
 
     @commands.command(aliases=baliases, description=bdescription)
-    @commands.has_any_role(864655957816508446, 864655959884300298, 864655947736678420, 488642021184241664)
-    async def ban(self, ctx, member: int, *, reason=None):
+    # @commands.has_any_role(864655957816508446, 864655959884300298, 864655947736678420, 488642021184241664)
+    async def ban(self, ctx, uID: int, *, reason):
 
-        channel = self.client.get_channel(913736166782681118)
+        # channel = self.client.get_channel(913736166782681118)
 
-        m = (self.client.get_user(member))
+        m = self.client.get_user(uID)
 
-        if m == None:
-            return await ctx.reply("You need to name someone to ban.")
+        guild = ctx.guild
+        memberList = guild.members
+
+        '''if m is None:
+            return await ctx.reply("You need to name someone to ban.")'''
         if ctx.author.id == m:
             return await ctx.reply("You cannot ban yourself")
         if reason == None:
             return await ctx.reply("We need a reason for this ban.")
 
-        if m in ctx.guild:
-            message = f"You have been banned from {ctx.guild.name} for {reason}."
+        if m in memberList:
+        # if m in ctx.guild:
+            message = f"You have been banned from {ctx.guild} for {reason}."
 
             # await member.send(message)
             banned = discord.Embed(color=discord.Color.green())
@@ -53,10 +58,11 @@ class Moderation(commands.Cog):
                                 f"Member ID: {ctx.author.id}", inline=False)
             ban.add_field(name="Date Banned (year, month, day):", value=f'{datetime.date.today()}')
             ban.set_thumbnail(url=m.avatar_url)
-            await ctx.reply(f"Ban penalty submitted. Posted in: {channel.mention}")
-            await channel.send(embed=ban)
+            # await ctx.reply(f"Ban penalty submitted. Posted in: {channel.mention}")
+            # await channel.send(embed=ban)
+            await ctx.send(embed=ban)
 
-        else:
+        if m not in memberList:
             await m.ban(reason=reason)
 
             embed = discord.Embed(color=discord.Color.red(), timestamp=datetime.datetime.utcnow())
@@ -69,8 +75,9 @@ class Moderation(commands.Cog):
                                   f"Member ID: {ctx.author.id}", inline=False)
             embed.add_field(name="Date Of Ban (Year, Month, Day):", value=f"{datetime.date.today()}", inline=False)
             embed.set_thumbnail(url=m.avatar_url)
-            await ctx.reply(f"Ban penelty submitted. Posted in {channel.mention}")
-            await channel.send(embed=embed)
+            # await ctx.reply(f"Ban penelty submitted. Posted in {channel.mention}")
+            # await channel.send(embed=embed)
+            await ctx.send(embed=embed)
 
     '''@commands.command(aliases=haliases, description=hdescription)
     @commands.has_any_role(864655957816508446, 864655959884300298, 864655947736678420, 488642021184241664,
