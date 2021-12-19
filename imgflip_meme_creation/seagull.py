@@ -23,7 +23,7 @@ class ImgFlip(commands.Cog):
         # ctx1, ctx2, ctx3, ctx4 = ctx.split('.')
         url = f"https://api.imgflip.com/caption_image?text0={vari[0]}&text1={vari[1]}&text2={vari[2]}&text3={vari[3]}&username={imgflip_username}&password={imgflip_password}&template_id={id} "
         print(vari)
-#TODO Needs 4 inputs
+
         payload = {}
         headers = {
             'Cookie': '__cfduid=d8877b9d3f7f03d74d494201c69a043e81605576645; claim_key=eVrjsNJKFzqzCYRCMTSxdpSh5BnGPLdV'

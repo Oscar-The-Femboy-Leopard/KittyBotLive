@@ -162,7 +162,6 @@ class Fun(commands.Cog):
 
                 ] #This is numbers 101 to 140 from the same website
 
-# TODO Make the facts a random choice between several lists to try and optimise it and help it not lag
         chooseFact = random.choice([fact, fact2])
         response = random.choice(chooseFact)
         color = discord.Color.dark_red()

@@ -8,12 +8,16 @@ import discord
 from discord.ext import commands
 from config import PREFIX, cog_extentions, TOKEN, _blnk_value, _PREFIX, _prefix
 
+
 intents = discord.Intents.default()
 intents.members = True
 intents.presences = True
 
+
+# client = commands.Bot(command_prefix=commands.when_mentioned_or([PREFIX, _PREFIX, _prefix]), intents=intents)
 client = commands.Bot(command_prefix=[PREFIX, _PREFIX, _prefix], intents=intents)
 client.remove_command('help')
+
 
 __status = [  # playing statuses
     discord.Activity(name=f'my fav games|{PREFIX}help', type=discord.ActivityType.playing),
@@ -107,6 +111,14 @@ _status = [  # playing statuses
 
 
 @client.event
+async def wait_until_ready():
+    activity = discord.Activity(name="with loading software. Please wait",
+                                type=discord.ActivityType.playing)
+    await client.change_presence(activity=activity)
+    print("loading")
+
+
+@client.event
 async def on_ready():
     print('Logged in as:')
     print(client.user.name)
@@ -186,13 +198,12 @@ if __name__ == '__main__':
         except Exception as e:
             print(f"Failed load extension {extention}", file=sys.stderr)
             traceback.print_exc()
-
-
-# TODO Impliment Quote Of The Day
-# TODO Impliment Question Of The Day
-# TODO Impliment actual Insult command
-# TODO Use bad_list to deny phrases and words from getting into memes
-# TODO Investigate issues with memes holding more than just 2 options. They're not posting anymore than 2 in a meme.
+    '''for application_command in cog_extentions:
+        try:
+            client.get_command(application_command)
+        except Exception as e:
+            print(f"Failed to load command {application_command}", file=sys.stderr)
+            traceback.print_exc()'''
 
 
 @client.group(invoke_without_command=True)
@@ -603,4 +614,7 @@ async def lick(ctx):
     await ctx.send(embed=lick)
 
 
-client.run(TOKEN, reconnect=True)
+try:
+    client.run(TOKEN, reconnect=True)
+except discord.LoginFailure:
+    print("Log In Failed.")

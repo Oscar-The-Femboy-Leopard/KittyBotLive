@@ -1,4 +1,5 @@
 import discord
+import urllib.parse
 from discord.ext import commands
 
 
@@ -18,23 +19,29 @@ class Utility(commands.Cog):
         staff = [864655958352986112, 864655957816508446, 864655959884300298, 904108509463990294, 904349776659755050, 864655947736678420]
         if not avamember:
             avamember = ctx.message.author
-        if ctx.channel is not channel:
+        '''if ctx.channel is not channel:
             return await ctx.reply("I don't have permission to use this command outside of the designated channel set "
-                                   "by my devs.")
+                                   "by my devs.")'''
         '''if ctx.author.roles not in staff:
             await ctx.reply("This is a staff command. For help, please message Michelle directly.")'''
 
         gettt = self.client.get_user(avamember)
 
         userAvatarUrl = avamember.avatar_url
-        userBannerURL = gettt.fetch_user.banner_url
+        # userBannerURL = gettt.fetch_user.banner_url
+        googlesearch = "https://images.google.com/searchbyimage?image_url="
         msg = ctx
         guild = msg.guild
 
+        img = urllib.parse.quote(userAvatarUrl, safe='')
+
+        google = f"{googlesearch + img}"
+
         pfp = discord.Embed(color=ctx.message.author.top_role.color, description="**Profile Picture Requested:**")
         pfp.add_field(name="User:", value=avamember.display_name, inline=True)
+        pfp.add_field(name="Reverse Google Search Here:", value=google, inline=True)
         pfp.set_image(url=userAvatarUrl)
-        pfp.set_image(url=userBannerURL)
+        # pfp.set_image(url=userBannerURL)
         pfp.set_footer(text=f'Requested by {ctx.author}')
 
         await ctx.send(embed=pfp)

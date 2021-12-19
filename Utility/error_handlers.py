@@ -23,6 +23,9 @@ class error_handling(commands.Cog):
             await ctx.reply('You are missing the required argument of: `{}`'.format(error))
             print(error)
 
+        '''if isinstance(error, commands.MemberNotFound):
+            await ctx.reply(f'I cannot find `{error}`. Please check ID before trying again.')'''
+
         if isinstance(error, commands.MissingPermissions):
             await ctx.reply("You do not have all the permissions required!")
             print(error)
@@ -62,6 +65,11 @@ class error_handling(commands.Cog):
         if isinstance(error, discord.Forbidden):
             await ctx.reply("I am forbidden: {}").format(error)
             print(error)
+
+        '''if error is commands.CommandNotFound:
+            await ctx.reply(f"Command not found! Please refer to `{PREFIX}help` to avoid this error in the future.")
+        else:
+            await ctx.reply(f"I have encountered an error! It is as follows:\n\n```\n{error}\n```")'''
 
         msg.add_field(name="Error Type:", value=f"{error}", inline=False)
         msg.add_field(name="Content of message:", value=ctx.message.content, inline=False)

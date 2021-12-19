@@ -2,3 +2,5 @@ mainconfig.py
 .pytest_cache
 venv
 .idea
+todo_text.txt
+log.txt

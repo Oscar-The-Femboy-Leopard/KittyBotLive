@@ -67,7 +67,8 @@ class Utility(commands.Cog):
                 f"until you run the command again.\n\nBefore we can start, can I please have the password found in the "
                 f"rules?")
         except discord.Forbidden:
-            await ctx.reply("I am sorry, but I cannot DM you. Can you open the DMs to the server to verify and try again?\nThank you.")
+            await ctx.reply(
+                "I am sorry, but I cannot DM you. Can you open the DMs to the server to verify and try again?\nThank you.")
 
         await asyncio.sleep(1)
         msg = await self.client.wait_for('message', check=check)
@@ -242,7 +243,7 @@ class Utility(commands.Cog):
         embed.add_field(name='How this user found the server', value=f"{foundus}", inline=False)
         embed.add_field(name="What is want from joining", value=f"{want}", inline=False)
         embed.set_footer(
-            text=f'Author {a.id}\n\n`{PREFIX}accept <mention>` to accept or `{PREFIX}deny <mention>` to deny.'
+            text=f'Author {a.id}\n\n`{PREFIX}accept <mention>` to accept or `{PREFIX}deny <mention> <reason>` to deny.'
         )
 
         created = a.created_at
@@ -265,7 +266,6 @@ class Utility(commands.Cog):
         if isinstance(error, discord.Forbidden):
             await ctx.reply("Cannot find the required emoji.\n\n{}").format(error)'''
 
-
     @commands.command(name="accept", pass_context=True)
     @commands.has_role(913552884115853363)
     async def accept(self, ctx, *, m: discord.Member):
@@ -286,17 +286,19 @@ class Utility(commands.Cog):
         emoji = self.client.get_emoji(id=880532960145719307)
         emoji2 = self.client.get_emoji(id=880532998313885817)
 
-        await ctx.reply(f'{ctx.author.display_name} has just verified {m.display_name}')
-        await priv.send(f"{ctx.author.display_name} verified {m.display_name}#{m.discriminator} | UID: {m.id}")
+        if m in ctx.guild:
+            await ctx.reply(f'{ctx.author.display_name} has just verified {m.display_name}')
+            await priv.send(f"{ctx.author.display_name} verified {m.display_name}#{m.discriminator} | UID: {m.id}")
 
-        # TODO Make accept ping Gatekeeper role
+            try:
+                await m.add_roles(member)
+                print("done")
+                # await m.remove_roles(deny)
+            except discord.Forbidden:
+                await self.client.channel.send("I don't have perms to add roles.")
 
-        try:
-            await m.add_roles(member)
-            print("done")
-            # await m.remove_roles(deny)
-        except discord.Forbidden:
-            await self.client.channel.send("I don't have perms to add roles.")
+        if m not in ctx.guild:
+            return await ctx.reply(f"Member {m.display_name} is not present in this server.")
 
         e = discord.Embed(color=random.choice(random_color))
         e.add_field(name=f"New Join!", value=f"Welcome {m.mention}\n\n> Please visit {roles} to get yourself some "
@@ -307,18 +309,22 @@ class Utility(commands.Cog):
                                              f"please visit {suggestions}!")
         e.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 
-        # await _channel.send(welcome)
         await _channel.send(f'{emoji}{emoji2}')
         await _channel.send(welcome, embed=e)
-        # await _channel.send(f"Please welcome {m.mention}!\n\n> Please visit {roles} to get yourself some roles!\n\n> "
-        #                     f"If you have any questions about the server, that's not covered by {discover} please go "
-        #                     f"to {faq}")
 
-        '''await _channel.send(f"Please welcome {m.mention}!\n\n> Please visit {roles} to get yourself some roles!\n> If "
-                            f"you ever have any suggestions for the server, please visit {suggestions}!")'''
+        msg = f"You have been verified in {ctx.guild.name}. Please message staff if you have any problems within the " \
+              f"server. - \n\n**Owner: {ctx.guild.owner.display_name}**\n**Bot: {self.client.user.display_name}** "
 
-        await m.send(f"You have been verified in {ctx.guild.name}. Please message staff if you have any problems "
-                     f"within the server. - {ctx.guild.owner.display_name}\n{self.client.user.display_name}")
+        _e = discord.Embed(name="Accepted!", color=discord.Color.green())
+        _e.add_field(name="Congratulations!", value=msg, inline=False)
+        _e.add_field(name="Time of acceptance:", value=f"{datetime.datetime.now()}", inline=False)
+
+        try:
+            await m.send(embed=_e)
+            '''await m.send(f"You have been verified in {ctx.guild.name}. Please message staff if you have any problems "
+                         f"within the server. - \n\n**Owner: {ctx.guild.owner.display_name}**\n**Bot: {self.client.user.display_name}**")'''
+        except discord.Forbidden:
+            await ctx.reply(f"I was unable to alert {m.display_name} that they was accepted.")
 
     @commands.command(name="deny", pass_context=True)
     @commands.has_role(913552884115853363)
@@ -332,17 +338,19 @@ class Utility(commands.Cog):
 
         m = (self.client.get_user(uID))
 
-        if reason == None:
+        if reason is None:
             await ctx.reply("Please give me the message you want me to send.")
 
         else:
-            _reason = f"Your verification has been died from {ctx.guild.name} for the following reason:\n\n{reason}"
+            _reason = f"Your verification has been denied from {ctx.guild.name} for the following reason:\n\n{reason}"
             print(_reason)
 
-        await m.send(_reason)
-        await ctx.reply(f"I have sent the DM! The reply is followed:\n\n```{_reason}```")
-
-        await priv.send(f"{ctx.author.display_name} denied {m.display_name} with following reason:\n\n{reason}")
+        try:
+            await m.send(_reason)
+            await ctx.reply(f"I have sent the DM! The reply is followed:\n\n```{_reason}```")
+        except discord.Forbidden:
+            await ctx.reply(f"I am sadly unable to dm {m.display_name}. The reason cannot be sent.")
+            await priv.send(f"{ctx.author.display_name} denied {m.display_name} with following reason:\n\n{reason}")
 
         '''guild = ctx.guild
         channel = guild.get_channel(880218549367492659)

@@ -235,13 +235,17 @@ class Utility(commands.Cog):
         embed.add_field(name="Roles:", value="_ _".join([role.mention for role in roles]), inline=False)
         embed.add_field(name="Highest Role:", value=member.top_role.mention, inline=False)
         # embed.add_field(name="Permissions", value=f"_ _".join([role.permissions for role in roles]), inline=False)
-        embed.add_field(name="Permissions", value=f"{[role.permissions for role in roles]}", inline=False)
+        # embed.add_field(name="Permissions", value=f"{[role.permissions for role in roles]}", inline=False)
         # embed.add_field(name="Key Permissions", value=member.guild_permissions, inline=False)
 
         # banner = f"https://cdn.discordapp.com/banners/{uID}/{member.user_banner}"
+        # banner = f"https://cdn.discordapp.com/banners/{uID}/{member.banner}"
 
-        embed.add_field(name="Discord PFP:", value=member.avatar_url)
-        embed.add_field(name="Discord Banner:", value=member.banner_url)
+        # embed.add_field(name="Discord PFP:", value=member.avatar_url)
+        embed.add_field(name="Discord PFP:", value="_ _")
+        embed.set_image(url=member.avatar_url)
+        # embed.add_field(name="Discord Banner:", value=member.banner_url)
+        # embed.add_field(name="Discord Banner:", value=banner)
 
         if member.status.name == "offline":
             emoji = offline

@@ -26,32 +26,32 @@ Whitelist_Channels = []
 
 cog_extentions = [
     'fun._8ball',
-    # 'fun.AResponder',  # TODO Look into the code to make it respond to the person ID
-    # 'fun.coinflip', # TODO Throws a List dir error saying it can't find the file
-    # 'fun.diceroll', TODO Make the dice roll
+    # 'fun.AResponder',
+    # 'fun.coinflip',
+    # 'fun.diceroll',
     'fun.fact',
-    # 'fun.idiot',  # TODO Make this into a command that works, not with it just calling the client an idiot
+    # 'fun.idiot',
     'fun.insult',
     'fun.kill',
-    # 'fun.numguess', # TODO Make the game work
-    # 'fun.OwOviolation',  # TODO Make the video play within the embed
+    # 'fun.numguess',
+    # 'fun.OwOviolation',
     'fun.quote',
-    # 'fun.QuoteOfTheDay',  # TODO Make this appear every time at Midnight GMT 0
+    # 'fun.QuoteOfTheDay',
     'fun.rps',
-    'fun.ship',  # TODO It runs rather well, just need to make it ship 2 different people - Need to make it split
-    # 'fun.flip', # TODO Remember what this command is for and then investigate the errors
+    'fun.ship',
+    # 'fun.flip',
     # 'imgflip_meme_creation.bf',
     'imgflip_meme_creation.brace',
     'imgflip_meme_creation.cardboard_sign',
     'imgflip_meme_creation.change_my_mind',
     'imgflip_meme_creation.first_world_problem',
-    # 'imgflip_meme_creation.gru', # TODO Set up the 4 variables but need to get them to split properly
+    # 'imgflip_meme_creation.gru',
     'imgflip_meme_creation.lie_detector',
     'imgflip_meme_creation.nut_button',
     'imgflip_meme_creation.option',
     'imgflip_meme_creation.put_it_somewhere_else',
     'imgflip_meme_creation.say_that_again',
-    # 'imgflip_meme_creation.seagull', # TODO Need to set up the 4 variables
+    # 'imgflip_meme_creation.seagull',
     'imgflip_meme_creation.skeleton',
     'imgflip_meme_creation.Spongebob_heads_out',
     'imgflip_meme_creation.spongebob_imagination',
@@ -61,11 +61,11 @@ cog_extentions = [
     'imgflip_meme_creation.trump',
     'imgflip_meme_creation.uno',
     'listener.noU',
-    # 'moderation.antispam', # TODO Activate this before letting the client go live
+    # 'moderation.antispam',
     # 'moderation.ban',
     # 'moderation.clear',
     # 'moderation.kick',
-    # 'moderation.unban', #  TODO Make it unban
+    # 'moderation.unban',
     # 'moderation.m_index',
     # 'moderation.m_config',
     'owner.booster',
@@ -82,6 +82,7 @@ cog_extentions = [
     'owner.paypal',
     # 'owner.qotd',
     'owner.reload_cog',
+    # 'owner.roles',
     'owner.rules',
     'owner.rules_staff',
     'owner.staff_application_form',
@@ -89,6 +90,9 @@ cog_extentions = [
     'owner.sudo',
     'owner.unload_cog',
     'owner.verify_artist',
+    # 'staff.allModerationCommands',
+    # 'staff.query',
+    'staff.reportlog',
     'Utility.announcement',
     'Utility.bot_info',
     'Utility.error_handlers',
@@ -98,7 +102,7 @@ cog_extentions = [
     'Utility.personinfo',
     'Utility.pfp',
     'Utility.ping',
-    # 'Utility.report', #  TODO Make it report into beta testing server
+    # 'Utility.report',
     'Utility.timer',
     'Utility.uptime',
     # 'Utility.vc_role_give',
