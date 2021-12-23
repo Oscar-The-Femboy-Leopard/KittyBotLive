@@ -13,8 +13,8 @@ description = "Runs the 8ball command. Ask the 8ball any question and it'd answe
 
 
 class Fun(commands.Cog):
-    def __init__(self, client):
-        self.bot = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases, description=description)
     async def _8ball(self, ctx, *, question):
@@ -56,5 +56,5 @@ class Fun(commands.Cog):
             await ctx.send('Missing argument. Can you please provide a question for the 8ball?')
 
 
-def setup(client):
-    client.add_cog(Fun(client))
+def setup(bot):
+    bot.add_cog(Fun(bot))

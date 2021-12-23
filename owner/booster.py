@@ -35,18 +35,19 @@ class OwnerCog(commands.Cog):
         guild = self.bot.get_guild(841496169556475975)
         channel = self.bot.get_channel(841665459531415562)
         emoji = self.bot.get_emoji(id=880240953691082792)
+        image = ""
 
         part = "> Passively gain server currency\n\n> Your own custom role\n\n> The booster role being hoisted " \
-               "higher, showing your passion for the server"
+               "higher, just under the staff, showing your passion for the server"
 
         partner = discord.Embed(color=discord.Color.green())
         partner.add_field(name="What do you get for boosting us? This is what rewards you can get:", value=part, inline=False)
         partner.set_thumbnail(url=guild.icon_url)
         partner.set_footer(text=f"Revised on: {datetime.date.today()}")
 
-        await self.bot.get_guild(841496169556475975).get_channel(850690984316370954).purge(limit=10)
-        await self.bot.get_guild(841496169556475975).get_channel(850690984316370954).send(f"{emoji} Booster Perks! {emoji}", embed=partner)
-        await self.bot.get_guild(841496169556475975).get_channel(850690984316370954).send("And more perks to come!")
+        await self.bot.get_guild(913007198488133632).get_channel(919639089832149002).purge(limit=10)
+        await self.bot.get_guild(913007198488133632).get_channel(919639089832149002).send(f"{emoji} Booster Perks! {emoji}", embed=partner)
+        await self.bot.get_guild(913007198488133632).get_channel(919639089832149002).send("And more perks to come!")
 
         await ctx.send("Sent the Booster Perks")
 

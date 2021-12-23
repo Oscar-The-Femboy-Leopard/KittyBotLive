@@ -6,8 +6,8 @@ from config import random_color
 
 
 class Fun(commands.Cog):
-    def __init__(self, client):
-        self.bot = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=['Dice Roll', 'Roll the dice'],
                       description="This command will simulate rolling a dice/dye.")

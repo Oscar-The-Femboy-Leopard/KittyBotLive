@@ -5,8 +5,8 @@ from discord.ext import commands
 
 
 class Utility(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.Cog.listener()
     async def on_message(self, ctx, *, message):
@@ -17,16 +17,16 @@ class Utility(commands.Cog):
         if message.guild:  # ensure the channel is a DM
             return
 
-        if message.author == self.client.user:
+        if message.author == self.bot.user:
             return
 
         if message.author.id in sent_users:  # Ensure the initial message hasn't been sent before
             return
 
-        # gg_fluff = self.client.get_guild(864654684085682207)
-        gg_fluff = self.client.get_guild(488623700539736064)
+        # gg_fluff = self.bot.get_guild(864654684085682207)
+        gg_fluff = self.bot.get_guild(488623700539736064)
 
-        modmail_channel = self.client.get_channel(CHANNEL_ID)
+        modmail_channel = self.bot.get_channel(CHANNEL_ID)
 
         embed = discord.Embed(color=0x00FFFF)
         embed.set_author(name=f"{gg_fluff} Modmail System",
@@ -49,7 +49,7 @@ class Utility(commands.Cog):
             def check(reaction, user):
                 return user == message.author and str(reaction.emoji) in ["1️⃣", "2️⃣", "3️⃣", "4️⃣"]
 
-            reaction, user = await self.client.wait_for("reaction_add", timeout=60, check=check)
+            reaction, user = await self.bot.wait_for("reaction_add", timeout=60, check=check)
 
             if str(reaction.emoji) == "1️⃣":
                 embed = discord.Embed(color=0x00FFFF)
@@ -60,7 +60,7 @@ class Utility(commands.Cog):
                 embed.set_footer(text="Olympia Gaming | Report a member ")
                 await message.author.send(embed=embed)
 
-                message = await self.client.wait_for("message", timeout=60, check=lambda
+                message = await self.bot.wait_for("message", timeout=60, check=lambda
                     m: m.channel == message.channel and m.author == message.author)
                 embed = discord.Embed(title=f"{message.content}", color=0x00FFFF)
                 await modmail_channel.send(embed=embed)
@@ -69,5 +69,5 @@ class Utility(commands.Cog):
             await message.delete()
 
 
-def setup(client):
-    client.add_cog(Utility(client))
+def setup(bot):
+    bot.add_cog(Utility(bot))

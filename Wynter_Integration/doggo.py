@@ -13,15 +13,15 @@ description = "This command uses Wynter's API, made by Darkmane Arweinydd#0069, 
 
 class Wholesome(commands.Cog):
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases,
                       description=description)
     async def doggo(self, message, *, ctx):
         """Just use for a cute doggo!"""
 
-        conn = http.client.HTTPSConnection("api.furrycentr.al")
+        conn = http.bot.HTTPSConnection("api.furrycentr.al")
         payload = ''
         headers = {
             'Cookie': '__cfduid=d9a224e3d8c1cb5402581c2ae57ae3ec21605192790'
@@ -47,5 +47,5 @@ class Wholesome(commands.Cog):
         await msg.channel.send(embed=e_url)
 
 
-def setup(client):
-    client.add_cog(Wholesome(client))
+def setup(bot):
+    bot.add_cog(Wholesome(bot))

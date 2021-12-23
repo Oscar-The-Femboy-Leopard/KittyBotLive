@@ -4,9 +4,9 @@ from discord.ext import commands
 from mainconfig import Bot_ID
 
 '''class Fun(commands.Cog):
-    def __init__(self, client):
+    def __init__(self, bot):
         self.message = None
-        self.client = client
+        self.bot = bot
 
     @commands.command(aliases=['Guess the Number', 'Guess 1-50', 'numguess'],
                       description="Take a guess of a number between 1 and 50")
@@ -32,13 +32,13 @@ async def guess(ctx, number: int):
 
 
 class Fun(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=['Guess', 'GuessNumber'],
-                      description="Guess the client's random number!")
+                      description="Guess the bot's random number!")
     async def guess(self, message):
-        # we do not want the client to reply to itself
+        # we do not want the bot to reply to itself
         if message.author.id == Bot_ID:
             return
 
@@ -61,5 +61,5 @@ class Fun(commands.Cog):
                 await message.channel.send('Oops. It is actually {}.'.format(answer))
 
 
-def setup(client):  # Sets up the client for the client
-    client.add_cog(Fun(client))  # Adds the command to the client for it to be able to run
+def setup(bot):  # Sets up the bot for the bot
+    bot.add_cog(Fun(bot))  # Adds the command to the bot for it to be able to run

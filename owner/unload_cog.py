@@ -3,8 +3,8 @@ from discord.ext import commands
 
 class OwnerCog(commands.Cog):
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(name='unload', aliases=['Unload', 'CloseCog', 'StopCog', 'disable', 'Disable'], hidden=True)
     async def unload(self, ctx, *, cog: str):
@@ -12,7 +12,7 @@ class OwnerCog(commands.Cog):
             return
 
         try:
-            self.client.unload_extension(cog)
+            self.bot.unload_extension(cog)
         except Exception as e:
             await ctx.send(f'**`ERROR`** {type(e).__name__} - {e}')
         else:
@@ -20,5 +20,5 @@ class OwnerCog(commands.Cog):
             print("Unloaded Cog")
 
 
-def setup(client):
-    client.add_cog(OwnerCog(client))
+def setup(bot):
+    bot.add_cog(OwnerCog(bot))

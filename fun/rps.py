@@ -2,12 +2,12 @@ import random
 from discord.ext import commands
 
 aliases = ['RockPaperScissors']
-description = "Play Rock Paper Scissors with the client!"
+description = "Play Rock Paper Scissors with the bot!"
 
 
 class Fun(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(alias=aliases,
                       description=description)
@@ -42,5 +42,5 @@ class Fun(commands.Cog):
             await ctx.channel.send("Choose rock, paper or scissors.")
 
 
-def setup(client):
-    client.add_cog(Fun(client))
+def setup(bot):
+    bot.add_cog(Fun(bot))

@@ -6,11 +6,11 @@ from config import _timestamp, start_time
 
 
 class Utility(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=['Report'],
-                      description='This will give the uptime of the client. The format is in Hours, Minutes and Seconds.')
+                      description='This will give the uptime of the bot. The format is in Hours, Minutes and Seconds.')
     async def report(self, ctx):
         current_time = time.time()
         difference = int(round(current_time - start_time))
@@ -30,5 +30,5 @@ class Utility(commands.Cog):
             await ctx.send("Current uptime: " + text)
 
 
-def setup(client):
-    client.add_cog(Utility(client))
+def setup(bot):
+    bot.add_cog(Utility(bot))

@@ -7,12 +7,12 @@ from config import start_time
 
 
 aliases = ["runtime", "Bot_runtime", "awaketime"]
-description = "This will give the uptime of the client since the initial run of the code. The number format is in Hours, Minutes and Seconds."
+description = "This will give the uptime of the bot since the initial run of the code. The number format is in Hours, Minutes and Seconds."
 
 
 class Utility(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases,
                       description=description)
@@ -32,5 +32,5 @@ class Utility(commands.Cog):
             await ctx.send("Current uptime: " + text)
 
 
-def setup(client):
-    client.add_cog(Utility(client))
+def setup(bot):
+    bot.add_cog(Utility(bot))

@@ -3,18 +3,19 @@ import discord
 
 from discord.ext import commands
 
+
 aliases = ['Latency', 'latency']
-description = "Use this command to check the client's latency!"
+description = "Use this command to check the bot's latency!"
 
 
 class Utility(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases, description=description)
     async def ping(self, ctx):
-        latency = round(self.client.latency * 1000)
-        # avlatency = round(self.client.average_latency * 1000)
+        latency = round(self.bot.latency * 1000)
+        # avlatency = round(self.bot.average_latency * 1000)
         msg = ctx
         guild = msg.guild
         latency = int(latency)
@@ -52,5 +53,5 @@ class Utility(commands.Cog):
         await ctx.reply(embed=_ping)
 
 
-def setup(client):
-    client.add_cog(Utility(client))
+def setup(bot):
+    bot.add_cog(Utility(bot))

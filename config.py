@@ -21,13 +21,16 @@ INVITE = INVITE
 Blacklist_IDs = []
 Blacklist_Channels = []
 
-Whitelist_IDs = []
+Whitelist_IDs = [
+    Owner_ID,
+]
 Whitelist_Channels = []
 
 cog_extentions = [
     'fun._8ball',
     # 'fun.AResponder',
     # 'fun.coinflip',
+    'fun.convo_games',
     # 'fun.diceroll',
     'fun.fact',
     # 'fun.idiot',
@@ -43,12 +46,14 @@ cog_extentions = [
     # 'imgflip_meme_creation.bf',
     'imgflip_meme_creation.brace',
     'imgflip_meme_creation.cardboard_sign',
+    'imgflip_meme_creation.coffindance',
     'imgflip_meme_creation.change_my_mind',
     'imgflip_meme_creation.first_world_problem',
     # 'imgflip_meme_creation.gru',
     'imgflip_meme_creation.lie_detector',
     'imgflip_meme_creation.nut_button',
     'imgflip_meme_creation.option',
+    'imgflip_meme_creation.picasurprise',
     'imgflip_meme_creation.put_it_somewhere_else',
     'imgflip_meme_creation.say_that_again',
     # 'imgflip_meme_creation.seagull',
@@ -62,7 +67,7 @@ cog_extentions = [
     'imgflip_meme_creation.uno',
     'listener.noU',
     # 'moderation.antispam',
-    # 'moderation.ban',
+    'moderation.ban',
     # 'moderation.clear',
     # 'moderation.kick',
     # 'moderation.unban',
@@ -233,7 +238,7 @@ Watching_Bot_Status = [discord.Activity(name=f'the sever for my Dev|{PREFIX}help
                                         type=discord.ActivityType.watching)]
 Load_Status = [Playing_Bot_Status, Watching_Bot_Status]
 
-# Wynter_API_Connection = 'http.client.HTTPSConnection("api.furrycentr.al")'
+# Wynter_API_Connection = 'http.bot.HTTPSConnection("api.furrycentr.al")'
 
 imgflip_username = imgflipuser
 imgflip_password = imgflippass

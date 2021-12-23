@@ -9,8 +9,8 @@ description = "Runs the insult command! Use this to give a funny insult to someo
 
 
 class Fun(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases,
                       description=description)
@@ -38,5 +38,5 @@ class Fun(commands.Cog):
         await ctx.send(embed=_8)
 
 
-def setup(client):
-    client.add_cog(Fun(client))
+def setup(bot):
+    bot.add_cog(Fun(bot))

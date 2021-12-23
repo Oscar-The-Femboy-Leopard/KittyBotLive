@@ -5,15 +5,15 @@ from discord.ext import commands
 
 class Listeners(commands.Cog):
     def __init__(self, bot):
-        self.client = bot
+        self.bot = bot
 
     @commands.Cog.listener(name="NoU")
     async def on_message(self, message):
-        if not message.author.client:
+        if not message.author.bot:
             if message.content.startswith("no u"):
 
-                NeonnoUemoji = self.client.get_emoji(916295744665833522)
-                AnimatenoUemoji = self.client.get_emoji(916295814547144704)
+                NeonnoUemoji = self.bot.get_emoji(916295744665833522)
+                AnimatenoUemoji = self.bot.get_emoji(916295814547144704)
 
                 reply = [
                     f"No you!",
@@ -27,5 +27,5 @@ class Listeners(commands.Cog):
                 return
 
 
-def setup(client):
-    client.add_cog(Listeners(client))
+def setup(bot):
+    bot.add_cog(Listeners(bot))

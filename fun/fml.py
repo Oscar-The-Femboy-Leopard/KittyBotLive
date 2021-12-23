@@ -8,8 +8,8 @@ aliases = ['FML', 'Fml']
 
 
 class Fun(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases,
                       description=f"Selects a random fml from [here](https://www.fmylife.com/random). Please message the developer if there's any that you wish to be added which hasn't been added from that site as there's still plenty more that can be used")
@@ -26,7 +26,7 @@ class Fun(commands.Cog):
         quote = discord.Embed(color=color, name="FML", timestamp=datetime.datetime.utcnow())
         quote.add_field(name="FML", value=f"[Link to fml]({response})")
         quote.set_image(url=response)
-        # quote.set_author(name=self.client.user.name, icon_url=self.client.user.avatar_url)
+        # quote.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
         # quote.set_footer(text=f"{guild.name}", icon_url=guild.icon_url)
 
         await ctx.send(embed=quote)
@@ -35,5 +35,5 @@ class Fun(commands.Cog):
         # await ctx.send(f'{random.choice(responses)}')
 
 
-def setup(client):
-    client.add_cog(Fun(client))
+def setup(bot):
+    bot.add_cog(Fun(bot))

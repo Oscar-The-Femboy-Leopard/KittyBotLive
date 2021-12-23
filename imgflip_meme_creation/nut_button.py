@@ -13,8 +13,8 @@ description = "Blank nut button meme!"
 
 class ImgFlip(commands.Cog):
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases,
                       description=description)
@@ -38,7 +38,7 @@ class ImgFlip(commands.Cog):
         # msg = message
 
         rm_url = discord.Embed(color=color, title="Blank Button", timestamp=datetime.datetime.utcnow())
-        # rm_url.set_author(name=self.client.user.name, icon_url=self.client.user.avatar_url)
+        # rm_url.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
         rm_url.set_image(url=url)
         rm_url.set_footer(text=f"{guild.name}", icon_url=guild.icon_url)
 
@@ -46,5 +46,5 @@ class ImgFlip(commands.Cog):
         await ctx.channel.send(embed=rm_url)
 
 
-def setup(client):
-    client.add_cog(ImgFlip(client))
+def setup(bot):
+    bot.add_cog(ImgFlip(bot))

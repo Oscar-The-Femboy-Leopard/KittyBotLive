@@ -9,12 +9,12 @@ description = "This will allow you to see any member's profile picture! You do n
 
 
 class Utility(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases, description=description)
     async def pfp(self, ctx, *, avamember: discord.Member = None):
-        channel = self.client.get_channel(904112900485021706)
+        channel = self.bot.get_channel(904112900485021706)
         # channel = 904112900485021706
         staff = [864655958352986112, 864655957816508446, 864655959884300298, 904108509463990294, 904349776659755050, 864655947736678420]
         if not avamember:
@@ -25,7 +25,7 @@ class Utility(commands.Cog):
         '''if ctx.author.roles not in staff:
             await ctx.reply("This is a staff command. For help, please message Michelle directly.")'''
 
-        gettt = self.client.get_user(avamember)
+        gettt = self.bot.get_user(avamember)
 
         userAvatarUrl = avamember.avatar_url
         # userBannerURL = gettt.fetch_user.banner_url
@@ -47,5 +47,5 @@ class Utility(commands.Cog):
         await ctx.send(embed=pfp)
 
 
-def setup(client):
-    client.add_cog(Utility(client))
+def setup(bot):
+    bot.add_cog(Utility(bot))

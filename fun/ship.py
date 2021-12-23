@@ -9,9 +9,9 @@ description = "Run this command to see the ship score between you and someone el
 
 
 class Fun(commands.Cog):
-    def __init__(self, client):  # init the class so it's ready to be used
+    def __init__(self, bot):  # init the class so it's ready to be used
 
-        self.client = client  # defines the command as part of the client and makes it callable at the bottom to load the command
+        self.bot = bot  # defines the command as part of the bot and makes it callable at the bottom to load the command
 
     @commands.command(aliases=aliases, description=description)
     async def ship(self, ctx, *, member: discord.Member = None):  # passes through context, and defines Member to be called below
@@ -69,5 +69,5 @@ class Fun(commands.Cog):
             return await ctx.send(embed=ship)
 
 
-def setup(client):
-    client.add_cog(Fun(client))
+def setup(bot):
+    bot.add_cog(Fun(bot))

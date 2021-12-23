@@ -1,5 +1,4 @@
 import random
-import time
 import discord
 import asyncio
 import datetime
@@ -14,24 +13,18 @@ description = "This command will allow people to send an application to verify t
 
 
 class Utility(commands.Cog):
-    def __init__(self, client, *args, **kwargs):
+    def __init__(self, bot, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.client = client
-
-    '''@commands.Cog.listener()
-    async def on_member_join(self, ctx, m: discord.Member):
-        self.client.get_user()
-        if m.created_at >='''
+        self.bot = bot
 
     @commands.command(name='register', pass_context=True, aliases=aliases, description=description)
     async def verify(self, ctx):
-
         password = ""
         correctPassword = _password
 
-        channel = self.client.get_guild(913007198488133632).get_channel(913540153753092117)
-        _guild = self.client.get_guild(913007198488133632)
-        r = self.client.get_guild(913007198488133632).get_role(913015562894979082)
+        channel = self.bot.get_guild(913007198488133632).get_channel(913540153753092117)
+        _guild = self.bot.get_guild(913007198488133632)
+        r = self.bot.get_guild(913007198488133632).get_role(913015562894979082)
 
         c = random.choice(random_color)
 
@@ -67,11 +60,11 @@ class Utility(commands.Cog):
                 f"until you run the command again.\n\nBefore we can start, can I please have the password found in the "
                 f"rules?")
         except discord.Forbidden:
-            await ctx.reply(
+            return await ctx.reply(
                 "I am sorry, but I cannot DM you. Can you open the DMs to the server to verify and try again?\nThank you.")
 
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         password = msg.content.lower()
         if password == 'cancel':
             await channel.send(f"{a.display_name} has cancelled their verification.")
@@ -91,7 +84,7 @@ class Utility(commands.Cog):
             "the verification.")
 
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         name = msg.content
         if name == 'cancel':
             await channel.send(f"{a.display_name} has cancelled their verification.")
@@ -101,7 +94,7 @@ class Utility(commands.Cog):
         await a.send(f"Hello, {name}! May I now get your age? It will only be kept between us in this DM so don't "
                      f"worry about other people knowing :slight_smile:")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         if msg.content.lower() == 'cancel':
             await channel.send(f"{a.display_name} has cancelled their verification.")
             return await a.send(
@@ -114,7 +107,7 @@ class Utility(commands.Cog):
             await ctx.message.author.send(
                 "That is an invalid age. \n\nPlease try again or your registration will be aborted.")
             await asyncio.sleep(1)
-            msg = await self.client.wait_for('message', check=check)
+            msg = await self.bot.wait_for('message', check=check)
             try:
                 age = int(msg.content)
             except:
@@ -134,7 +127,7 @@ class Utility(commands.Cog):
 
         await a.send("Next, may I know if you're a furry? (`Yes` or `No`)")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         furry = msg.content.lower()
 
         if furry == 'cancel':
@@ -148,7 +141,7 @@ class Utility(commands.Cog):
             await a.send(
                 f"Got it! You are a furry. May I ask what your fursona species is?")
             await asyncio.sleep(1)
-            msg = await self.client.wait_for('message', check=check)
+            msg = await self.bot.wait_for('message', check=check)
             fursona = msg.content
             await a.send(
                 f"Got it, your fursona is a {fursona}.")
@@ -158,7 +151,7 @@ class Utility(commands.Cog):
                 "gender are they? Do they like sleeping all day? Anything!\n\n**Note:** if you don't wish to share "
                 "your fursona, tell us some basic info of what you imagine your fursona to be or info about you!")
             await asyncio.sleep(1)
-            msg = await self.client.wait_for('message', check=check)
+            msg = await self.bot.wait_for('message', check=check)
             fursonainfo = msg.content
 
         if furry != y:
@@ -169,12 +162,12 @@ class Utility(commands.Cog):
 
             await a.send("Because you don't have a fursona, can I know what hobbies you enjoy?")
             await asyncio.sleep(1)
-            msg = await self.client.wait_for('message', check=check)
+            msg = await self.bot.wait_for('message', check=check)
             hobby = msg.content
 
         await a.send("Next, may I know what your favourite quote is? If you don't have one, you can just put N/A")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         quote = msg.content.lower()
         if quote == 'cancel':
             await channel.send(f"{a.display_name} has cancelled their verification.")
@@ -185,7 +178,7 @@ class Utility(commands.Cog):
 
         await a.send("Next, may I know what gender you identify as?")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         gender = msg.content.lower()
         if gender == 'cancel':
             await channel.send(f"{a.display_name} has cancelled their verification.")
@@ -196,7 +189,7 @@ class Utility(commands.Cog):
 
         await a.send("Next, may I know what pronouns you use?")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         pronouns = msg.content.lower()
         if pronouns == 'cancel':
             await channel.send(f"{a.display_name} has cancelled their verification.")
@@ -208,7 +201,7 @@ class Utility(commands.Cog):
         await a.send(
             "Next, can you please say how you came to find the server today?")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         foundus = msg.content.lower()
         if foundus == 'cancel':
             await channel.send(f"{a.display_name} has cancelled their verification.")
@@ -219,7 +212,7 @@ class Utility(commands.Cog):
             "Finally, can I have why you're wanting to get from joining us today?"
         )
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         want = msg.content.lower()
         if want == 'cancel':
             await channel.send(f"{a.display_name} has cancelled their verification.")
@@ -231,29 +224,29 @@ class Utility(commands.Cog):
                               color=c)
         embed.set_thumbnail(url=a.avatar_url)
         embed.add_field(name='Preferred Name', value=f"{name}", inline=False)
+
         embed.add_field(name='Age Bracket:', value=f"{agebracket}", inline=False)
         embed.add_field(name='Quote', value=f"{quote}", inline=False)
-        embed.add_field(name='Gender', value=f"{gender}", inline=False)
-        embed.add_field(name='Pronouns', value=f"{pronouns}", inline=False)
+        embed.add_field(name='Gender', value=f"{gender}", inline=True)
+        embed.add_field(name='Pronouns', value=f"{pronouns}", inline=True)
+
         embed.add_field(name='Fursona:', value=f"{fursona}", inline=False)
         if furry == y:
             embed.add_field(name='Fursona Info', value=f"{fursonainfo}", inline=False)
         if furry != y:
             embed.add_field(name="Hobbies", value=f"{hobby}", inline=False)
-        embed.add_field(name='How this user found the server', value=f"{foundus}", inline=False)
-        embed.add_field(name="What is want from joining", value=f"{want}", inline=False)
+
+        embed.add_field(name='How this user found the server', value=f"{foundus}", inline=True)
+        embed.add_field(name="What is want from joining", value=f"{want}", inline=True)
+
+        embed.add_field(name="Created Account on:", value=a.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC"), inline=False)
+        embed.add_field(name="Joined On:", value=a.joined_at.strftime("%a, %#d %B %Y, %I:%M %p UTC"), inline=False)
+
         embed.set_footer(
             text=f'Author {a.id}\n\n`{PREFIX}accept <mention>` to accept or `{PREFIX}deny <mention> <reason>` to deny.'
         )
 
-        created = a.created_at
-
-        if time.time() - a.created_at.timestamp() > 2592000:
-            embed.add_field(name="Account created check", value=f"{created}", inline=False)
-        if time.time() - a.created_at.timestamp() < 2592000:
-            embed.add_field(name="Account created check", value=f"{created} | New Account", inline=False)
-
-        gatekeeper = self.client.get_guild(913007198488133632).get_role(913552884115853363).mention
+        gatekeeper = self.bot.get_guild(913007198488133632).get_role(913552884115853363).mention
 
         await channel.send(f"New Verification! {gatekeeper}", embed=embed)
         await a.send(
@@ -261,20 +254,15 @@ class Utility(commands.Cog):
             "as possible!"
         )
 
-    '''@verify.error()
-    async def on_command_error(self, ctx, error):
-        if isinstance(error, discord.Forbidden):
-            await ctx.reply("Cannot find the required emoji.\n\n{}").format(error)'''
-
     @commands.command(name="accept", pass_context=True)
     @commands.has_role(913552884115853363)
-    async def accept(self, ctx, *, m: discord.Member):
+    async def accept(self, ctx, uID: int):
         a = ctx.message.author
         guild = ctx.guild
 
         _channel = guild.get_channel(913007198488133635)
         channel = guild.get_channel(913540153753092117)
-        priv = self.client.get_guild(488623700539736064).get_channel(913590152583077888)
+        priv = self.bot.get_guild(488623700539736064).get_channel(913590152583077888)
         roles = guild.get_channel(913534684678471732).mention
         suggestions = guild.get_channel(913553966401474650).mention
         faq = guild.get_channel(913595991951835166).mention
@@ -283,10 +271,11 @@ class Utility(commands.Cog):
         welcome = discord.utils.get(a.guild.roles, id=913595000363814932).mention
         member = discord.utils.get(a.guild.roles, id=913015562894979082)
 
-        emoji = self.client.get_emoji(id=880532960145719307)
-        emoji2 = self.client.get_emoji(id=880532998313885817)
+        emoji = self.bot.get_emoji(id=880532960145719307)
+        emoji2 = self.bot.get_emoji(id=880532998313885817)
+        m = (self.bot.get_user(uID))
 
-        if m in ctx.guild:
+        if m in ctx.guild.members:
             await ctx.reply(f'{ctx.author.display_name} has just verified {m.display_name}')
             await priv.send(f"{ctx.author.display_name} verified {m.display_name}#{m.discriminator} | UID: {m.id}")
 
@@ -295,9 +284,10 @@ class Utility(commands.Cog):
                 print("done")
                 # await m.remove_roles(deny)
             except discord.Forbidden:
-                await self.client.channel.send("I don't have perms to add roles.")
+                await self.bot.channel.send("I don't have perms to add roles.")
+            return
 
-        if m not in ctx.guild:
+        if m not in ctx.guild.members:
             return await ctx.reply(f"Member {m.display_name} is not present in this server.")
 
         e = discord.Embed(color=random.choice(random_color))
@@ -313,7 +303,7 @@ class Utility(commands.Cog):
         await _channel.send(welcome, embed=e)
 
         msg = f"You have been verified in {ctx.guild.name}. Please message staff if you have any problems within the " \
-              f"server. - \n\n**Owner: {ctx.guild.owner.display_name}**\n**Bot: {self.client.user.display_name}** "
+              f"server. - \n\n**Owner: {ctx.guild.owner.display_name}**\n**Bot: {self.bot.user.display_name}** "
 
         _e = discord.Embed(name="Accepted!", color=discord.Color.green())
         _e.add_field(name="Congratulations!", value=msg, inline=False)
@@ -322,27 +312,22 @@ class Utility(commands.Cog):
         try:
             await m.send(embed=_e)
             '''await m.send(f"You have been verified in {ctx.guild.name}. Please message staff if you have any problems "
-                         f"within the server. - \n\n**Owner: {ctx.guild.owner.display_name}**\n**Bot: {self.client.user.display_name}**")'''
+                         f"within the server. - \n\n**Owner: {ctx.guild.owner.display_name}**\n**Bot: {self.bot.user.display_name}**")'''
         except discord.Forbidden:
             await ctx.reply(f"I was unable to alert {m.display_name} that they was accepted.")
 
     @commands.command(name="deny", pass_context=True)
     @commands.has_role(913552884115853363)
     async def deny(self, ctx, uID: int, *, reason):
-        guild = ctx.guild
-        channel = guild.get_channel(880218549367492659)
-        a = ctx.message.author
-        member = discord.utils.get(a.guild.roles, id=864655959753490432)
-        deny = discord.utils.get(a.guild.roles, id=904349776659755050)
-        priv = self.client.get_guild(488623700539736064).get_channel(913590152583077888)
+        priv = self.bot.get_guild(488623700539736064).get_channel(913590152583077888)
 
-        m = (self.client.get_user(uID))
+        m = (self.bot.get_user(uID))
 
         if reason is None:
             await ctx.reply("Please give me the message you want me to send.")
 
         else:
-            _reason = f"Your verification has been denied from {ctx.guild.name} for the following reason:\n\n{reason}"
+            _reason = f"Your verification has been denied from {ctx.guild} for the following reason:\n\n{reason}"
             print(_reason)
 
         try:
@@ -352,12 +337,6 @@ class Utility(commands.Cog):
             await ctx.reply(f"I am sadly unable to dm {m.display_name}. The reason cannot be sent.")
             await priv.send(f"{ctx.author.display_name} denied {m.display_name} with following reason:\n\n{reason}")
 
-        '''guild = ctx.guild
-        channel = guild.get_channel(880218549367492659)
-        a = ctx.message.author
-        member = discord.utils.get(a.guild.roles, id=864655959753490432)
-        deny = discord.utils.get(a.guild.roles, id=904349776659755050)'''
 
-
-def setup(client):
-    client.add_cog(Utility(client))
+def setup(bot):
+    bot.add_cog(Utility(bot))

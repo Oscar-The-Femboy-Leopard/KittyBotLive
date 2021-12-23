@@ -3,8 +3,8 @@ from discord.ext import commands
 
 class OwnerCog(commands.Cog):
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(name='reload', aliases=['update', 'cog update'], hidden=True)
     @commands.has_any_role(904365555627229254, 488642021184241664)
@@ -13,8 +13,8 @@ class OwnerCog(commands.Cog):
             return
 
         try:
-            self.client.unload_extension(cog)
-            self.client.load_extension(cog)
+            self.bot.unload_extension(cog)
+            self.bot.load_extension(cog)
         except Exception as e:
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
         else:

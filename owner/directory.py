@@ -148,7 +148,7 @@ class OwnerCog(commands.Cog):
               f"digital art they made/commissioned.\n\n{original_music} - This is for whatever music you compose " \
               f"yourself! Please don't be shy or don't hate. "
 
-        vc = f"{hydra_song_requests} - This channel is for requesting songs for the music client to play.\n\n" \
+        vc = f"{hydra_song_requests} - This channel is for requesting songs for the music bot to play.\n\n" \
              f"{music_text_channel} - This channel is designed to allow people who are listening to music to also " \
              f"talk, because the music VC is muted by default.\n\n{no_mic_chat} - This chat is designed for people " \
              f"who are in the normal VC to chat without having to use a mic. This channel is also role locked, " \

@@ -78,6 +78,25 @@ class Staff(commands.Cog):
 
                 await a.send(f"Okay, the reason that is being submitted is: `{_reason}`")
 
+            await a.send(f"Okay, is there any evidence? (`Yes` or `No`")
+            await asyncio.sleep(1)
+            msg = self.bot.wait_for('message', check=check)
+            msg.content.lower()
+
+            if msg is "no":
+                evidence = "No Evidence can be provided."
+
+            if msg is "yes":
+                await a.send("Okay, can I please have the evidence provided? I only accept screenshot URLs. For "
+                             "multiple screenshots, please separate with a space.")
+                await asyncio.sleep(1)
+                msg = self.bot.wait_for('message', check=check)
+                msg.content.split(" ")
+                if msg is True:
+                    pic1 = msg[0]
+
+
+
             await a.send(f"Finally, please can I have what action has been taken against the user?")
             await asyncio.sleep(1)
             msg = await self.bot.wait_for('message', check=check)

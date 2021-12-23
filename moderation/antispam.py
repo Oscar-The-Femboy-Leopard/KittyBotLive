@@ -6,11 +6,11 @@ from config import bad_list, blist_responses, unfair_message
 
 class Automod(commands.Cog):
     def __init__(self, bot):
-        self.client = bot
+        self.bot = bot
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if not message.author.client:
+        if not message.author.bot:
             msg = message
             guild = message.guild
             gold = discord.Color.dark_gold()
@@ -21,10 +21,10 @@ class Automod(commands.Cog):
                     r2 = unfair_message
                     c_r = str(f"""```css\n{response}```""")
                     embed = discord.Embed(color=gold, timestamp=msg.created_at)
-                    embed.set_author(name=self.client.user.name, icon_url=self.client.user.avatar_url)
+                    embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
                     embed.add_field(name="⚠", value=c_r, inline=False)
                     embed.add_field(name="Unfair?", value=r2, inline=False)
-                    embed.set_thumbnail(url=self.client.user.avatar_url)
+                    embed.set_thumbnail(url=self.bot.user.avatar_url)
                     embed.set_footer(text=f"{guild.name}", icon_url=guild.icon_url)
                     await message.channel.purge(message.author)
                     await message.channel.send(embed=embed)

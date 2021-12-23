@@ -6,13 +6,13 @@ from config import PREFIX
 
 
 class error_handling(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
 
-        priv = self.client.get_guild(488623700539736064).get_channel(915405860266704906)
+        priv = self.bot.get_guild(488623700539736064).get_channel(915405860266704906)
 
         msg = discord.Embed(title="ERROR!", color=discord.Color.red(), timestamp=datetime.datetime.utcnow())
         msg.add_field(name="Member:", value=f"Name: `{ctx.author.display_name}`\nID: `{ctx.author.id}`)", inline=False)
@@ -78,5 +78,5 @@ class error_handling(commands.Cog):
         raise error
 
 
-def setup(client):
-    client.add_cog(error_handling(client))
+def setup(bot):
+    bot.add_cog(error_handling(bot))

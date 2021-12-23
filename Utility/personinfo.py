@@ -8,8 +8,8 @@ description = "Find out a member's information within the server."
 
 
 class Utility(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     '''def handle_custom(self, user):
         print(user.activities)
@@ -19,7 +19,7 @@ class Utility(commands.Cog):
         a = a[0]
         c_status = None
         if not a.name:
-            c_status = self.client.get_emoji(a.emoji.id)
+            c_status = self.bot.get_emoji(a.emoji.id)
         if c_status:
             pass
         if a.name and a.emoji:
@@ -73,7 +73,7 @@ class Utility(commands.Cog):
         # is_special = user.id == 96130341705637888 and guild.id == 133049272517001216
 
         roles = user.roles[-1:0:-1]
-        names, nicks = await self.client.get_names_and_nicks(user)
+        names, nicks = await self.bot.get_names_and_nicks(user)
 
         joined_at = user.joined_at  # if not is_special else special_date
         since_created = (ctx.message.created_at - user.created_at).days
@@ -199,7 +199,7 @@ class Utility(commands.Cog):
 
         if int is message.content:
             uID = int
-            member = (self.client.get_user(uID))
+            member = (self.bot.get_user(uID))
             if uID is None:
                 member = ctx.message.author.id
 
@@ -262,5 +262,5 @@ class Utility(commands.Cog):
         await ctx.send(embed=embed)
 
 
-def setup(client):
-    client.add_cog(Utility(client))
+def setup(bot):
+    bot.add_cog(Utility(bot))

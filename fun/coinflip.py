@@ -11,8 +11,8 @@ description = "Flip a coin and it will land on either Heads or Tails!"
 
 
 class Fun(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases,
                       description=description)
@@ -52,5 +52,5 @@ class Fun(commands.Cog):
             await ctx.send('Please specify the side of the coin you would like to use.')
 
 
-def setup(client):
-    client.add_cog(Fun(client))
+def setup(bot):
+    bot.add_cog(Fun(bot))

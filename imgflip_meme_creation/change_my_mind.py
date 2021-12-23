@@ -3,8 +3,10 @@ import json
 import discord
 import datetime
 import random
+
 from discord.ext import commands
 from config import random_color, imgflip_password, imgflip_username
+
 
 aliases = ['cmm', 'change_my_mind', 'CMM']
 description = "Use Steven Crowder's sign to write your own meme with 'change my mind' at the bottom"
@@ -12,14 +14,12 @@ description = "Use Steven Crowder's sign to write your own meme with 'change my 
 
 class ImgFlip(commands.Cog):
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
-    @commands.command(aliases=aliases,
-                      description=description)
+    @commands.command(aliases=aliases, description=description)
     async def changemymind(self, ctx, *, message):
-        content = ctx
-        # ctx = content
+        id = ""
         url = f"https://api.imgflip.com/caption_image?text0={message}&username={imgflip_username}&password={imgflip_password}&template_id=129242436"
 
         payload = {}
@@ -31,7 +31,6 @@ class ImgFlip(commands.Cog):
         data = json.loads(response.text)
         url = data["data"]["url"]
         color = random.choice(random_color)
-        # guild = message.guild
         msg = ctx
         guild = msg.guild
 
@@ -42,5 +41,5 @@ class ImgFlip(commands.Cog):
         await ctx.channel.send(embed=rm_url)
 
 
-def setup(client):
-    client.add_cog(ImgFlip(client))
+def setup(bot):
+    bot.add_cog(ImgFlip(bot))

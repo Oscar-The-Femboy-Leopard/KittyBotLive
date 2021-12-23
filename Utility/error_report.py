@@ -10,14 +10,14 @@ description = "This command sends reports to my dev's server, just in case you f
 
 
 class Utility(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases, description=description)
     async def alert(self, ctx, *, report):
-        _channel = self.client.get_guild(488623700539736064).get_channel(844351284568260608)
-        channel = self.client.get_guild(904365272184524811).get_channel(905611246563377172)
-        role = self.client.get_guild(488623700539736064).get_role(488642021184241664).mention
+        _channel = self.bot.get_guild(488623700539736064).get_channel(844351284568260608)
+        channel = self.bot.get_guild(904365272184524811).get_channel(905611246563377172)
+        role = self.bot.get_guild(488623700539736064).get_role(488642021184241664).mention
 
         alert = discord.Embed(color=discord.Color.blurple())
         alert.add_field(name="Report!",
@@ -32,5 +32,5 @@ class Utility(commands.Cog):
                         f"it as soon as they can.")
 
 
-def setup(client):
-    client.add_cog(Utility(client))
+def setup(bot):
+    bot.add_cog(Utility(bot))

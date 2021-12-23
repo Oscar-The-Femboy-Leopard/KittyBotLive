@@ -10,8 +10,8 @@ from config import random_color, imgflip_password, imgflip_username
 
 class ImgFlip(commands.Cog):
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=['Gru'],
                       description="Write 4 things on Gru's board")
@@ -23,7 +23,7 @@ class ImgFlip(commands.Cog):
         # ctx1, ctx2, ctx3, ctx4 = ctx.split('.')
         url = f"https://api.imgflip.com/caption_image?text0={vari[0]}&text1={vari[1]}&text2={vari[2]}&text3={vari[3]}&username={imgflip_username}&password={imgflip_password}&template_id={id} "
         print(vari)
-# TODO Make this command work
+
         payload = {}
         headers = {
             'Cookie': '__cfduid=de5b6cba36f7140e0ab1a42da298d3e4b1605580276'
@@ -44,5 +44,5 @@ class ImgFlip(commands.Cog):
         await ctx.channel.send(embed=rm_url)
 
 
-def setup(client):
-    client.add_cog(ImgFlip(client))
+def setup(bot):
+    bot.add_cog(ImgFlip(bot))

@@ -7,8 +7,8 @@ description = f"This command will let you set a timer for anything! The timer wi
 
 
 class Utility(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases,
                       description=description)
@@ -35,5 +35,5 @@ class Utility(commands.Cog):
             await ctx.send("Must be a number!")
 
 
-def setup(client):
-    client.add_cog(Utility(client))
+def setup(bot):
+    bot.add_cog(Utility(bot))

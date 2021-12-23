@@ -15,8 +15,8 @@ description = f"Selects a random quote from goodhousekeeping or zenquotes. Pleas
 
 
 class Fun(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     def get_quote(self):
         response = requests.get("https://zenquotes.io/api/random")
@@ -259,5 +259,5 @@ class Fun(commands.Cog):
         await ctx.send(embed=quote)
 
 
-def setup(client):
-    client.add_cog(Fun(client))
+def setup(bot):
+    bot.add_cog(Fun(bot))

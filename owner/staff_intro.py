@@ -7,15 +7,15 @@ from config import random_color
 
 
 class StaffIntro(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command()
     @commands.has_role(913019115856359424)
     async def staffintro(self, ctx):
 
-        channel = self.client.get_guild(913007198488133632).get_channel(913015228508291122)
-        guild = self.client.get_guild(913007198488133632)
+        channel = self.bot.get_guild(913007198488133632).get_channel(913015228508291122)
+        guild = self.bot.get_guild(913007198488133632)
 
         if not ctx.message.guild.id == 913007198488133632:
             return
@@ -40,11 +40,11 @@ class StaffIntro(commands.Cog):
                      "the intro.")
 
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         name = msg.content
         await a.send(f"Hello, {name}! May I now get your age?")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         age = 0
         agebracket = ""
         try:
@@ -53,7 +53,7 @@ class StaffIntro(commands.Cog):
             await ctx.message.author.send(
                 "That is an invalid age. \n\nPlease try again or your registration will be aborted.")
             await asyncio.sleep(1)
-            msg = await self.client.wait_for('message', check=check)
+            msg = await self.bot.wait_for('message', check=check)
             try:
                 age = int(msg.content)
             except:
@@ -70,7 +70,7 @@ class StaffIntro(commands.Cog):
 
         await a.send("Next, may I know if you're a furry? (`Yes` or `No`)")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         furry = msg.content.lower()
 
         y = "yes"
@@ -79,7 +79,7 @@ class StaffIntro(commands.Cog):
             await a.send(
                 f"Got it! You are a furry. May I ask what your fursona species is?")
             await asyncio.sleep(1)
-            msg = await self.client.wait_for('message', check=check)
+            msg = await self.bot.wait_for('message', check=check)
             fursona = msg.content
             await a.send(
                 f"Got it, your fursona is a {fursona}.")
@@ -89,7 +89,7 @@ class StaffIntro(commands.Cog):
                 "gender are they? Do they like sleeping all day? Anything!\n\n**Note:**\nIf you don't wish to share "
                 "your fursona, tell us some basic info of what you imagine your fursona to be or info about you!")
             await asyncio.sleep(1)
-            msg = await self.client.wait_for('message', check=check)
+            msg = await self.bot.wait_for('message', check=check)
             fursonainfo = msg.content
 
         if furry != y:
@@ -100,26 +100,26 @@ class StaffIntro(commands.Cog):
 
         await a.send("Next, may I know what your favourite quote is? If you don't have one, you can just put N/A")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         quote = msg.content
         await a.send(
             f"Got it, your favourite quote/s is/are: {quote}.")
         await a.send("Next, may I know what gender you identify as?")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         gender = msg.content
         await a.send(
             f"Got it, you refer to yourself as {gender}.")
         await a.send("Next, may I know what pronouns you use?")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         pronouns = msg.content
         await a.send(
             f"Got it, you refer to yourself as {gender} using {pronouns} pronouns.")
 
         await a.send("Can I have any extra info?")
         await asyncio.sleep(1)
-        msg = await self.client.wait_for('message', check=check)
+        msg = await self.bot.wait_for('message', check=check)
         foundus = msg.content
 
         embed = discord.Embed(title="New Staff Intro!", color=discord.Color.blue())
@@ -137,5 +137,5 @@ class StaffIntro(commands.Cog):
         await channel.send(f"New Staff Intro!", embed=embed)
         await a.send("Thank you! It has been sent to the server.!")
 
-def setup(client):
-    client.add_cog(StaffIntro(client))
+def setup(bot):
+    bot.add_cog(StaffIntro(bot))

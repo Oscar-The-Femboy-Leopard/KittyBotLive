@@ -12,8 +12,8 @@ description = "Say that something is too high!"
 
 class ImgFlip(commands.Cog):
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases,
                       description=description)
@@ -43,5 +43,5 @@ class ImgFlip(commands.Cog):
         await ctx.channel.send(embed=rm_url)
 
 
-def setup(client):
-    client.add_cog(ImgFlip(client))
+def setup(bot):
+    bot.add_cog(ImgFlip(bot))

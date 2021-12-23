@@ -1,6 +1,6 @@
 """@commands.Cog.listener()
     async def on_message(self, message):
-        if not message.author.client:
+        if not message.author.bot:
             msg = message
             guild = message.guild
             gold = discord.Color.dark_gold()
@@ -21,12 +21,12 @@ from mainconfig import Fuzzball_ID
 
 
 class Fun(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if not message.author.client:
+        if not message.author.bot:
             ID = Fuzzball_ID
             msg = message
             guild = message.guild
@@ -46,9 +46,9 @@ class Fun(commands.Cog):
                         response = random.choice(responses)
                         c_r = str(f"""```css\n{response}```""")
                         embed = discord.Embed(color=gold, timestamp=msg.created_at)
-                        embed.set_author(name=self.client.user.name, icon_url=self.client.user.avatar_url)
+                        embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
                         embed.add_field(name="⚠", value=c_r, inline=False)
-                        embed.set_thumbnail(url=self.client.user.avatar_url)
+                        embed.set_thumbnail(url=self.bot.user.avatar_url)
                         embed.set_footer(text=f"{guild.name}", icon_url=guild.icon_url)
                         await message.channel.send(embed=embed)
                     return
@@ -63,5 +63,5 @@ class Fun(commands.Cog):
         await ctx.send(':heart: :heart:')'''
 
 
-def setup(client):
-    client.add_cog(Fun(client))
+def setup(bot):
+    bot.add_cog(Fun(bot))

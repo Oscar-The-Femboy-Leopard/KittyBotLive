@@ -36,7 +36,7 @@ class OwnerCog(commands.Cog):
         # threading.Timer(1, self.checkTime).start()
 
         now = datetime.datetime.now()
-        # _channel = self.client.get_channel(775770598844137482)
+        # _channel = self.bot.get_channel(775770598844137482)
         _guild = self.bot.get_guild(488623700539736064)
         _channel = _guild.get_channel(775770598844137482)
 

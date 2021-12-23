@@ -6,13 +6,13 @@ from config import random_color
 
 
 class ChannelMessage(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command()
     @commands.is_owner()
     async def cmessage(self, ctx, cID: int, mID: int = None, *, message):
-        channel = self.client.get_channel(cID)
+        channel = self.bot.get_channel(cID)
 
         msg = message.split('.', 1)
 
@@ -28,7 +28,7 @@ class ChannelMessage(commands.Cog):
 
         await ctx.reply("sent!")
 
-        editmsg = self.client.get_message(mID)
+        editmsg = self.bot.get_message(mID)
 
         n = discord.Embed(color=color, title="A message")
 
@@ -36,12 +36,12 @@ class ChannelMessage(commands.Cog):
     '''@commands.command()
     @commands.is_owner()
     async def editmsg(self, ctx, mID: int, *, message):
-        msg = self.client.get_message(mID)
+        msg = self.bot.get_message(mID)
 
         content = message.split('.', 1)'''
 
 
 
 
-def setup(client):
-    client.add_cog(ChannelMessage(client))
+def setup(bot):
+    bot.add_cog(ChannelMessage(bot))

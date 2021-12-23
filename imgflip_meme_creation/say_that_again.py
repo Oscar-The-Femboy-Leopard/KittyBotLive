@@ -13,8 +13,8 @@ description = "A meme with Samual L Jackson 'Say That Again I Dare You'."
 
 class ImgFlip(commands.Cog):
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases, description=description)
     async def say_that_again(self, ctx, *, message):
@@ -40,5 +40,5 @@ class ImgFlip(commands.Cog):
         await ctx.channel.send(embed=rm_url)
 
 
-def setup(client):
-    client.add_cog(ImgFlip(client))
+def setup(bot):
+    bot.add_cog(ImgFlip(bot))

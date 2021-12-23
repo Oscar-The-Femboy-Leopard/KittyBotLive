@@ -23,8 +23,8 @@ def insert_returns(body):
 
 
 class OwnerCog(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases,
                       description=description)
@@ -214,5 +214,5 @@ class OwnerCog(commands.Cog):
         await ctx.send(embed=q)
 
 
-def setup(client):
-    client.add_cog(OwnerCog(client))
+def setup(bot):
+    bot.add_cog(OwnerCog(bot))

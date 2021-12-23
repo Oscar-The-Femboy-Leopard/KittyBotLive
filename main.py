@@ -9,14 +9,28 @@ from discord.ext import commands
 from config import PREFIX, cog_extentions, TOKEN, _blnk_value, _PREFIX, _prefix
 
 
-intents = discord.Intents.default()
+'''intents = discord.Intents.default()
 intents.members = True
-intents.presences = True
+intents.presences = True'''
+
+intents = discord.Intents(
+    members=True,
+    presences=True,
+    messages=True,
+    guilds=True,
+    reactions=True,
+)
 
 
-# client = commands.Bot(command_prefix=commands.when_mentioned_or([PREFIX, _PREFIX, _prefix]), intents=intents)
-client = commands.Bot(command_prefix=[PREFIX, _PREFIX, _prefix], intents=intents)
-client.remove_command('help')
+bot = commands.Bot(
+    command_prefix=[
+        PREFIX,
+        _PREFIX,
+        _prefix
+    ],
+    intents=intents
+)
+bot.remove_command('help')
 
 
 __status = [  # playing statuses
@@ -110,22 +124,27 @@ _status = [  # playing statuses
                      type=discord.ActivityType.listening)]
 
 
-@client.event
-async def wait_until_ready():
-    activity = discord.Activity(name="with loading software. Please wait",
+@bot.event
+async def on_connect():
+    '''activity = discord.Activity(name="with loading software. Please wait",
                                 type=discord.ActivityType.playing)
-    await client.change_presence(activity=activity)
+    await bot.change_presence(activity=activity)'''
     print("loading")
 
 
-@client.event
+@bot.event
+async def on_disconnect():
+    print("Disconnected")
+
+
+@bot.event
 async def on_ready():
     print('Logged in as:')
-    print(client.user.name)
-    print(client.user.id)
-    print('_______')
+    print(bot.user.name)
+    print(bot.user.id)
+    print('_' * 20)
 
-    channel = client.get_channel(844603898203078707)
+    channel = bot.get_channel(844603898203078707)
     await channel.send(f"Bot started at: {datetime.datetime.utcnow()}")
 
     while True:
@@ -174,18 +193,23 @@ async def on_ready():
             discord.Activity(name=f'heavy metal with my dev|{PREFIX}help',
                              type=discord.ActivityType.listening)]'''
 
-        status = random.randint(1, 10)
+        status = random.randint(1, 2)
 
-        if status == 1 or 3 or 5 or 7 or 9:
+        '''if status == 1 or 3 or 5 or 7 or 9:
             status = _status
         if status == 2 or 4 or 6 or 8 or 10:
+            status = __status'''
+
+        if status == 1:
+            status = _status
+        if status == 2:
             status = __status
 
         activity = random.choice(status)
-        channel1 = client.get_channel(835656871376453673)
-        channel = client.get_channel(861989383590248459)
+        channel1 = bot.get_channel(835656871376453673)
+        channel = bot.get_channel(861989383590248459)
 
-        await client.change_presence(activity=activity)
+        await bot.change_presence(activity=activity)
         await channel1.send(f"Changed my status to {activity.type} {activity.name}. Changing again in 5 minutes!")
         await channel.send(f'Bot Time Check In. Time is now\n**{datetime.datetime.utcnow()}**\n_ _')
         await asyncio.sleep(300)
@@ -194,19 +218,19 @@ async def on_ready():
 if __name__ == '__main__':
     for extention in cog_extentions:
         try:
-            client.load_extension(extention)
+            bot.load_extension(extention)
         except Exception as e:
             print(f"Failed load extension {extention}", file=sys.stderr)
             traceback.print_exc()
     '''for application_command in cog_extentions:
         try:
-            client.get_command(application_command)
+            bot.get_command(application_command)
         except Exception as e:
             print(f"Failed to load command {application_command}", file=sys.stderr)
             traceback.print_exc()'''
 
 
-@client.group(invoke_without_command=True)
+@bot.group(invoke_without_command=True)
 async def help(ctx):
     mhelp = discord.Embed(title="Help", description=f"Use {PREFIX}help <module> to load the module help pages")
 
@@ -615,6 +639,6 @@ async def lick(ctx):
 
 
 try:
-    client.run(TOKEN, reconnect=True)
+    bot.run(TOKEN, reconnect=True)
 except discord.LoginFailure:
     print("Log In Failed.")

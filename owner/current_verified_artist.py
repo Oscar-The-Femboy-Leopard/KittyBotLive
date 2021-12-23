@@ -34,7 +34,7 @@ class OwnerCog(commands.Cog):
     '''async def loop(self, member):
         guild = 841496169556475975
         verified = 855406836463173653
-        _verified = self.client.get_guild(guild).get_role(verified)
+        _verified = self.bot.get_guild(guild).get_role(verified)
         _role = _verified
         # Role = role
         mem = discord.Role.members
@@ -95,7 +95,7 @@ class OwnerCog(commands.Cog):
         await self.bot.get_channel(channel).purge(limit=10)
         await self.bot.get_guild(guild).get_channel(channel).send(embed=image)
         await self.bot.get_guild(guild).get_channel(channel).send(embed=imp)
-        # await self.client.get_guild(guild).get_channel(channel).send(embed=revised)
+        # await self.bot.get_guild(guild).get_channel(channel).send(embed=revised)
         await ctx.send("Sent the Verified Art Rules.")
 
     @commands.command(name="updateCVA", pass_context=True)
@@ -106,7 +106,7 @@ class OwnerCog(commands.Cog):
         _chan = _guild.get_channel(880919156025860117)
 
         _role = _guild.get_role(855406836463173653)
-        # _guild = self.client.get_guild(guild)
+        # _guild = self.bot.get_guild(guild)
 
         _verified = _guild.get_role(verified)
         _role = _verified
@@ -131,8 +131,8 @@ class OwnerCog(commands.Cog):
     '''@commands.command(name="updateCVA")
     @commands.has_role("Staff")
     async def updateCVA(self, ctx):
-        guild = self.client.get_guild(841496169556475975)
-        channel = self.client.get_channel(880919156025860117)
+        guild = self.bot.get_guild(841496169556475975)
+        channel = self.bot.get_channel(880919156025860117)
         _role = guild.get_role(855406836463173653)
 
         r = _role.members
@@ -150,26 +150,26 @@ class OwnerCog(commands.Cog):
         # imp.add_field(name="Current Verified Artists are:", value=var)
         imp.set_footer(text=ctx.author.display_name, icon_url=guild.icon_url)
 
-        await self.client.get_guild(841496169556475975).get_channel(880919156025860117).purge(limit=1)
-        await self.client.get_guild(841496169556475975).get_channel(880919156025860117).send(embed=imp)'''
+        await self.bot.get_guild(841496169556475975).get_channel(880919156025860117).purge(limit=1)
+        await self.bot.get_guild(841496169556475975).get_channel(880919156025860117).send(embed=imp)'''
 
 
 
 
-    '''await self.client.get_guild(guild).get_channel(channel).purge(limit=10)
-        await self.client.get_guild(guild).get_channel(channel).send(embed=image)
-        await self.client.get_guild(guild).get_channel(channel).send(embed=imp)
-        await self.client.get_guild(guild).get_channel(channel).send(embed=revised)
+    '''await self.bot.get_guild(guild).get_channel(channel).purge(limit=10)
+        await self.bot.get_guild(guild).get_channel(channel).send(embed=image)
+        await self.bot.get_guild(guild).get_channel(channel).send(embed=imp)
+        await self.bot.get_guild(guild).get_channel(channel).send(embed=revised)
         await ctx.send("Sent the Verified Art Rules.")'''
 
     '''while True:
             m = discord.guild.Role.members
             imp.add_field(name="Current Verified Artists are:", value=f"{m}")
-            await self.client.get_guild(guild).get_channel(channel).edit(embed=imp)'''
+            await self.bot.get_guild(guild).get_channel(channel).edit(embed=imp)'''
 
     '''@commands.Cog.listener()
     async def update(self, ctx):
-        _guild = self.client.get_guild(841496169556475975)
+        _guild = self.bot.get_guild(841496169556475975)
         verified = _guild.get_role(855406836463173653)
         guild = 841496169556475975
         _role = verified
@@ -191,14 +191,14 @@ class OwnerCog(commands.Cog):
             imp.set_footer(text=ctx.author.display_name, icon_url=_guild.icon_url)
 
             counter = 0
-            channel = self.client.get_channel(835656871376453673)  # channel ID goes here
-            _channel = self.client.get_channel(775770598844137482)
-            while not self.client.is_closed():
+            channel = self.bot.get_channel(835656871376453673)  # channel ID goes here
+            _channel = self.bot.get_channel(775770598844137482)
+            while not self.bot.is_closed():
 
-                # await self.client.get_guild(guild).get_channel(channel).purge(limit=10)
-                # await self.client.get_guild(guild).get_channel(channel).send(embed=image)
-                msg = await self.client.get_guild(guild).get_channel(channel).send(embed=imp)
-                # await self.client.get_guild(guild).get_channel(channel).send(embed=revised)
+                # await self.bot.get_guild(guild).get_channel(channel).purge(limit=10)
+                # await self.bot.get_guild(guild).get_channel(channel).send(embed=image)
+                msg = await self.bot.get_guild(guild).get_channel(channel).send(embed=imp)
+                # await self.bot.get_guild(guild).get_channel(channel).send(embed=revised)
                 # await ctx.send("Sent the Verified Art Rules.")
 
                 counter += 1
@@ -208,7 +208,7 @@ class OwnerCog(commands.Cog):
 
                 # edit the embed of the message
                 await msg.edit(embed=new_imp)
-                # await self.client.get_guild(guild).get_channel(channel).send(embed=revised)'''
+                # await self.bot.get_guild(guild).get_channel(channel).send(embed=revised)'''
 
 
 
@@ -237,8 +237,8 @@ class OwnerCog(commands.Cog):
         channel = 880919156025860117
         verified = 855406836463173653
 
-        role = self.client.get_guild(guild).get_role(verified)
-        _guild = self.client.get_guild(guild)
+        role = self.bot.get_guild(guild).get_role(verified)
+        _guild = self.bot.get_guild(guild)
         r_member = None
 
         impInfo = ""
@@ -264,9 +264,9 @@ class OwnerCog(commands.Cog):
         verified = 855406836463173653
         _message = 880965617279201331
 
-        if payload == self.client:
+        if payload == self.bot:
             return
-        channel = self.client.get_channel(payload.channel)
+        channel = self.bot.get_channel(payload.channel)
         message = await channel.fetch_message(payload.message)
         imp, roles = message.embeds[0], [verified]
         index = roles.index(payload.role.name)

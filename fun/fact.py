@@ -9,8 +9,8 @@ description = "It gives out a random fact!"
 
 
 class Fun(commands.Cog):
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
     @commands.command(aliases=aliases,
                       description=description)
@@ -59,7 +59,7 @@ class Fun(commands.Cog):
                 'The first service animals were established in Germany during World War I. References to service animals date as far back as the mid-16th Century.',
                 'An 11-year-old girl proposed the name for Pluto after the Roman god of the Underworld.',
                 'The voice actor of SpongeBob and the voice actor of Karen, Plankton’s computer wife, have been married since 1995.',
-                'An Italian banker, Gilberto Baschiera is considered a modern-day Robin Hood. Over the course of 7 years, he secretly diverted 1 million euros to poorer clients from the wealthy ones so they could qualify for loans. He made no profit and avoided jail in 2018 due to a plea bargain.',
+                'An Italian banker, Gilberto Baschiera is considered a modern-day Robin Hood. Over the course of 7 years, he secretly diverted 1 million euros to poorer bots from the wealthy ones so they could qualify for loans. He made no profit and avoided jail in 2018 due to a plea bargain.',
                 'Octopuses and squids have beaks. The beak is made of keratin – the same material that a bird’s beak, and our fingernails are made of.',
                 'An estimated 50% of all gold ever mined on Earth came from a single plateau in South Africa: Witwatersrand.',
                 '75% of the world’s diet is produced from just 12 plant and five different animal species.',
@@ -177,5 +177,5 @@ class Fun(commands.Cog):
         # await ctx.send(f'> Question: {question}\n Response: {random.choice(_8ball_responses)}')  # Sends response
 
 
-def setup(client):  # Sets up the client for the client
-    client.add_cog(Fun(client))  # Adds the command to the client for it to be able to run
+def setup(bot):  # Sets up the bot for the bot
+    bot.add_cog(Fun(bot))  # Adds the command to the bot for it to be able to run

@@ -3,8 +3,10 @@ import json
 import discord
 import random
 import datetime
+
 from discord.ext import commands
 from config import random_color, imgflip_password, imgflip_username, bad_list
+
 
 aliases = ['brace_x_is_coming!']
 description = "Make a meme about having to brace for something!"
@@ -12,14 +14,11 @@ description = "Make a meme about having to brace for something!"
 
 class ImgFlip(commands.Cog):
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
 
-    @commands.command(aliases=aliases,
-                      description=description)
-    async def brace(self, ctx, *, message):
-        content = ctx
-        # ctx = content
+    @commands.command(aliases=aliases, description=description)
+    async def brace(self, ctx, message):
         id = '61546'
         url = f"https://api.imgflip.com/caption_image?text0=Brace yourselves, {message} is coming&username={imgflip_username}&password={imgflip_password}&template_id={id}"
 
@@ -32,7 +31,6 @@ class ImgFlip(commands.Cog):
         data = json.loads(response.text)
         url = data["data"]["url"]
         color = random.choice(random_color)
-        # guild = message.guild
         msg = ctx
         guild = msg.guild
 
@@ -40,7 +38,13 @@ class ImgFlip(commands.Cog):
         rm_url.set_image(url=url)
         rm_url.set_footer(text=f"{guild.name}", icon_url=guild.icon_url)
 
-        await ctx.channel.send(embed=rm_url)
+        # await ctx.channel.send(embed=rm_url)
+
+        for bad_word in bad_list:
+            if bad_word in message.content:
+                return await ctx.reply("Sorry, but I am unable to complete this command due to blacklisted word.")
+            else:
+                await ctx.send(embed=rm_url)
 
         '''for bad_word in bad_list:
             if bad_word in message.content:
@@ -50,5 +54,5 @@ class ImgFlip(commands.Cog):
             await ctx.channel.send(embed=rm_url)'''
 
 
-def setup(client):
-    client.add_cog(ImgFlip(client))
+def setup(bot):
+    bot.add_cog(ImgFlip(bot))
