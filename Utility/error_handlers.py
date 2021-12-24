@@ -66,6 +66,9 @@ class error_handling(commands.Cog):
             await ctx.reply("I am forbidden: {}").format(error)
             print(error)
 
+        else:
+            await ctx.reply("This is an internal error. I have alerted my dev.")
+
         '''if error is commands.CommandNotFound:
             await ctx.reply(f"Command not found! Please refer to `{PREFIX}help` to avoid this error in the future.")
         else:

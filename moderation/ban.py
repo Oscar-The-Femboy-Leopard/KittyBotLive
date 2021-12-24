@@ -8,9 +8,6 @@ from discord.ext.commands import Greedy
 baliases = ['Ban', 'Ban_member', 'Ban_Member']
 bdescription = "This command is self explanitory. It bans members from the server."
 
-
-
-
 ban_appeal = "https://forms.gle/rmQEkwXTt43pWDAa8"
 
 
@@ -30,7 +27,9 @@ class Moderation(commands.Cog):
         if reason is None:
             return await ctx.reply("We need a reason for this ban.")
 
-        if uID in ctx.guild.members:
+        guild = ctx.guild
+
+        if (self.bot.get_user(uID)) in guild.members:
             m = (self.bot.get_user(uID))
 
             message = f"You have been banned from {ctx.guild} for {reason}.\n\nYou can appeal the ban [here]({ban_appeal})"
@@ -55,9 +54,8 @@ class Moderation(commands.Cog):
             ban.set_thumbnail(url=m.avatar_url)
             await ctx.reply(f"Ban penalty submitted. Posted in: {channel.mention}")
             return await channel.send(embed=ban)
-            # await ctx.reply(embed=banned)
 
-        if uID not in ctx.guild.members:
+        if (self.bot.get_user(uID)) not in guild.members:
             await ctx.guild.ban(discord.Object(id=uID), reason=reason)
 
             m = self.bot.get_user(uID)
@@ -86,7 +84,7 @@ class Moderation(commands.Cog):
         if uID is None:
             return await ctx.reply("This command is used to ban multiple people!")
         if ctx.author.id in uID:
-            return await ctx.reply("One of the IDs is your own and I cannot process this command. Please check IDs before trying again.")
+            return await ctx.reply("One of the IDs is your own therefore I cannot process this command. Please check IDs before trying again.")
         if self.bot.user.id in uID:
             return await ctx.reply("One of the IDs is mine and therefore I cannot process this command. Please check IDs before trying again.")
 
@@ -107,9 +105,5 @@ class Moderation(commands.Cog):
         await ctx.reply("Banned members.")
 
 
-print("loaded Ban and mass ban.")
-
-
 def setup(bot):
     bot.add_cog(Moderation(bot))
-    # bot.add_cog(Moderation_Massban(bot))

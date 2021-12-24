@@ -28,7 +28,8 @@ bot = commands.Bot(
         _PREFIX,
         _prefix
     ],
-    intents=intents
+    # intents=intents
+    intents=discord.Intents.all()
 )
 bot.remove_command('help')
 
@@ -126,9 +127,6 @@ _status = [  # playing statuses
 
 @bot.event
 async def on_connect():
-    '''activity = discord.Activity(name="with loading software. Please wait",
-                                type=discord.ActivityType.playing)
-    await bot.change_presence(activity=activity)'''
     print("loading")
 
 
@@ -148,57 +146,7 @@ async def on_ready():
     await channel.send(f"Bot started at: {datetime.datetime.utcnow()}")
 
     while True:
-        '''status = [  # playing statuses
-            discord.Activity(name=f'my fav games|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f'Chinese Whispers with my dev|{PREFIX}help',
-                             type=discord.ActivityType.playing),
-            discord.Activity(name=f'crane games for cool stuff|{PREFIX}help',
-                             type=discord.ActivityType.playing),
-            discord.Activity(name=f'with my friends|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f'with leopards!|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f'with foxes!|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f'with bunnies!|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f'with wolves|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f'with lynxes|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f'with paws|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f'with my RAM|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f'on my BIOS trying to Overclock my CPU|{PREFIX}help',
-                             type=discord.ActivityType.playing),
-            discord.Activity(name=f'on my dedicated server!|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f'with you cool furs|{PREFIX}help',
-                             type=discord.ActivityType.playing),
-            discord.Activity(name=f"on my Dev's nerves|{PREFIX}help",
-                             type=discord.ActivityType.playing),
-            discord.Activity(name=f'with my Dev|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f'with my Prefix|{PREFIX}help', type=discord.ActivityType.playing),
-            discord.Activity(name=f"with my dev's hair|{PREFIX}help", type=discord.ActivityType.playing),
-
-            # watching Statuses
-            discord.Activity(name=f'the sever for my Dev|{PREFIX}help',
-                             type=discord.ActivityType.watching),
-            discord.Activity(name=f'some cool things with my Dev|{PREFIX}help',
-                             type=discord.ActivityType.watching),
-            discord.Activity(name=f'something lame... Why is my dev boring?|{PREFIX}help',
-                             type=discord.ActivityType.watching),
-            discord.Activity(name=f'butterflies fly!❤|{PREFIX}help',
-                             type=discord.ActivityType.watching),
-
-            # listening statuses
-            discord.Activity(name=f'birds chirping|{PREFIX}help',
-                             type=discord.ActivityType.listening),
-            discord.Activity(name=f'my Dev yelling at me 💢 |{PREFIX}help',
-                             type=discord.ActivityType.listening),
-            discord.Activity(name=f'my cookies crunching |{PREFIX}help',
-                             type=discord.ActivityType.listening),
-            discord.Activity(name=f'heavy metal with my dev|{PREFIX}help',
-                             type=discord.ActivityType.listening)]'''
-
         status = random.randint(1, 2)
-
-        '''if status == 1 or 3 or 5 or 7 or 9:
-            status = _status
-        if status == 2 or 4 or 6 or 8 or 10:
-            status = __status'''
 
         if status == 1:
             status = _status

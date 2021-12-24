@@ -37,11 +37,6 @@ class Utility(commands.Cog):
         guidmg.set_footer(text="I will need the password as this is a way to prevent people joining who don't read "
                                "the rules. This step is vital for us all. to be safe")
 
-        '''await ctx.send(f":e_mail: {ctx.message.author.mention} Check your DMs! Please make sure I can DM you for this "
-                       f"to work. If it times out, don't worry, you can run this command again. There is also a "
-                       f"password you need to find in the Rules. Sadly, this is a required step since the staff "
-                       f"don't want trouble makers in the server.")'''
-
         await ctx.reply(embed=guidmg)
 
         a = ctx.author
@@ -176,7 +171,7 @@ class Utility(commands.Cog):
         await a.send(
             f"Got it, your favourite quote/s is/are: {quote}.")
 
-        await a.send("Next, may I know what gender you identify as?")
+        '''await a.send("Next, may I know what gender you identify as?")
         await asyncio.sleep(1)
         msg = await self.bot.wait_for('message', check=check)
         gender = msg.content.lower()
@@ -196,7 +191,7 @@ class Utility(commands.Cog):
             return await a.send(
                 f"{a.display_name}, you have canceled your verification. You can rerun this command when you're ready.")
         await a.send(
-            f"Got it, you refer to yourself as {gender} using {pronouns} pronouns.")
+            f"Got it, you refer to yourself as {gender} using {pronouns} pronouns.")'''
 
         await a.send(
             "Next, can you please say how you came to find the server today?")
@@ -227,8 +222,8 @@ class Utility(commands.Cog):
 
         embed.add_field(name='Age Bracket:', value=f"{agebracket}", inline=False)
         embed.add_field(name='Quote', value=f"{quote}", inline=False)
-        embed.add_field(name='Gender', value=f"{gender}", inline=True)
-        embed.add_field(name='Pronouns', value=f"{pronouns}", inline=True)
+        # embed.add_field(name='Gender', value=f"{gender}", inline=True)
+        # embed.add_field(name='Pronouns', value=f"{pronouns}", inline=True)
 
         embed.add_field(name='Fursona:', value=f"{fursona}", inline=False)
         if furry == y:
@@ -254,7 +249,7 @@ class Utility(commands.Cog):
             "as possible!"
         )
 
-    @commands.command(name="accept", pass_context=True)
+    @commands.command(name="accept", aliases=["A", "a"], pass_context=True)
     @commands.has_role(913552884115853363)
     async def accept(self, ctx, uID: int):
         a = ctx.message.author
@@ -273,30 +268,30 @@ class Utility(commands.Cog):
 
         emoji = self.bot.get_emoji(id=880532960145719307)
         emoji2 = self.bot.get_emoji(id=880532998313885817)
-        m = (self.bot.get_user(uID))
+        m = ctx.guild.get_member(user_id=uID)
 
-        if m in ctx.guild.members:
-            await ctx.reply(f'{ctx.author.display_name} has just verified {m.display_name}')
-            await priv.send(f"{ctx.author.display_name} verified {m.display_name}#{m.discriminator} | UID: {m.id}")
+        if m is not None:
+            '''await ctx.reply(f'{ctx.author.display_name} has just verified {m.display_name}')
+            await priv.send(f"{ctx.author.display_name} verified {m.display_name}#{m.discriminator} | UID: {m.id}")'''
 
             try:
                 await m.add_roles(member)
-                print("done")
-                # await m.remove_roles(deny)
+                await ctx.reply(f'{ctx.author.display_name} has just verified {m.display_name}')
+                await priv.send(f"{ctx.author.display_name} verified {m.display_name}#{m.discriminator} | UID: {m.id}")
             except discord.Forbidden:
                 await self.bot.channel.send("I don't have perms to add roles.")
             return
 
-        if m not in ctx.guild.members:
-            return await ctx.reply(f"Member {m.display_name} is not present in this server.")
+        if m is None:
+            return await ctx.reply(f"Member {self.bot.get_user(uID).display_name} is not present in this server.")
 
         e = discord.Embed(color=random.choice(random_color))
-        e.add_field(name=f"New Join!", value=f"Welcome {m.mention}\n\n> Please visit {roles} to get yourself some "
-                                             f"roles!\n\n> If you have any question about where a channel is or for, "
-                                             f"please visit {discover} and it will direct you.\n\n> If any questions, "
-                                             f"please visit {faq} before asking staff since what you may want to ask "
-                                             f"could be here.\n\n> If you ever have any suggestions for the server, "
-                                             f"please visit {suggestions}!")
+        e.add_field(name=f"New Join!",
+                    value=f"Welcome {m.mention}\n\n> Please visit {roles} to get yourself some roles!\n\n> If you "
+                          f"have any question about where a channel is or for, please visit {discover} and it will "
+                          f"direct you.\n\n> If any questions, please visit {faq} before asking staff since what you "
+                          f"may want to ask could be here.\n\n> If you ever have any suggestions for the server, "
+                          f"please visit {suggestions}!")
         e.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 
         await _channel.send(f'{emoji}{emoji2}')
@@ -311,8 +306,6 @@ class Utility(commands.Cog):
 
         try:
             await m.send(embed=_e)
-            '''await m.send(f"You have been verified in {ctx.guild.name}. Please message staff if you have any problems "
-                         f"within the server. - \n\n**Owner: {ctx.guild.owner.display_name}**\n**Bot: {self.bot.user.display_name}**")'''
         except discord.Forbidden:
             await ctx.reply(f"I was unable to alert {m.display_name} that they was accepted.")
 
