@@ -16,12 +16,11 @@ class Wholesome(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=aliases,
-                      description=description)
-    async def doggo(self, message, *, ctx):
+    @commands.command(aliases=aliases, description=description)
+    async def doggo(self, message):
         """Just use for a cute doggo!"""
 
-        conn = http.bot.HTTPSConnection("api.furrycentr.al")
+        conn = http.client.HTTPSConnection("api.furrycentr.al")
         payload = ''
         headers = {
             'Cookie': '__cfduid=d9a224e3d8c1cb5402581c2ae57ae3ec21605192790'

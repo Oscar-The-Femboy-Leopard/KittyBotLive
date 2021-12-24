@@ -16,11 +16,9 @@ class Wholesome(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=aliases,
-                      description=description)
-    async def lick(self, message, *, licked: discord.Member = None):
-
-        conn = http.bot.HTTPSConnection("api.furrycentr.al")
+    @commands.command(aliases=aliases, description=description)
+    async def lick(self, ctx, l: commands.Greedy[discord.Member]):
+        conn = http.client.HTTPSConnection("api.furrycentr.al")
         payload = ''
         headers = {
             'Cookie': '__cfduid=d9a224e3d8c1cb5402581c2ae57ae3ec21605192790'
@@ -32,13 +30,31 @@ class Wholesome(commands.Cog):
         data = json.loads(data)
         url = data["result"]["imgUrl"]
         color = random.choice(random_color)
-        guild = message.guild
-        msg = message
-        _ment_lick = licked.display_name
+        guild = ctx.guild
+        msg = ctx
+
+        limit = 3
+
+        lick = ""
+
+        # _ment_lick = licked.display_name
+
+        if len(l) > 1 <= limit:
+            for u in l:
+                lick = lick + f" and {u.display_name}"  # + u.display_name
+            lick = lick[4:]
+
+        if len(l) == 1:
+            _hug = l.display_name
+
+        if len(l) > limit:
+            return await ctx.reply(f"I can only go to my limit of {limit}")
+
         auth = msg.author.display_name
-        lick = [f"***{auth}** licked **{_ment_lick}***",
-                f"***{auth}** just randomly licks **{_ment_lick}** for no apparent reason*",
-                f"***{_ment_lick}** asks **{auth}** to lick them so **{auth}** happily obliged*"]
+
+        lick = [f"***{auth}** licked **{lick}***",
+                f"***{auth}** just randomly licks **{lick}** for no apparent reason*",
+                f"***{lick}** asks **{auth}** to lick them so **{auth}** happily obliged*"]
         lickmessage = random.choice(lick)
 
         e_url = discord.Embed(color=color, timestamp=datetime.datetime.utcnow())
@@ -46,7 +62,7 @@ class Wholesome(commands.Cog):
         e_url.set_image(url=url)
         e_url.set_footer(text=f"{guild.name}", icon_url=guild.icon_url)
 
-        if auth == _ment_lick:
+        if auth == l:
             return await msg.channel.send(
                 f"You can't really lick yourself, {auth}, so I will lick you! *gives plenty of licks*")
 
