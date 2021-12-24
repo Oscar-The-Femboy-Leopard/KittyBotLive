@@ -278,6 +278,31 @@ class Utility(commands.Cog):
                 await m.add_roles(member)
                 await ctx.reply(f'{ctx.author.display_name} has just verified {m.display_name}')
                 await priv.send(f"{ctx.author.display_name} verified {m.display_name}#{m.discriminator} | UID: {m.id}")
+
+                e = discord.Embed(color=random.choice(random_color))
+                e.add_field(name=f"New Join!",
+                            value=f"Welcome {m.mention}\n\n> Please visit {roles} to get yourself some roles!\n\n> If you "
+                                  f"have any question about where a channel is or for, please visit {discover} and it will "
+                                  f"direct you.\n\n> If any questions, please visit {faq} before asking staff since what you "
+                                  f"may want to ask could be here.\n\n> If you ever have any suggestions for the server, "
+                                  f"please visit {suggestions}!")
+                e.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
+
+                await _channel.send(f'{emoji}{emoji2}')
+                await _channel.send(welcome, embed=e)
+
+                msg = f"You have been verified in {ctx.guild.name}. Please message staff if you have any problems within the " \
+                      f"server. - \n\n**Owner: {ctx.guild.owner.display_name}**\n**Bot: {self.bot.user.display_name}** "
+
+                _e = discord.Embed(name="Accepted!", color=discord.Color.green())
+                _e.add_field(name="Congratulations!", value=msg, inline=False)
+                _e.add_field(name="Time of acceptance:", value=f"{datetime.datetime.now()}", inline=False)
+
+                try:
+                    await m.send(embed=_e)
+                except discord.Forbidden:
+                    await ctx.reply(f"I was unable to alert {m.display_name} that they was accepted.")
+
             except discord.Forbidden:
                 await self.bot.channel.send("I don't have perms to add roles.")
             return
@@ -285,7 +310,7 @@ class Utility(commands.Cog):
         if m is None:
             return await ctx.reply(f"Member {self.bot.get_user(uID).display_name} is not present in this server.")
 
-        e = discord.Embed(color=random.choice(random_color))
+        '''e = discord.Embed(color=random.choice(random_color))
         e.add_field(name=f"New Join!",
                     value=f"Welcome {m.mention}\n\n> Please visit {roles} to get yourself some roles!\n\n> If you "
                           f"have any question about where a channel is or for, please visit {discover} and it will "
@@ -307,7 +332,7 @@ class Utility(commands.Cog):
         try:
             await m.send(embed=_e)
         except discord.Forbidden:
-            await ctx.reply(f"I was unable to alert {m.display_name} that they was accepted.")
+            await ctx.reply(f"I was unable to alert {m.display_name} that they was accepted.")'''
 
     @commands.command(name="deny", pass_context=True)
     @commands.has_role(913552884115853363)
