@@ -8,7 +8,6 @@ import discord
 from discord.ext import commands
 from config import PREFIX, cog_extentions, TOKEN, _blnk_value, _PREFIX, _prefix
 
-
 '''intents = discord.Intents.default()
 intents.members = True
 intents.presences = True'''
@@ -21,7 +20,6 @@ intents = discord.Intents(
     reactions=True,
 )
 
-
 bot = commands.Bot(
     command_prefix=[
         PREFIX,
@@ -32,7 +30,6 @@ bot = commands.Bot(
     intents=discord.Intents.all()
 )
 bot.remove_command('help')
-
 
 __status = [  # playing statuses
     discord.Activity(name=f'my fav games|{PREFIX}help', type=discord.ActivityType.playing),
@@ -199,7 +196,7 @@ async def Fun(ctx):
     fhelp = discord.Embed(title="Fun Help Page",
                           description=f"Use {PREFIX}help <command> to load the command help page.")
 
-    fun = '8ball\nfact\ninsult\nkill\nquote\nrps\nship'
+    fun = '8ball\ndare\nfact\ninsult\nkill\nquote\nrps\nship\ntruth\nwillyoupressthebutton'
     footer = "Remember! Commands and modules ARE case sensitive."
 
     fhelp.add_field(name=_blnk_value, value=fun, inline=False)
@@ -274,6 +271,15 @@ async def coinflip(ctx):
 
 
 @help.command()
+async def dare(ctx):
+    from fun.convo_games import daliases, ddescription
+    Dare = discord.Embed(title="Dare", description=ddescription)
+    Dare.add_field(name="**Command Syntax**", value=f"{PREFIX}dare")
+    Dare.set_footer(text=f"Aliases for this command are: {daliases}")
+    await ctx.send(embed=Dare)
+
+
+@help.command()
 async def fact(ctx):
     from fun.fact import aliases, description
     Fact = discord.Embed(title='fact', description=description)
@@ -325,6 +331,24 @@ async def ship(ctx):
     ship.add_field(name="**Command Syntax**", value=f"{PREFIX}ship <member>")
     ship.set_footer(text=f"Aliases for this command are: {aliases}")
     await ctx.send(embed=ship)
+
+
+@help.command()
+async def truth(ctx):
+    from fun.convo_games import taliases, tdescription
+    truth = discord.Embed(title="Truth", description=tdescription)
+    truth.add_field(name="**Command Syntax**", value=f"{PREFIX}truth")
+    truth.set_footer(text=f"Aliases for this command are: {taliases}")
+    await ctx.send(embed=truth)
+
+
+@help.command()
+async def willyoupressthebutton(ctx):
+    from fun.convo_games import wyptbaliases, wyptbdescription
+    truth = discord.Embed(title="Will You Press The Button", description=wyptbdescription)
+    truth.add_field(name="**Command Syntax**", value=f"{PREFIX}truth")
+    truth.set_footer(text=f"Aliases for this command are: {wyptbaliases}")
+    await ctx.send(embed=truth)
 
 
 '''@help.command()
