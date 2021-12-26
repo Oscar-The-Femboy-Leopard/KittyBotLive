@@ -11,7 +11,7 @@ class ChannelMessage(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
-    async def cmessage(self, ctx, cID: int, mID: int = None, *, message):
+    async def cmessage(self, ctx, cID: int, *, message):
         channel = self.bot.get_channel(cID)
 
         msg = message.split('.', 1)
@@ -28,7 +28,7 @@ class ChannelMessage(commands.Cog):
 
         await ctx.reply("sent!")
 
-        editmsg = self.bot.get_message(mID)
+        # editmsg = self.bot.get_message(mID)
 
         n = discord.Embed(color=color, title="A message")
 

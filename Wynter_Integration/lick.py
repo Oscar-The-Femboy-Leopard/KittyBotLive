@@ -45,7 +45,8 @@ class Wholesome(commands.Cog):
             lick = lick[4:]
 
         if len(l) == 1:
-            _hug = l.display_name
+            for u in l:
+                _hug = u.display_name
 
         if len(l) > limit:
             return await ctx.reply(f"I can only go to my limit of {limit}")

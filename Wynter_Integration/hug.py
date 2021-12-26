@@ -49,7 +49,8 @@ class Wholesome(commands.Cog):
             _hug = _hug[4:]
 
         if len(m) == 1:
-            _hug = m.display_name
+            for u in m:
+                _hug = u.display_name
 
         if len(m) > limit:
             return await ctx.reply(f"I can only go to my limit of {limit}")
