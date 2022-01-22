@@ -27,6 +27,8 @@ class Moderation(commands.Cog):
         if reason is None:
             return await ctx.reply("We need a reason for this ban.")
 
+        reason = reason + f'\nBanned by {ctx.author.display_name} | {ctx.author.id} on {datetime.date.today()}'
+
         guild = ctx.guild
 
         if (self.bot.get_user(uID)) in guild.members:
@@ -59,9 +61,10 @@ class Moderation(commands.Cog):
             await ctx.guild.ban(discord.Object(id=uID), reason=reason)
 
             m = self.bot.get_user(uID)
+            # m = self.bot.get_user(discord.Object(id=uID))
 
-            embed = discord.Embed(color=discord.Color.red(), timestamp=datetime.datetime.utcnow())
-            embed.add_field(name="Member Banned!", value=m.mention, inline=False)
+            embed = discord.Embed(title="Member Banned!", color=discord.Color.red(), timestamp=datetime.datetime.utcnow())
+            # embed.add_field(name="Member Banned!", value=m.mention, inline=False)
             embed.add_field(name="Member Affected:", value=m.display_name + '#' + m.discriminator, inline=False)
             embed.add_field(name="Member ID:", value=m.id, inline=False)
             embed.add_field(name="Reason Given:", value=reason, inline=False)
@@ -71,7 +74,8 @@ class Moderation(commands.Cog):
             embed.add_field(name="Date Of Ban (Year, Month, Day):", value=f"{datetime.date.today()}", inline=False)
             embed.set_thumbnail(url=m.avatar_url)
             await ctx.reply(f"Ban penalty submitted. Posted in {channel.mention}")
-            await channel.send(embed=embed)
+            # await channel.send(embed=embed)
+            await ctx.send(embed=embed)
 
     @commands.command(name="massban")
     @commands.has_permissions(ban_members=True)
@@ -79,7 +83,13 @@ class Moderation(commands.Cog):
         if reason is None:
             reason = f"mass banned by {ctx.author.display_name} | {ctx.author.id}"
 
+        banlog = self.bot.get_channel()
+
         limit = 50
+        m = ""
+        ID = ""
+
+        e = discord.Embed(color=discord.Color.red(), title="Massban", description=f"The following users have been mass banned by {ctx.author.display_name}")
 
         if uID is None:
             return await ctx.reply("This command is used to ban multiple people!")
@@ -91,18 +101,17 @@ class Moderation(commands.Cog):
         if len(uID) == 0:
             return await ctx.reply("I need a list of IDs to ban.")
         if len(uID) > limit:
-            return await ctx.reply(f"I cannot ban that amount of people. My limit is {limit}")
+            return await ctx.reply(f"I cannot ban that amount of people due to limitations. My limit is {limit}")
         if len(uID) <= limit:
-            await ctx.reply(f"Starting banning Process! Banning {uID} members.")
+            msg = await ctx.reply(f"Starting banning Process! Banning {uID} members.")
             for uID in uID:
-                # m = self.bot.get_user(discord.Object(uID))
                 await ctx.guild.ban(discord.Object(uID), reason=reason)
-                '''e = discord.Embed(color=discord.Color.random())
-                e.add_field(name="Banned:", value=m.id + '\n' + m.mention + '\n' + m.display_name + '#' + m.discriminator)
-                e.add_field(name="Reason:", value=reason)
-                await self.bot.get_channel(922779595705557082).send(embed=e)'''
-
-        await ctx.reply("Banned members.")
+                m = m + f"{self.bot.get_user(uID).display_name}\n"
+                ID = ID + f"ID: {self.bot.get_user(uID)}"
+            e.add_field(name="Member's Name:", value=m, inline=True)
+            e.add_field(name="Member's ID:", value=ID, inline=True)
+            await banlog.send(embed=e)
+            return await msg.edit(content=f"Banned them all.")
 
 
 def setup(bot):

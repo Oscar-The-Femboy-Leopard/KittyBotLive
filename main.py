@@ -4,13 +4,11 @@ import random
 import sys
 import traceback
 import discord
+import dataset
 
 from discord.ext import commands
-from config import PREFIX, cog_extentions, TOKEN, _blnk_value, _PREFIX, _prefix
+from config import PREFIX, cog_extentions, TOKEN, _PREFIX, _prefix, _blnk_value
 
-'''intents = discord.Intents.default()
-intents.members = True
-intents.presences = True'''
 
 intents = discord.Intents(
     members=True,
@@ -20,16 +18,21 @@ intents = discord.Intents(
     reactions=True,
 )
 
+# db = dataset.connect('sqlite:///warning/warndb.db')
+
 bot = commands.Bot(
     command_prefix=[
         PREFIX,
         _PREFIX,
         _prefix
     ],
-    # intents=intents
-    intents=discord.Intents.all()
+    intents=intents,
+    # intents=discord.Intents.all(),
+    case_sensitive=False,
+    # remove_command=help
 )
-bot.remove_command('help')
+# bot.remove_command('help')
+# bot.db = db
 
 __status = [  # playing statuses
     discord.Activity(name=f'my fav games|{PREFIX}help', type=discord.ActivityType.playing),
@@ -55,6 +58,8 @@ __status = [  # playing statuses
     discord.Activity(name=f'with my Dev|{PREFIX}help', type=discord.ActivityType.playing),
     discord.Activity(name=f'with my Prefix|{PREFIX}help', type=discord.ActivityType.playing),
     discord.Activity(name=f"with my dev's hair|{PREFIX}help", type=discord.ActivityType.playing),
+    '''discord.Activity(name=f'games with {len(bot.get_guild(913007198488133632).members)} people!|{PREFIX}help',
+                     type=discord.ActivityType.watching),''',
 
     # watching Statuses
     discord.Activity(name=f'the sever for my Dev|{PREFIX}help',
@@ -65,6 +70,8 @@ __status = [  # playing statuses
                      type=discord.ActivityType.watching),
     discord.Activity(name=f'butterflies fly!❤|{PREFIX}help',
                      type=discord.ActivityType.watching),
+    '''discord.Activity(name=f'{len(bot.get_guild(913007198488133632).members)} people! Come join!|{PREFIX}help',
+                     type=discord.ActivityType.watching),''',
 
     # listening statuses
     discord.Activity(name=f'birds chirping|{PREFIX}help',
@@ -164,6 +171,7 @@ if __name__ == '__main__':
     for extention in cog_extentions:
         try:
             bot.load_extension(extention)
+            print(extention)
         except Exception as e:
             print(f"Failed load extension {extention}", file=sys.stderr)
             traceback.print_exc()
@@ -183,6 +191,7 @@ async def help(ctx):
     mhelp.add_field(name="Memes", value="Make use of Imgflip's API to generate your own memes!", inline=False)
     # mhelp.add_field(name="Moderation", value="Commands for Staff", inline=False)
     mhelp.add_field(name='Utility', value="Some utility commands to play with", inline=False)
+    mhelp.add_field(name='Wholesome', value="Some wholesome commands to play with", inline=False)
 
     footer = "Remember! Commands and modules ARE case sensitive."
 
@@ -240,7 +249,7 @@ async def Utility(ctx):
 
 @help.command()
 async def Wholesome(ctx):
-    whelp = discord.Embed(title="Memes Help Page",
+    whelp = discord.Embed(title="Wholesome Help Page",
                           description=f"Use {PREFIX}help <command> to load the command help page.")
 
     wholesome = 'boop\ndoggo\nhug\nlick\n'
@@ -608,7 +617,6 @@ async def lick(ctx):
     lick.add_field(name="**Command Syntax**", value=f"{PREFIX}lick <member>")
     lick.set_footer(text=f"Aliases for this command are: {aliases}")
     await ctx.send(embed=lick)
-
 
 try:
     bot.run(TOKEN, reconnect=True)

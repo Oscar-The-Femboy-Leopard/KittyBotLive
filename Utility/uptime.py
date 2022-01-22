@@ -24,7 +24,7 @@ class Utility(commands.Cog):
         guild = msg.guild
 
         embed = discord.Embed(colour=ctx.message.author.top_role.colour, timestamp=datetime.datetime.utcnow())
-        embed.add_field(name="Uptime", value=text)
+        embed.add_field(name="Bot Uptime", value=text)
         embed.set_footer(text=f"{guild.name}", icon_url=guild.icon_url)
         try:
             await ctx.send(embed=embed)

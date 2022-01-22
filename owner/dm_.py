@@ -10,7 +10,7 @@ class Owner(commands.Cog):
     @commands.command(hidden=True)
     async def _dm(self, ctx, uID: int, *, message=None):
         m = (self.bot.get_user(uID))
-        if ctx.author.id not in [670932463077556224, 176371068448145408]:
+        if ctx.author.id not in [670932463077556224]:
             return
 
         if message is None:

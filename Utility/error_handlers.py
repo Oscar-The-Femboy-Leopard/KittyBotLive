@@ -23,8 +23,8 @@ class error_handling(commands.Cog):
             await ctx.reply('You are missing the required argument of: `{}`'.format(error))
             print(error)
 
-        '''if isinstance(error, commands.MemberNotFound):
-            await ctx.reply(f'I cannot find `{error}`. Please check ID before trying again.')'''
+        if isinstance(error, commands.MemberNotFound):
+            await ctx.reply(f'I cannot find `{error}`. Please check ID before trying again.')
 
         if isinstance(error, commands.MissingPermissions):
             await ctx.reply("You do not have all the permissions required!")

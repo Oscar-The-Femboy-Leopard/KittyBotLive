@@ -6,6 +6,8 @@ from discord.ext import commands
 from discord.ext.commands import BucketType
 from random import choice
 from datetime import datetime
+from config import random_color
+
 # from btns_menus.Buttons import *
 
 
@@ -87,13 +89,13 @@ class ConvoGames(commands.Cog):
         e.set_footer(text="Dare")
         await ctx.reply(embed=e, mention_author=False)
 
-    '''@commands.command(aliases=naliases, description=ndescription)
+    @commands.command(aliases=naliases, description=ndescription)
     @commands.cooldown(1, 2.5, BucketType.user)
     async def never(self, ctx):
         response = f"**Never have I ever:** {choice(self.database['nhie'])}"
-        await ctx.reply(response)'''
+        await ctx.reply(response)
 
-    '''@commands.command(aliases=ttaliases, description=ttdescription)
+    @commands.command(aliases=ttaliases, description=ttdescription)
     @commands.cooldown(1, 2.5, BucketType.user)
     async def thisorthat(self, ctx):
         response = choice(self.database['tot'])
@@ -118,11 +120,11 @@ class ConvoGames(commands.Cog):
             description='\n'.join(message)
         )
 
-        '''"""btn1 = SButton(label="🔴")
+        """btn1 = SButton(label="🔴")
         btn2 = SButton(label="🔵")
 
         view_ = Button(self.bot, btn1, btn2).view()
-        await ctx.send(embed=e, view=view_)"""'''
+        await ctx.send(embed=e, view=view_)"""
 
         sent_embed = await ctx.send(embed=e)
         await sent_embed.add_reaction("🔴")
@@ -157,7 +159,7 @@ class ConvoGames(commands.Cog):
         embed.set_footer(text=f"either.io • 💬 {comments}")
         sent_embed = await ctx.send(embed=embed)
         await sent_embed.add_reaction("🔴")
-        await sent_embed.add_reaction("🔵")'''
+        await sent_embed.add_reaction("🔵")
 
     @commands.command(aliases=wyptbaliases, description=wyptbdescription)
     @commands.cooldown(1, 3, BucketType.user)

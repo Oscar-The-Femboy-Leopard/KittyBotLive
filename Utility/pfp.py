@@ -1,11 +1,14 @@
 import discord
-import urllib.parse
+# import urllib.parse
+
 from discord.ext import commands
+from urllib.parse import urlencode, quote_from_bytes, quote
+from urllib.request import urlopen
 
 
 aliases = ["PFP", "Avatar", "avatar"]
 description = "This will allow you to see any member's profile picture! You do need to mention the user you wish to " \
-              "view the profile picture of "
+              "view the profile picture of."
 
 
 class Utility(commands.Cog):
@@ -15,7 +18,6 @@ class Utility(commands.Cog):
     @commands.command(aliases=aliases, description=description)
     async def pfp(self, ctx, *, avamember: discord.Member = None):
         channel = self.bot.get_channel(904112900485021706)
-        # channel = 904112900485021706
         staff = [864655958352986112, 864655957816508446, 864655959884300298, 904108509463990294, 904349776659755050, 864655947736678420]
         if not avamember:
             avamember = ctx.message.author
@@ -33,15 +35,17 @@ class Utility(commands.Cog):
         msg = ctx
         guild = msg.guild
 
-        img = urllib.parse.quote(userAvatarUrl, safe='')
+        # img = urlencode(userAvatarUrl)
+        # img = quote(str.encode(userAvatarUrl))
+        img = quote(userAvatarUrl, safe='')
 
-        google = f"{googlesearch + img}"
+        google = urlencode(f"{googlesearch + img}")
+        # google = f"{googlesearch + img}"
 
         pfp = discord.Embed(color=ctx.message.author.top_role.color, description="**Profile Picture Requested:**")
         pfp.add_field(name="User:", value=avamember.display_name, inline=True)
         pfp.add_field(name="Reverse Google Search Here:", value=google, inline=True)
         pfp.set_image(url=userAvatarUrl)
-        # pfp.set_image(url=userBannerURL)
         pfp.set_footer(text=f'Requested by {ctx.author}')
 
         await ctx.send(embed=pfp)

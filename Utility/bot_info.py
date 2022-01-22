@@ -42,6 +42,16 @@ class Utility(commands.Cog):
             # info.set_footer(text=f"{guild.name}", icon_url=guild.icon_url)
             await message.channel.send(embed=info)
             return
+'''
+    @commands.command()
+    async def version(ctx):
+        # Version command that contains the current version number and recent changes made
+        ver = discord.Embed(color=0x7289da)
+        ver.set_author(name='Update Notes', icon_url='')
+        ver.add_field(name='Version: 1.02',
+                      value=f'• The giveaway command has seen a complete overhaul, now allowing hosts to run giveaways for specific channels without the users seeing the commands.\n• Fixed various grammar and spelling mistakes.\n• Fixed the bots status.',
+                      inline=False)
+        await ctx.send(embed=ver)'''
 
 
 def setup(bot):

@@ -18,14 +18,6 @@ _blnk_value = "_ _"
 
 INVITE = INVITE
 
-Blacklist_IDs = []
-Blacklist_Channels = []
-
-Whitelist_IDs = [
-    Owner_ID,
-]
-Whitelist_Channels = []
-
 cog_extentions = [
     'fun._8ball',
     # 'fun.AResponder',
@@ -60,12 +52,15 @@ cog_extentions = [
     'imgflip_meme_creation.skeleton',
     'imgflip_meme_creation.Spongebob_heads_out',
     'imgflip_meme_creation.spongebob_imagination',
+    'imgflip_meme_creation.spongebob_mock',
     'imgflip_meme_creation.think',
     'imgflip_meme_creation.this_is_fine',
     'imgflip_meme_creation.too_high',
     'imgflip_meme_creation.trump',
     'imgflip_meme_creation.uno',
-    'listener.noU',
+    # 'listener.noU',
+    'listener.welcome_goodbye',
+    # 'log.general_log',
     # 'moderation.antispam',
     'moderation.ban',
     # 'moderation.clear',
@@ -93,25 +88,29 @@ cog_extentions = [
     'owner.staff_application_form',
     'owner.staff_intro',
     'owner.sudo',
+    # 'owner.test',
     'owner.unload_cog',
     'owner.verify_artist',
     # 'staff.allModerationCommands',
     # 'staff.query',
     'staff.reportlog',
+    # 'testing.buttons',
     'Utility.announcement',
     'Utility.bot_info',
     'Utility.error_handlers',
     'Utility.error_report',
+    'Utility.giveaway',
     # 'Utility.helpcommand', # TODO Help command running in main.py .... May investigate into improving the code
     # 'Utility.modmail',
     'Utility.personinfo',
-    'Utility.pfp',
+    # 'Utility.pfp',
     'Utility.ping',
     # 'Utility.report',
     'Utility.timer',
     'Utility.uptime',
     # 'Utility.vc_role_give',
     'Utility.verification',
+    # 'warning.warning_cmds',
     'Wynter_Integration.boop',
     'Wynter_Integration.doggo',
     'Wynter_Integration.hug',

@@ -9,7 +9,7 @@ class Utility(commands.Cog):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_message(self, ctx, *, message):
+    async def on_message(self, *, message):
         sent_users = []
         # CHANNEL_ID = 913514927384301568
         CHANNEL_ID = 775770598844137482

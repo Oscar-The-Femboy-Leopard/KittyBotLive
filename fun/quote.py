@@ -28,8 +28,8 @@ class Fun(commands.Cog):
     async def quote(self, ctx):
         # n = random.randint(1, 2)
         # Good House Keeping
-        '''if n == 1:
-            responses = [
+        '''if n == 1:'''
+        responses = [
                 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/inspirational-quotes-william-james'
                 '-1562000241.png?crop=1xw:1xh;center,top&resize=980:*',
                 # Act as if what you do makes a difference. It does.
@@ -238,14 +238,14 @@ class Fun(commands.Cog):
                 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/inspirational-quotes-walt-whitman'
                 '-1562000241.png?crop=1xw:1xh;center,top&resize=768:* '
                 # Keep your face always toward the sunshine, and shadows will fall behind you.
-            ]'''
+            ]
 
         # zen quotes
         # if n == 2:
 
-        quote = self.get_quote()
+        # quote = self.get_quote()
 
-        responses = quote
+        # responses = quote
 
         response = random.choice(responses)
         color = discord.Color.dark_red()

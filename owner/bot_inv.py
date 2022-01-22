@@ -29,8 +29,15 @@ class OwnerCog(commands.Cog):
         self.bot = bot
 
     @commands.command(name='invite', alias='Bot Invite', hidden=True)
-    @commands.is_owner()
     async def invite(self, ctx):
+        owner = [
+            895656099376681011,
+            670932463077556224,
+        ]
+
+        if ctx.author.id not in owner:
+            return
+
         color = discord.colour.Color.blurple()
         inv = discord.Embed(color=color, timestamp=datetime.datetime.utcnow())
         inv.add_field(name=_blnk_value, value=f"Click [here]({INVITE}) to use my invite", inline=False)

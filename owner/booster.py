@@ -29,25 +29,47 @@ class OwnerCog(commands.Cog):
         self.bot = bot
 
     @commands.command(name='boostperks', alias="BoostPerks", hidden=True)
-    @commands.is_owner()
-    async def open(self, ctx):
+    async def perks(self, ctx):
 
-        guild = self.bot.get_guild(841496169556475975)
+        owner = [
+            895656099376681011,
+            670932463077556224,
+        ]
+
+        if ctx.author.id not in owner:
+            return
+
+        guild = self.bot.get_guild(913007198488133632)
         channel = self.bot.get_channel(841665459531415562)
         emoji = self.bot.get_emoji(id=880240953691082792)
+        emoji2 = self.bot.get_emoji(id=930261475036131399)
         image = ""
+        boosterrole = guild.get_role(925898132007563404).mention
+        vipchat = guild.get_channel(930265775812534292).mention
+        vipvc = guild.get_channel(930268986858414130).mention
 
-        part = "> Passively gain server currency\n\n> Your own custom role\n\n> The booster role being hoisted " \
-               "higher, just under the staff, showing your passion for the server"
+        '''part = "> Passively gain server currency\n\n> Your own custom role\n\n> The booster role being hoisted " \
+               "higher, just under the staff, showing your passion for the server"'''
 
-        partner = discord.Embed(color=discord.Color.green())
+        '''partner = discord.Embed(color=discord.Color.green())
         partner.add_field(name="What do you get for boosting us? This is what rewards you can get:", value=part, inline=False)
         partner.set_thumbnail(url=guild.icon_url)
-        partner.set_footer(text=f"Revised on: {datetime.date.today()}")
+        partner.set_footer(text=f"Revised on: {datetime.date.today()}")'''
 
-        await self.bot.get_guild(913007198488133632).get_channel(919639089832149002).purge(limit=10)
-        await self.bot.get_guild(913007198488133632).get_channel(919639089832149002).send(f"{emoji} Booster Perks! {emoji}", embed=partner)
-        await self.bot.get_guild(913007198488133632).get_channel(919639089832149002).send("And more perks to come!")
+        oboost = f"> {boosterrole} which is hoisted above other roles\n> Access to {vipchat} with the other boosters!\n> Access to {vipvc} with other boosters!"
+        tboost = f"> Custom role with custom color (cannot be replicating a staff role and must be SFW)\n"
+
+        partner = discord.Embed(title="Our Boosting Perks!", color=discord.Color.purple())
+        partner.add_field(name="One Boost!", value=f"What do you get for boosting once? They are below:\n{oboost}")
+
+        partner1 = discord.Embed(color=discord.Color.purple())
+        partner1.add_field(name="Two Boosts!", value=f"What do you get for boosting twice? They are below:\n{tboost}")
+
+        # await self.bot.get_guild(913007198488133632).get_channel(919639089832149002).purge(limit=10)
+        # await self.bot.get_guild(913007198488133632).get_channel(919639089832149002).send(f"{emoji} Booster Perks! {emoji}", embed=partner)
+        # await self.bot.get_guild(913007198488133632).get_channel(919639089832149002).send("And more perks to come!")
+        await ctx.send(embed=partner)
+        await ctx.send(embed=partner1)
 
         await ctx.send("Sent the Booster Perks")
 

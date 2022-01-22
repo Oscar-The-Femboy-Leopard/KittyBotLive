@@ -18,9 +18,9 @@ class Moderation(commands.Cog):
     @commands.has_permissions()
     async def clear(self, ctx, amount=10):
         await ctx.channel.purge(limit=amount + 1)
-        await ctx.send(f'Nomed {amount} of messages :stuck_out_tongue:')
-        await asyncio.sleep(5)  # Change the number for the amount of time for the message above to stay there
-        await ctx.channel.purge(limit=1)
+        await ctx.send(f'Nomed {amount} of messages :stuck_out_tongue:', delete_after=5)
+        '''await asyncio.sleep(5)  # Change the number for the amount of time for the message above to stay there
+        await ctx.channel.purge(limit=1)'''
 
 
 def setup(bot):
