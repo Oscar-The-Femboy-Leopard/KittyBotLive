@@ -52,8 +52,8 @@ class Utility(commands.Cog):
         def check(m):
             return m.author.id == a.id
 
-        if ctx.message.guild:
-            return
+        '''if ctx.message.guild:
+            return'''
 
         if r in a.roles:
             return await ctx.reply("You already have been verified!")
@@ -68,6 +68,9 @@ class Utility(commands.Cog):
         except discord.Forbidden:
             return await ctx.reply(
                 "I am sorry, but I cannot DM you. Can you open the DMs to the server to verify and try again?\nThank you.")
+
+        if msg in ctx.message.guild:
+            return
 
         await asyncio.sleep(1)
         try:
