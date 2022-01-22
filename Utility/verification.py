@@ -52,7 +52,7 @@ class Utility(commands.Cog):
         def check(m):
             return m.author.id == a.id
 
-        if ctx.msg.guild:
+        if ctx.message.guild:
             return
 
         if r in a.roles:
