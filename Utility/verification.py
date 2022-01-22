@@ -2,7 +2,7 @@ import random
 import discord
 import asyncio
 import datetime
-import urllib.parse
+# import urllib.parse
 
 from discord.ext import commands
 from owner.rules import _password
@@ -30,7 +30,7 @@ class Utility(commands.Cog):
         r = self.bot.get_guild(913007198488133632).get_role(913015562894979082)
 
         imgsearch = 'https://images.google.com/searchbyimage?image_url='
-        pfp = urllib.parse.quote(ctx.author.avatar_url, safe='')
+        # pfp = urllib.parse.quote(ctx.author.avatar_url, safe='')
 
         c = random.choice(random_color)
 
