@@ -69,9 +69,6 @@ class Utility(commands.Cog):
             return await ctx.reply(
                 "I am sorry, but I cannot DM you. Can you open the DMs to the server to verify and try again?\nThank you.")
 
-        if msg in ctx.message.guild:
-            return
-
         await asyncio.sleep(1)
         try:
             msg = await self.bot.wait_for('message', timeout=30.0, check=check)
