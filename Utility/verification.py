@@ -43,7 +43,8 @@ class Utility(commands.Cog):
         guidmg.set_footer(text="I will need the two parts of the password from the rules as this is a way to prevent "
                                "people joining who don't read the rules. This step is vital for us all. to be "
                                "safe\n**NOTE:** The password contains 2 words found different places of the rules ("
-                               "Please enter them in the way they come from the rules ~~top to bottom~~).")
+                               "Please enter them in the way they come from the rules ~~top to bottom~~)\n"
+                               "Verification will time out after 60 seconds per question.")
 
         await ctx.reply(embed=guidmg)
 
@@ -71,7 +72,7 @@ class Utility(commands.Cog):
 
         await asyncio.sleep(1)
         try:
-            msg = await self.bot.wait_for('message', timeout=30.0, check=check)
+            msg = await self.bot.wait_for('message', timeout=60.0, check=check)
         except asyncio.TimeoutError:
             return await a.send('Verification has timed out. Please rerun the command.')
         password = msg.content.lower()
@@ -94,7 +95,7 @@ class Utility(commands.Cog):
 
         await asyncio.sleep(1)
         try:
-            msg = await self.bot.wait_for('message', timeout=30.0, check=check)
+            msg = await self.bot.wait_for('message', timeout=60.0, check=check)
         except asyncio.TimeoutError:
             return await a.send('Verification has timed out. Please rerun the command.')
         name = msg.content
@@ -107,7 +108,7 @@ class Utility(commands.Cog):
                      f"worry about other people knowing :slight_smile:")
         await asyncio.sleep(1)
         try:
-            msg = await self.bot.wait_for('message', timeout=30.0, check=check)
+            msg = await self.bot.wait_for('message', timeout=60.0, check=check)
         except asyncio.TimeoutError:
             return await a.send('Verification has timed out. Please rerun the command.')
         if msg.content.lower() == 'cancel':
@@ -149,7 +150,7 @@ class Utility(commands.Cog):
         await a.send("Next, may I know if you're a furry? (`Yes` or `No`)")
         await asyncio.sleep(1)
         try:
-            msg = await self.bot.wait_for('message', timeout=30.0, check=check)
+            msg = await self.bot.wait_for('message', timeout=60.0, check=check)
         except asyncio.TimeoutError:
             return await a.send('Verification has timed out. Please rerun the command.')
         furry = msg.content.lower()
@@ -165,7 +166,10 @@ class Utility(commands.Cog):
             await a.send(
                 f"Got it! You are a furry. May I ask what your fursona species is?")
             await asyncio.sleep(1)
-            msg = await self.bot.wait_for('message', check=check)
+            try:
+                msg = await self.bot.wait_for('message', timeout=60.0, check=check)
+            except asyncio.TimeoutError:
+                return await a.send('Verification has timed out. Please rerun the command.')
             fursona = msg.content.lower()
             if fursona == 'cancel':
                 await channel.send(f"{a.display_name} has cancelled their verification.")
@@ -179,7 +183,7 @@ class Utility(commands.Cog):
                 "your fursona, tell us some basic info of what you imagine your fursona to be or info about you!")
             await asyncio.sleep(1)
             try:
-                msg = await self.bot.wait_for('message', timeout=30.0, check=check)
+                msg = await self.bot.wait_for('message', timeout=60.0, check=check)
             except asyncio.TimeoutError:
                 return await a.send('Verification has timed out. Please rerun the command.')
             fursonainfo = msg.content.lower()
@@ -197,7 +201,7 @@ class Utility(commands.Cog):
             await a.send("Because you don't have a fursona, can I know what hobbies you enjoy?")
             await asyncio.sleep(1)
             try:
-                msg = await self.bot.wait_for('message', timeout=30.0, check=check)
+                msg = await self.bot.wait_for('message', timeout=60.0, check=check)
             except asyncio.TimeoutError:
                 return await a.send('Verification has timed out. Please rerun the command.')
             hobby = msg.content.lower()
@@ -209,7 +213,7 @@ class Utility(commands.Cog):
         await a.send("Next, may I know what your favourite quote is? If you don't have one, you can just put N/A")
         await asyncio.sleep(1)
         try:
-            msg = await self.bot.wait_for('message', timeout=30.0, check=check)
+            msg = await self.bot.wait_for('message', timeout=60.0, check=check)
         except asyncio.TimeoutError:
             return await a.send('Verification has timed out. Please rerun the command.')
         quote = msg.content.lower()
@@ -224,7 +228,7 @@ class Utility(commands.Cog):
             "Next, can you please say how you came to find the server today?")
         await asyncio.sleep(1)
         try:
-            msg = await self.bot.wait_for('message', timeout=30.0, check=check)
+            msg = await self.bot.wait_for('message', timeout=60.0, check=check)
         except asyncio.TimeoutError:
             return await a.send('Verification has timed out. Please rerun the command.')
         foundus = msg.content.lower()
@@ -238,7 +242,7 @@ class Utility(commands.Cog):
         )
         await asyncio.sleep(1)
         try:
-            msg = await self.bot.wait_for('message', timeout=30.0, check=check)
+            msg = await self.bot.wait_for('message', timeout=60.0, check=check)
         except asyncio.TimeoutError:
             return await a.send('Verification has timed out. Please rerun the command.')
         want = msg.content.lower()
